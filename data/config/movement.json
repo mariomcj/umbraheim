@@ -1,0 +1,7 @@
+{
+	"start_region": "ruinas",
+	"player_speed_mps": 5.0,
+	"spawn_radius_m": 4.0,
+	"world_half_extent_m": 38.0,
+	"interpolation_delay_ms": 120
+}

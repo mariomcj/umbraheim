@@ -1,0 +1,13 @@
+{
+	"_doc": "Servidor: banco de dados, contas e salvamento. db_path pode ser trocado por --db=<caminho> na linha de comando (':memory:' = banco temporário, para testes). password_iterations: PBKDF2-HMAC-SHA256, 600 mil = recomendação atual da OWASP (cerca de 0,7 s numa thread, fora do tick). Contas antigas guardam o próprio número de iterações.",
+	"db_path": "user://umbraheim.db",
+	"autosave_interval_s": 60.0,
+	"password_iterations": 600000,
+	"password_min_length": 6,
+	"account_name_pattern": "^[a-z0-9_]{3,20}$",
+	"character_name_min": 3,
+	"character_name_max": 14,
+	"max_characters_per_account": 5,
+	"login_max_failures": 5,
+	"login_timeout_s": 180.0
+}

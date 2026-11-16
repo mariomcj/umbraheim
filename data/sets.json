@@ -1,0 +1,14 @@
+{
+	"_doc": "Conjuntos ancestrais. Uma peça ancestral de uma base listada pertence ao conjunto; ganha +ancestral_stat_bonus no atributo 'stat'. bonuses[n] vale ao usar n ou mais peças (cumulativo).",
+	"vigilia_eclipse": {
+		"name": "Vigília do Eclipse",
+		"stat": "ene",
+		"pieces": ["capuz_acolito", "manto_acolito", "calcas_acolito", "luvas_acolito", "botas_acolito"],
+		"bonuses": {
+			"2": { "defense": 10 },
+			"3": { "magic_max": 8 },
+			"4": { "mana_max_pct": 0.1 },
+			"5": { "damage_pct": 0.1, "stat_ene": 20 }
+		}
+	}
+}

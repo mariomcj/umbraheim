@@ -1,0 +1,15 @@
+{
+	"_doc": "Tela de entrada como cena 2D (LoginScene, docs/design/PROPOSTA_AMBIENTACAO.md seção 5). art: zoom lento de ida e volta (ken_burns_zoom em ken_burns_s segundos) e paralaxe com o mouse (parallax_px). moon: centro e raio do brilho em UV da arte (wide e tall), alfa mínimo e máximo do pulso e o período. lightning: intervalo sorteado entre clarões (no máximo max_per_min por minuto, por fotossensibilidade), duração e força. smoke: dois planos de fumaça no terço de baixo (altura em fração da tela). embers e ash: partículas 2D (quantidade, cores, vida, velocidade). vignette: força. select: na escolha de personagem a arte escurece (art_dim) e fumaça e brasas ganham a cor da classe em tint_s segundos.",
+	"art": { "ken_burns_zoom": 1.04, "ken_burns_s": 40.0, "parallax_px": 8.0 },
+	"moon": {
+		"wide": { "uv": [0.5, 0.13], "radius": 0.11 },
+		"tall": { "uv": [0.5, 0.17], "radius": 0.24 },
+		"color": "#9E47FF", "alpha_min": 0.15, "alpha_max": 0.3, "period_s": 6.0
+	},
+	"lightning": { "min_s": 20.0, "max_s": 40.0, "max_per_min": 3, "flash_s": 0.15, "second_delay_s": 0.12, "strength": 0.35, "second_strength": 0.18, "color": "#B07CFF" },
+	"smoke": { "color": "#3A3048", "alpha": 0.35, "height": 0.42, "speed": 0.018, "scale": 3.0 },
+	"embers": { "count": 50, "lifetime_s": 9.0, "speed": [18.0, 42.0], "size_px": [2.0, 4.5], "colors": ["#FF8C38", "#D11A33"], "violet": "#B07CFF", "violet_share": 0.1, "sway_px": 30.0 },
+	"ash": { "count": 30, "lifetime_s": 14.0, "speed": [12.0, 26.0], "size_px": [1.5, 3.0], "color": "#8E8A96", "alpha": 0.55 },
+	"vignette": { "color": "#05040A", "strength": 0.75 },
+	"select": { "art_dim": 0.28, "tint_s": 0.6, "smoke_alpha": 0.55, "ember_mult": 1.0 }
+}

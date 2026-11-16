@@ -1,0 +1,16 @@
+; godot-sqlite v4.9 (MIT, https://github.com/2shady4u/godot-sqlite), SQLite 3.51.0.
+; Só o SERVIDOR usa (Windows para desenvolvimento, Linux em produção).
+; As bibliotecas de Web, Android, iOS e macOS foram omitidas de propósito:
+; o cliente nunca carrega esta extensão (ver docs/DECISOES.md, Fase 3).
+
+[configuration]
+
+entry_symbol = "sqlite_library_init"
+compatibility_minimum = "4.7"
+
+[libraries]
+
+windows.debug.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.windows.template_release.x86_64.dll"
+linux.debug.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.linux.template_debug.x86_64.so"
+linux.release.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.linux.template_release.x86_64.so"

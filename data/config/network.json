@@ -1,0 +1,20 @@
+{
+	"port": 7777,
+	"bind_address": "*",
+	"default_server_url": "ws://127.0.0.1:7777",
+	"handshake_timeout_s": 15.0,
+	"connect_after_frames": 10,
+	"tick_rate_hz": 15,
+	"max_ticks_per_frame": 5,
+	"input_send_rate_hz": 10,
+	"stats_log_interval_s": 5.0,
+	"reconnect_delay_s": 3.0,
+	"interest_radius_m": 32.0,
+	"interest_hysteresis_m": 4.0,
+	"interest_cell_m": 16.0,
+	"ping_interval_s": 2.0,
+	"prediction_enabled": true,
+	"prediction_correction_m": 0.5,
+	"prediction_snap_m": 4.0,
+	"prediction_smoothing": 8.0
+}

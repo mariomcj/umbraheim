@@ -1,0 +1,87 @@
+{
+	"_doc": "Modelos 3D animados (só no cliente; o servidor e a colisão não mudam). models.<id>: path (glb/gltf/fbx), height_m (altura final; a escala sai da caixa das malhas mantidas) ou scale + lift_m (escala e altura fixas, para FBX), keep (prefixos das malhas que ficam visíveis; vazio = todas), yaw_deg (correção da frente), float_m (flutuação), tint (multiplica a cor), anims (self = as do próprio arquivo; ou um id de anim_sources), clips (estado -> clipe; estados: idle, walk, run, attack, cast, hit, death), run_speed_scale (sem clipe de corrida, acelera a caminhada). classes.<classe> = id do modelo do jogador; monstros escolhem por 'model' em monsters.json. weapons.<mesh do item> = modelo preso ao osso da mão (hand: right|left) nos modelos com hands. locomotion: velocidades (m/s) a partir das quais anda e corre.",
+	"locomotion": { "moving_mps": 0.35, "run_mps": 3.4 },
+	"anim_sources": {
+		"kaykit": ["res://assets/models/monsters/kaykit_skeletons/Skeleton_Minion.glb"],
+		"ual": ["res://assets/models/characters/animations/UAL1_Standard.glb"]
+	},
+	"kaykit_clips": {
+		"idle": "Idle", "walk": "Walking_A", "run": "Running_A", "attack": "1H_Melee_Attack_Chop",
+		"cast": "Spellcast_Shoot", "hit": "Hit_A", "death": "Death_A"
+	},
+	"models": {
+		"mago": {
+			"path": "res://assets/models/characters/kaykit_adventurers/Mage.glb", "height_m": 1.9,
+			"keep": ["Mage_"], "anims": "kaykit", "clips": { "attack": "2H_Melee_Attack_Stab" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" }
+		},
+		"cavaleiro": {
+			"path": "res://assets/models/characters/kaykit_adventurers/Knight.glb", "height_m": 1.95,
+			"keep": ["Knight_"], "anims": "kaykit", "clips": { "cast": "Spellcast_Raise" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" }
+		},
+		"vidente": {
+			"path": "res://assets/models/characters/kaykit_adventurers/Rogue_Hooded.glb", "height_m": 1.85,
+			"keep": ["Rogue_"], "anims": "kaykit", "clips": { "cast": "Spellcast_Long" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" }
+		},
+		"esqueleto_servo": {
+			"path": "res://assets/models/monsters/kaykit_skeletons/Skeleton_Minion.glb", "height_m": 1.6,
+			"anims": "kaykit", "tint": [0.75, 0.78, 0.7],
+			"clips": { "walk": "Walking_D_Skeletons", "attack": "Unarmed_Melee_Attack_Punch_A", "death": "Death_C_Skeletons" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" }
+		},
+		"esqueleto_guerreiro": {
+			"path": "res://assets/models/monsters/kaykit_skeletons/Skeleton_Warrior.glb", "height_m": 1.9,
+			"anims": "kaykit", "tint": [0.7, 0.68, 0.66],
+			"clips": { "attack": "1H_Melee_Attack_Slice_Diagonal", "death": "Death_C_Skeletons" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" },
+			"props": [
+				{ "path": "res://assets/models/weapons/kaykit_skeletons/Skeleton_Blade.gltf", "hand": "right" },
+				{ "path": "res://assets/models/weapons/kaykit_skeletons/Skeleton_Shield_Large_A.gltf", "hand": "left" }
+			]
+		},
+		"esqueleto_ladino": {
+			"path": "res://assets/models/monsters/kaykit_skeletons/Skeleton_Rogue.glb", "height_m": 1.8,
+			"anims": "kaykit", "tint": [0.72, 0.7, 0.78],
+			"clips": { "attack": "Dualwield_Melee_Attack_Slice", "death": "Death_C_Skeletons" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" },
+			"props": [
+				{ "path": "res://assets/models/weapons/kaykit_skeletons/Skeleton_Axe.gltf", "hand": "right" },
+				{ "path": "res://assets/models/weapons/kaykit_skeletons/Skeleton_Blade.gltf", "hand": "left" }
+			]
+		},
+		"esqueleto_mago": {
+			"path": "res://assets/models/monsters/kaykit_skeletons/Skeleton_Mage.glb", "height_m": 2.0,
+			"anims": "kaykit", "tint": [0.8, 0.72, 0.7],
+			"clips": { "attack": "Spellcast_Shoot", "death": "Death_C_Skeletons" },
+			"hands": { "right": "handslot.r", "left": "handslot.l" },
+			"props": [ { "path": "res://assets/models/weapons/kaykit_skeletons/Skeleton_Staff.gltf", "hand": "right" } ]
+		},
+		"lobo": {
+			"path": "res://assets/models/monsters/quaternius_animal_pack_2/Wolf.fbx", "scale": 0.21, "yaw_deg": -90,
+			"anims": "self", "tint": [0.62, 0.6, 0.58], "run_speed_scale": 1.9,
+			"clips": { "idle": "WolfArmature|Idle", "walk": "WolfArmature|Walking" }
+		},
+		"cria_abismo": {
+			"path": "res://assets/models/monsters/quaternius_animated_monsters/Dragon.fbx", "scale": 0.5, "lift_m": 0.35, "yaw_deg": -90,
+			"anims": "self", "tint": [0.8, 0.55, 1.0], "float_m": 0.12, "keep": ["Dragon"],
+			"clips": {
+				"idle": "DragonArmature|Dragon_Flying", "attack": "DragonArmature|Dragon_Attack",
+				"hit": "DragonArmature|Dragon_Hit", "death": "DragonArmature|Dragon_Death"
+			}
+		},
+		"bruto_acorrentado": {
+			"path": "res://assets/models/monsters/quaternius_dungeon_monsters/Imp.glb", "height_m": 2.0,
+			"anims": "ual", "tint": [0.78, 0.7, 0.7],
+			"clips": { "idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "cast": "Punch_Cross", "hit": "hit", "death": "death" }
+		}
+	},
+	"classes": { "feiticeiro": "mago", "cavaleiro": "cavaleiro", "vidente": "vidente" },
+	"weapons": {
+		"staff": { "path": "res://assets/models/weapons/kaykit_adventurers/staff.gltf", "hand": "right" },
+		"sword": { "path": "res://assets/models/weapons/kaykit_adventurers/sword_1handed.gltf", "hand": "right" },
+		"shield": { "path": "res://assets/models/weapons/kaykit_adventurers/shield_spikes.gltf", "hand": "left" },
+		"book": { "path": "res://assets/models/weapons/kaykit_adventurers/spellbook_open.gltf", "hand": "left" }
+	}
+}

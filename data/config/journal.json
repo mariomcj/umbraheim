@@ -1,0 +1,32 @@
+{
+	"sample_distance_m": 1.5,
+	"stroke_break_distance_m": 6.0,
+	"rdp_epsilon_m": 0.2,
+	"simplify_chunk_points": 48,
+	"landmark_check_interval_ticks": 5,
+
+	"paper_size_px": 1024,
+	"pencil_speed_px_s": 90.0,
+	"pencil_catchup_px": 40.0,
+	"marker_follow_sharpness": 12.0,
+	"marker_size_px": 9.0,
+	"marker_color": [0.78, 0.13, 0.11],
+	"marker_outline": [0.98, 0.95, 0.87],
+
+	"stamp_spacing_px": 1.1,
+	"stroke_width_px": 2.0,
+	"stroke_alpha": 0.26,
+	"jitter_px": 0.45,
+	"wobble_px": 0.8,
+
+	"mark_size_px": 9.0,
+	"mark_stroke_duration_s": 0.3,
+	"label_chars_per_s": 12.0,
+	"label_font_px": 14,
+	"title_font_px": 22,
+
+	"minimap_size_px": 230,
+	"minimap_zoom": 3.0,
+	"full_view_height_ratio": 0.86,
+	"page_turn_s": 0.75
+}

@@ -1,0 +1,32 @@
+{
+	"_doc": "Classe Feiticeiro Abissal. Fórmulas são expressões da Godot (Expression) com as variáveis level, str, agi, vit, ene.",
+	"id": "feiticeiro",
+	"name": "Feiticeiro Abissal",
+	"description": "Mestre das magias de área: chamas negras, setas e correntes do Véu. Pouca vida, muito dano mágico.",
+	"color": [0.42, 0.22, 0.62],
+	"damage_label": "Dano mágico",
+	"base_stats": { "str": 18, "agi": 18, "vit": 15, "ene": 30 },
+	"points_per_level": 5,
+	"derived": {
+		"hp_max": "60.0 + (level - 1) * 1.0 + (vit - 15) * 2.0",
+		"mana_max": "60.0 + (level - 1) * 2.0 + (ene - 30) * 2.0",
+		"magic_min": "ene / 9.0",
+		"magic_max": "ene / 4.0",
+		"defense": "agi / 4.0",
+		"attack_speed": "1.0 + agi / 300.0",
+		"hp_regen_s": "0.5 + vit / 50.0",
+		"mana_regen_s": "1.0 + ene / 40.0",
+		"move_speed_mps": "5.0"
+	},
+	"starting_items": [
+		{ "base": "cajado_osso", "equip": true },
+		{ "base": "manto_acolito", "equip": true },
+		{ "base": "pocao_vida_menor", "count": 5 },
+		{ "base": "pocao_mana_menor", "count": 5 }
+	],
+	"_spells_doc": "spells: todas as magias da classe (a ordem é o índice na rede). starting_spells: as que o personagem já sabe; as outras se aprendem com grimórios (loja do mago).",
+	"spells": ["toque_sombrio", "seta_abissal", "circulo_chamas_negras", "corrente_do_veu", "chuva_brasas", "meteoro_vazio"],
+	"starting_spells": ["toque_sombrio", "seta_abissal", "circulo_chamas_negras", "corrente_do_veu"],
+	"_evolution_doc": "evolution: a evolução de classe (missão em data/quests.json, entregue ao Ancião no Refúgio). name = novo título; points_per_level_bonus = pontos extras por nível depois de evoluir; points_bonus = pontos dados na hora; spells = magias liberadas ao evoluir (estão no fim de spells, para não mudar os índices).",
+	"evolution": { "name": "Arquimago do Abismo", "points_per_level_bonus": 2, "points_bonus": 10, "spells": ["meteoro_vazio"] }
+}

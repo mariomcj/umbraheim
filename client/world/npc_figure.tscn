@@ -1,0 +1,93 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/world/npc_figure.gd" id="1_npc"]
+
+[sub_resource type="CylinderMesh" id="RobeMesh"]
+top_radius = 0.24
+bottom_radius = 0.42
+height = 1.1
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CapsuleMesh" id="BodyMesh"]
+radius = 0.22
+height = 0.8
+radial_segments = 10
+rings = 3
+
+[sub_resource type="CylinderMesh" id="HoodMesh"]
+top_radius = 0.03
+bottom_radius = 0.2
+height = 0.42
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="SkinMat"]
+albedo_color = Color(0.62, 0.5, 0.42, 1)
+roughness = 0.9
+
+[sub_resource type="SphereMesh" id="HeadMesh"]
+material = SubResource("SkinMat")
+radius = 0.14
+height = 0.28
+radial_segments = 10
+rings = 5
+
+[sub_resource type="TorusMesh" id="SashMesh"]
+inner_radius = 0.2
+outer_radius = 0.26
+rings = 16
+ring_segments = 6
+
+[node name="NpcFigure" type="Node3D" groups=["obstacle"]]
+script = ExtResource("1_npc")
+
+[node name="Robe" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.55, 0)
+mesh = SubResource("RobeMesh")
+
+[node name="Upper" type="Node3D" parent="."]
+position = Vector3(0, 1.1, 0)
+
+[node name="Body" type="MeshInstance3D" parent="Upper"]
+position = Vector3(0, 0.15, 0)
+mesh = SubResource("BodyMesh")
+
+[node name="Sash" type="MeshInstance3D" parent="Upper"]
+position = Vector3(0, 0.0, 0)
+mesh = SubResource("SashMesh")
+
+[node name="Head" type="MeshInstance3D" parent="Upper"]
+position = Vector3(0, 0.66, 0.02)
+mesh = SubResource("HeadMesh")
+
+[node name="Hood" type="MeshInstance3D" parent="Upper"]
+position = Vector3(0, 0.78, -0.02)
+mesh = SubResource("HoodMesh")
+
+[node name="Light" type="OmniLight3D" parent="."]
+position = Vector3(0, 1.4, 0.6)
+light_energy = 0.35
+omni_range = 3.0
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.45, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.95, 0.85, 0.6, 1)
+outline_modulate = Color(0, 0, 0, 0.9)
+pixel_size = 0.005
+font_size = 40
+outline_size = 12
+text = "NPC"
+
+[node name="TitleLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.22, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.7, 0.66, 0.58, 1)
+outline_modulate = Color(0, 0, 0, 0.9)
+pixel_size = 0.004
+font_size = 34
+outline_size = 10
+text = ""

@@ -1,0 +1,7 @@
+{
+	"_doc": "Regiões do mundo, na ordem de dificuldade. home_region: onde se renasce e para onde o Pergaminho do Retorno leva. Cada região (data/regions/<id>.json) define level_req, teleport_cost, teleport_point, portals e respawn_region.",
+	"home_region": "ruinas",
+	"regions": ["ruinas", "bosque", "geleira"],
+	"portal_check_interval_ticks": 3,
+	"portal_message_cooldown_s": 3.0
+}

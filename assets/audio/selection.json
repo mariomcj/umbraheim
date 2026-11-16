@@ -1,0 +1,26 @@
+{
+ "keep": [
+  "assets/audio/music/incompetech_oppressive_gloom.ogg",
+  "assets/audio/sfx/magic/fs522705_fireball_woosh_pass_fast.ogg",
+  "assets/audio/sfx/magic/fs554791_mage_teleport_skill.ogg",
+  "assets/audio/sfx/magic/fs720112_teleport_cast.ogg",
+  "assets/audio/sfx/magic/fs861568_dark_ghost_warrior_voice_04_spectral_war.ogg",
+  "assets/audio/sfx/magic/fs871710_sound_design_impact_1.ogg",
+  "assets/audio/sfx/combat/kenney_impactpunch_heavy_000.ogg",
+  "assets/audio/sfx/combat/kenney_drawknife1.ogg",
+  "assets/audio/sfx/combat/kenney_knifeslice.ogg",
+  "assets/audio/sfx/combat/fs492250_imperius_spear_hit_03_wav.ogg",
+  "assets/audio/sfx/monsters/fs315769_dragon_growl_omnious_aiff.ogg",
+  "assets/audio/sfx/monsters/fs348307_zombie_monster_growl_3.ogg",
+  "assets/audio/sfx/monsters/fs555425_zombie_pain_6_wav.ogg",
+  "assets/audio/sfx/monsters/fs800277_insect_animal_growl_chitter.ogg",
+  "assets/audio/sfx/footsteps/kenney_footstep_concrete_000.ogg",
+  "assets/audio/sfx/footsteps/kenney_footstep_grass_000.ogg",
+  "assets/audio/sfx/footsteps/kenney_footstep00.ogg",
+  "assets/audio/sfx/footsteps/fs517136_footsteps_stone_7_wav.ogg",
+  "assets/audio/sfx/ambient/fs166187_creepy_dungeon_ambience.ogg",
+  "assets/audio/sfx/ambient/fs422720_a_dungeon_ambience_loop_wav.ogg",
+  "assets/audio/sfx/ambient/fs607205_ooooo_chorus_and_reverb.ogg",
+  "assets/audio/sfx/ui/fs488381_uihover1_wav.ogg"
+ ]
+}

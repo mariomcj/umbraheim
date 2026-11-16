@@ -1,0 +1,29 @@
+{
+	"_doc": "Chat, grupo e troca. chat.rate: no máximo 'messages' mensagens a cada 'window_s' segundos por jogador. party.xp: XP total = XP do monstro * (1 + bonus_per_member * (membros - 1) + bonus_per_distinct_class * (classes diferentes - 1)), dividido entre os membros vivos a até share_radius_m do monstro, em proporção ao nível de cada um. trade.range_m: distância máxima para propor e manter uma troca. friends: amizade é mútua (pedido + aceite); max = tamanho da lista; state_interval_s = reenvio do estado (nível, região) dos amigos online.",
+	"chat": {
+		"max_length": 160,
+		"rate": { "messages": 6, "window_s": 8.0 },
+		"history_lines": 60,
+		"visible_lines": 8,
+		"fade_s": 12.0
+	},
+	"party": {
+		"max_members": 5,
+		"invite_timeout_s": 30.0,
+		"share_radius_m": 30.0,
+		"bonus_per_member": 0.08,
+		"bonus_per_distinct_class": 0.1,
+		"state_interval_s": 0.5
+	},
+	"trade": {
+		"range_m": 6.0,
+		"request_timeout_s": 30.0,
+		"offer_cols": 8,
+		"offer_rows": 4
+	},
+	"friends": {
+		"max": 30,
+		"request_timeout_s": 30.0,
+		"state_interval_s": 10.0
+	}
+}

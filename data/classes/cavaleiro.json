@@ -1,0 +1,32 @@
+{
+	"_doc": "Classe Cavaleiro Profano: corpo a corpo, canaliza magia profana na lâmina. O dano usa as mesmas chaves (magic_min/magic_max) que o combate entende, mas vem sobretudo da força. Fórmulas: Expression da Godot com level, str, agi, vit, ene.",
+	"id": "cavaleiro",
+	"name": "Cavaleiro Profano",
+	"description": "Linha de frente. Golpes de lâmina carregados de magia profana, um redemoinho que acerta todos em volta e muita vida e defesa.",
+	"color": [0.5, 0.14, 0.12],
+	"damage_label": "Dano",
+	"base_stats": { "str": 28, "agi": 20, "vit": 25, "ene": 10 },
+	"points_per_level": 5,
+	"derived": {
+		"hp_max": "110.0 + (level - 1) * 2.0 + (vit - 25) * 3.0",
+		"mana_max": "30.0 + (level - 1) * 0.6 + (ene - 10) * 1.5",
+		"magic_min": "str / 6.0 + ene / 12.0",
+		"magic_max": "str / 3.5 + ene / 8.0",
+		"defense": "agi / 3.0",
+		"attack_speed": "1.0 + agi / 250.0",
+		"hp_regen_s": "1.0 + vit / 30.0",
+		"mana_regen_s": "0.8 + ene / 30.0",
+		"move_speed_mps": "5.0"
+	},
+	"starting_items": [
+		{ "base": "espada_ferrugem", "equip": true },
+		{ "base": "cota_cinzas", "equip": true },
+		{ "base": "pocao_vida_menor", "count": 5 },
+		{ "base": "pocao_mana_menor", "count": 5 }
+	],
+	"_spells_doc": "spells: todas as magias da classe (a ordem é o índice na rede). starting_spells: as que o personagem já sabe; as outras se aprendem com grimórios ou na evolução.",
+	"spells": ["golpe_profano", "lamina_rubra", "redemoinho_profano", "fenda_sombria", "juramento_sombrio", "golpe_eclipse"],
+	"starting_spells": ["golpe_profano", "lamina_rubra", "redemoinho_profano", "fenda_sombria"],
+	"_evolution_doc": "evolution: a evolução de classe (missão em data/quests.json, entregue ao Ancião no Refúgio). name = novo título; points_per_level_bonus = pontos extras por nível depois de evoluir; points_bonus = pontos dados na hora; spells = magias liberadas ao evoluir (estão no fim de spells, para não mudar os índices).",
+	"evolution": { "name": "Cavaleiro do Eclipse", "points_per_level_bonus": 2, "points_bonus": 10, "spells": ["golpe_eclipse"] }
+}

@@ -1,0 +1,97 @@
+nome,tipo,fonte,url,autor,licença,caminho_local,data_download
+Stone Brick Wall 001,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/stone_brick_wall_001,"Dimitrios Savva, Rico Cilliers",CC0,assets/textures/stone/stone_brick_wall_001,2026-11-13
+Castle Wall Slates,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/castle_wall_slates,Rob Tuytel,CC0,assets/textures/stone/castle_wall_slates,2026-11-13
+Medieval Blocks 03,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/medieval_blocks_03,Rob Tuytel,CC0,assets/textures/stone/medieval_blocks_03,2026-11-13
+Rustic Stone Wall 02,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/rustic_stone_wall_02,Amal Kumar,CC0,assets/textures/stone/rustic_stone_wall_02,2026-11-13
+Mossy Rock,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/mossy_rock,Rob Tuytel,CC0,assets/textures/stone/mossy_rock,2026-11-13
+Cobblestone Floor 04,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/cobblestone_floor_04,Rob Tuytel,CC0,assets/textures/ground/cobblestone_floor_04,2026-11-13
+Monastery Stone Floor,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/monastery_stone_floor,Amal Kumar,CC0,assets/textures/ground/monastery_stone_floor,2026-11-13
+Forest Ground 01,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/forrest_ground_01,Rob Tuytel,CC0,assets/textures/ground/forrest_ground_01,2026-11-13
+Brown Mud Leaves 01,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/brown_mud_leaves_01,Rob Tuytel,CC0,assets/textures/ground/brown_mud_leaves_01,2026-11-13
+Rust Coarse 01,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/rust_coarse_01,"Dimitrios Savva, Rico Cilliers",CC0,assets/textures/metal/rust_coarse_01,2026-11-13
+Rusty Metal 02,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/rusty_metal_02,Rob Tuytel,CC0,assets/textures/metal/rusty_metal_02,2026-11-13
+Metal Plate,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/metal_plate,Rob Tuytel,CC0,assets/textures/metal/metal_plate,2026-11-13
+Weathered Brown Planks,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/weathered_brown_planks,"Dimitrios Savva, Rico Cilliers",CC0,assets/textures/wood/weathered_brown_planks,2026-11-13
+Rough Wood,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/rough_wood,Rob Tuytel,CC0,assets/textures/wood/rough_wood,2026-11-13
+Bark Brown 02,"textura (1K: albedo, normal GL, rugosidade)",Poly Haven,https://polyhaven.com/a/bark_brown_02,Rob Tuytel,CC0,assets/textures/wood/bark_brown_02,2026-11-13
+Moonless Golf,HDRI (1K),Poly Haven,https://polyhaven.com/a/moonless_golf,Greg Zaal,CC0,assets/hdri/moonless_golf_1k.hdr,2026-11-13
+Kloppenheim 02,HDRI (1K),Poly Haven,https://polyhaven.com/a/kloppenheim_02,Greg Zaal,CC0,assets/hdri/kloppenheim_02_1k.hdr,2026-11-13
+Overcast Soil (Pure Sky),HDRI (1K),Poly Haven,https://polyhaven.com/a/overcast_soil_puresky,"Jarod Guest, Sergej Majboroda",CC0,assets/hdri/overcast_soil_puresky_1k.hdr,2026-11-13
+Paving Stones 139,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=PavingStones139,ambientCG (Lennart Demes),CC0,assets/textures/ground/PavingStones139,2026-11-13
+Paving Stones 138,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=PavingStones138,ambientCG (Lennart Demes),CC0,assets/textures/ground/PavingStones138,2026-11-13
+Tiles 138,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Tiles138,ambientCG (Lennart Demes),CC0,assets/textures/ground/Tiles138,2026-11-13
+Scattered Leaves 009,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=ScatteredLeaves009,ambientCG (Lennart Demes),CC0,assets/textures/ground/ScatteredLeaves009,2026-11-13
+Rock 035,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Rock035,ambientCG (Lennart Demes),CC0,assets/textures/stone/Rock035,2026-11-13
+Rock 063,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Rock063,ambientCG (Lennart Demes),CC0,assets/textures/stone/Rock063,2026-11-13
+Metal 063,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Metal063,ambientCG (Lennart Demes),CC0,assets/textures/metal/Metal063,2026-11-13
+Planks 039,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Planks039,ambientCG (Lennart Demes),CC0,assets/textures/wood/Planks039,2026-11-13
+Wood Siding 008,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=WoodSiding008,ambientCG (Lennart Demes),CC0,assets/textures/wood/WoodSiding008,2026-11-13
+Bark 016,"material (1K JPG: albedo, normal GL, rugosidade)",ambientCG,https://ambientcg.com/view?id=Bark016,ambientCG (Lennart Demes),CC0,assets/textures/wood/Bark016,2026-11-13
+Kenney Particle Pack,imagens 2D (96 PNG),Kenney,https://kenney.nl/assets/particle-pack,Kenney (kenney.nl),CC0,assets/vfx/particles/kenney_particle_pack,2026-11-13
+Kenney Fantasy Ui Borders,imagens 2D (280 PNG),Kenney,https://kenney.nl/assets/fantasy-ui-borders,Kenney (kenney.nl),CC0,assets/textures/misc/ui/kenney_fantasy_ui_borders,2026-11-13
+Kenney Ui Pack Rpg Expansion,imagens 2D (87 PNG),Kenney,https://kenney.nl/assets/ui-pack-rpg-expansion,Kenney (kenney.nl),CC0,assets/textures/misc/ui/kenney_ui_rpg_expansion,2026-11-13
+Kenney Game Icons,imagens 2D (420 PNG),Kenney,https://kenney.nl/assets/game-icons,Kenney (kenney.nl),CC0,assets/textures/misc/ui/kenney_game_icons,2026-11-13
+Godot 4+ 3D Vertical Dissolve Shader - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/godot-4-vertical-dissolve-shader/,jamscars,CC0,assets/vfx/shaders/godot_4_vertical_dissolve_shader.gdshader,2026-11-13
+Enhanced Dissolve (+ragdoll alternative tutorial) - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/enhanced-dissolve-ragdoll-alternative-tutorial/,profesorshader,CC0,assets/vfx/shaders/enhanced_dissolve_ragdoll_alternative_tutorial.gdshader,2026-11-13
+Pulse Aura for 3D Character - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/pulse-aura-for-3d-character/,mattmars,CC0,assets/vfx/shaders/pulse_aura_for_3d_character.gdshader,2026-11-13
+Aura (3D) - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/aura-3d/,davidoc,CC0,assets/vfx/shaders/aura_3d.gdshader,2026-11-13
+Cartoon 3D Fire - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/cartoon-3d-fire/,erbimo,CC0,assets/vfx/shaders/cartoon_3d_fire.gdshader,2026-11-13
+Fire and Electric Shader - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/fire-and-electric-shader/,flakmonkeydev,CC0,assets/vfx/shaders/fire_and_electric_shader.gdshader,2026-11-13
+Dither Portals - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/dither-portals/,nojoule,CC0,assets/vfx/shaders/dither_portals.gdshader,2026-11-13
+Pixelated Portal - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/pixelated-portal/,null_builds,CC0,assets/vfx/shaders/pixelated_portal.gdshader,2026-11-13
+Glowing shield/beam/buble/magic/frost Fresnel - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/glowing-shield-beam-buble-dark-magic-fresnel/,xhaya,CC0,assets/vfx/shaders/glowing_shield_beam_buble_dark_magic_fresnel.gdshader,2026-11-13
+Colored Fresnel Shader - Godot Shaders,shader (Godot),godotshaders.com,https://godotshaders.com/shader/colored-fresnel-shader/,loop_box,CC0,assets/vfx/shaders/colored_fresnel_shader.gdshader,2026-11-13
+Fantasy Props MegaKit (Standard),"modelos 3D (glTF, texturas até 1024 px)",Quaternius,https://quaternius.com,Quaternius,CC0,assets/models/props/quaternius_fantasy_props,2026-11-13
+Medieval Village MegaKit (Standard),"modelos 3D (glTF, texturas até 1024 px)",Quaternius,https://quaternius.com,Quaternius,CC0,assets/models/environment/quaternius_medieval_village,2026-11-13
+Stylized Nature MegaKit (Standard),"modelos 3D (glTF, texturas até 1024 px)",Quaternius,https://quaternius.com,Quaternius,CC0,assets/models/environment/quaternius_stylized_nature,2026-11-13
+Universal Animation Library (Standard),"animações (glTF, esqueleto de 65 ossos da Quaternius)",Quaternius,https://quaternius.com,Quaternius,CC0,assets/models/characters/animations/UAL1_Standard.glb,2026-11-13
+Universal Animation Library 2 (Standard),"animações (glTF, esqueleto de 65 ossos da Quaternius)",Quaternius,https://quaternius.com,Quaternius,CC0,assets/models/characters/animations/UAL2_Standard.glb,2026-11-13
+Polymancer — Tavern & Street,"modelos 3D (GLB, cores nos materiais)",Polymancer,https://polymancer.app,A. Chernomurov (Polymancer),CC0,assets/models/props/polymancer_tavern_street,2026-11-13
+SBS Tiny Texture Pack (512x512),texturas 2D (125 imagens),Screaming Brain Studios,,Screaming Brain Studios,CC0,assets/textures/misc/sbs_tiny_texture_pack_1,2026-11-13
+SBS Tiny Texture Pack 2 (512x512),texturas 2D (160 imagens),Screaming Brain Studios,,Screaming Brain Studios,CC0,assets/textures/misc/sbs_tiny_texture_pack_2,2026-11-13
+SBS Tiny Texture Pack 3 (Large),texturas 2D (240 imagens),Screaming Brain Studios,,Screaming Brain Studios,CC0,assets/textures/misc/sbs_tiny_texture_pack_3,2026-11-13
+Characters - Fantasy Races Kit (Standard),"modelos 3D com esqueleto (GLB, texturas até 1024 px; animações em characters/animations)",Quaternius,https://quaternius.com,Quaternius,QAL v1.0 (Quaternius Asset License),assets/models/characters/quaternius_fantasy_races,2026-11-13
+Bestiary - Dungeon Monsters Kit (Standard),"modelos 3D com esqueleto (GLB, texturas até 1024 px; animações em characters/animations)",Quaternius,https://quaternius.com,Quaternius,QAL v1.0 (Quaternius Asset License),assets/models/monsters/quaternius_dungeon_monsters,2026-11-13
+"KayKit Character Pack: Adventurers 1.0 (Mage, Knight, Rogue_Hooded)","modelo 3D (personagem animado, glb)",GitHub (KayKit-Game-Assets),https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0,Kay Lousberg,CC0,assets/models/characters/kaykit_adventurers,2026-11-13
+KayKit Character Pack: Adventurers 1.0 (armas e acessórios),"modelo 3D (arma, gltf)",GitHub (KayKit-Game-Assets),https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0,Kay Lousberg,CC0,assets/models/weapons/kaykit_adventurers,2026-11-13
+KayKit Character Pack: Skeletons 1.0,"modelo 3D (monstro animado, glb)",GitHub (KayKit-Game-Assets),https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0,Kay Lousberg,CC0,assets/models/monsters/kaykit_skeletons,2026-11-13
+KayKit Character Pack: Skeletons 1.0 (armas),"modelo 3D (arma, gltf)",GitHub (KayKit-Game-Assets),https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0,Kay Lousberg,CC0,assets/models/weapons/kaykit_skeletons,2026-11-13
+Animal Pack Vol.2 (Wolf),"modelo 3D (animal animado, fbx)",OpenGameArt,https://opengameart.org/content/animated-animales-low-poly,Quaternius,CC0,assets/models/monsters/quaternius_animal_pack_2,2026-11-13
+Animated Monster Pack (Dragon),"modelo 3D (monstro animado, fbx)",OpenGameArt,https://opengameart.org/content/lowpoly-animated-monsters,Quaternius,CC0,assets/models/monsters/quaternius_animated_monsters,2026-11-13
+impactPunch_heavy_000.ogg (Kenney Impact Sounds),"efeito sonoro (OGG, combat)",Kenney,https://kenney.nl/assets/impact-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/combat/kenney_impactpunch_heavy_000.ogg,2026-11-13
+drawKnife1.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, combat)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/combat/kenney_drawknife1.ogg,2026-11-13
+knifeSlice.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, combat)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/combat/kenney_knifeslice.ogg,2026-11-13
+footstep_concrete_000.ogg (Kenney Impact Sounds),"efeito sonoro (OGG, footsteps)",Kenney,https://kenney.nl/assets/impact-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/footsteps/kenney_footstep_concrete_000.ogg,2026-11-13
+footstep_grass_000.ogg (Kenney Impact Sounds),"efeito sonoro (OGG, footsteps)",Kenney,https://kenney.nl/assets/impact-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/footsteps/kenney_footstep_grass_000.ogg,2026-11-13
+footstep00.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, footsteps)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/footsteps/kenney_footstep00.ogg,2026-11-13
+Oppressive Gloom,música (OGG),incompetech,https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100885,Kevin MacLeod (incompetech.com),CC-BY 4.0,assets/audio/music/incompetech_oppressive_gloom.ogg,2026-11-13
+Creepy Dungeon Ambience,"efeito sonoro (OGG, ambient)",Freesound,https://freesound.org/people/DrMinky/sounds/166187/,DrMinky,CC-BY 4.0,assets/audio/sfx/ambient/fs166187_creepy_dungeon_ambience.ogg,2026-11-14
+A_Dungeon_Ambience_Loop.wav,"efeito sonoro (OGG, ambient)",Freesound,https://freesound.org/people/Grubzyy/sounds/422720/,Grubzyy,CC0,assets/audio/sfx/ambient/fs422720_a_dungeon_ambience_loop_wav.ogg,2026-11-14
+ooooo + Chorus and Reverb,"efeito sonoro (OGG, ambient)",Freesound,https://freesound.org/people/Fupicat/sounds/607205/,Fupicat,CC0,assets/audio/sfx/ambient/fs607205_ooooo_chorus_and_reverb.ogg,2026-11-14
+Imperius - Spear Hit - 03.wav,"efeito sonoro (OGG, combat)",Freesound,https://freesound.org/people/SoundFlakes/sounds/492250/,SoundFlakes,CC-BY 4.0,assets/audio/sfx/combat/fs492250_imperius_spear_hit_03_wav.ogg,2026-11-14
+Footsteps Stone (7).wav,"efeito sonoro (OGG, footsteps)",Freesound,https://freesound.org/people/Wdomino/sounds/517136/,Wdomino,CC0,assets/audio/sfx/footsteps/fs517136_footsteps_stone_7_wav.ogg,2026-11-14
+"Fireball, Woosh, Pass, fast","efeito sonoro (OGG, magic)",Freesound,https://freesound.org/people/julianmateo_/sounds/522705/,julianmateo_,CC0,assets/audio/sfx/magic/fs522705_fireball_woosh_pass_fast.ogg,2026-11-14
+Teleport_Cast,"efeito sonoro (OGG, magic)",Freesound,https://freesound.org/people/BaggoNotes/sounds/720112/,BaggoNotes,CC0,assets/audio/sfx/magic/fs720112_teleport_cast.ogg,2026-11-14
+Dark Ghost Warrior Voice 04 - Spectral Warlock Vocal Defeat,"efeito sonoro (OGG, magic)",Freesound,https://freesound.org/people/TommasoMotteran/sounds/861568/,TommasoMotteran,CC-BY 4.0,assets/audio/sfx/magic/fs861568_dark_ghost_warrior_voice_04_spectral_war.ogg,2026-11-14
+Sound Design Impact 1,"efeito sonoro (OGG, magic)",Freesound,https://freesound.org/people/CAT-FOX_ALEX/sounds/871710/,CAT-FOX_ALEX,CC0,assets/audio/sfx/magic/fs871710_sound_design_impact_1.ogg,2026-11-14
+dragon growl omnious.aiff,"efeito sonoro (OGG, monsters)",Freesound,https://freesound.org/people/bevibeldesign/sounds/315769/,bevibeldesign,CC0,assets/audio/sfx/monsters/fs315769_dragon_growl_omnious_aiff.ogg,2026-11-14
+Zombie Monster Growl 3,"efeito sonoro (OGG, monsters)",Freesound,https://freesound.org/people/redafs/sounds/348307/,redafs,CC-BY 4.0,assets/audio/sfx/monsters/fs348307_zombie_monster_growl_3.ogg,2026-11-14
+Zombie Pain 6.wav,"efeito sonoro (OGG, monsters)",Freesound,https://freesound.org/people/tonsil5/sounds/555425/,tonsil5,CC0,assets/audio/sfx/monsters/fs555425_zombie_pain_6_wav.ogg,2026-11-14
+Insect Animal Growl Chitter,"efeito sonoro (OGG, monsters)",Freesound,https://freesound.org/people/SecureSubset/sounds/800277/,SecureSubset,CC0,assets/audio/sfx/monsters/fs800277_insect_animal_growl_chitter.ogg,2026-11-14
+UIHover1.wav,"efeito sonoro (OGG, ui)",Freesound,https://freesound.org/people/wobesound/sounds/488381/,wobesound,CC0,assets/audio/sfx/ui/fs488381_uihover1_wav.ogg,2026-11-14
+Mage Teleport Skill,"efeito sonoro (OGG, magic)",Freesound,https://freesound.org/people/EminYILDIRIM/sounds/554791/,EminYILDIRIM,CC-BY 4.0,assets/audio/sfx/magic/fs554791_mage_teleport_skill.ogg,2026-11-14
+Cinzel,"fonte (TTF, 1 arquivo(s))",Google Fonts,https://fonts.google.com/specimen/Cinzel,Natanael Gama,OFL 1.1,assets/fonts/cinzel,2026-11-14
+Alegreya Sans,"fonte (TTF, 4 arquivo(s))",Google Fonts,https://fonts.google.com/specimen/Alegreya+Sans,Juan Pablo del Peral (Huerta Tipográfica),OFL 1.1,assets/fonts/alegreyasans,2026-11-14
+IM Fell English,"fonte (TTF, 2 arquivo(s))",Google Fonts,https://fonts.google.com/specimen/IM+Fell+English,Igino Marini,OFL 1.1,assets/fonts/imfellenglish,2026-11-14
+select_002.ogg (Kenney Interface Sounds),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/interface-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_select_002.ogg,2026-11-16
+click3.ogg (Kenney Ui Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/ui-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_click3.ogg,2026-11-16
+handleSmallLeather.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_handlesmallleather.ogg,2026-11-16
+handleSmallLeather2.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_handlesmallleather2.ogg,2026-11-16
+confirmation_002.ogg (Kenney Interface Sounds),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/interface-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_confirmation_002.ogg,2026-11-16
+error_006.ogg (Kenney Interface Sounds),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/interface-sounds,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_error_006.ogg,2026-11-16
+dropLeather.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_dropleather.ogg,2026-11-16
+beltHandle1.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_belthandle1.ogg,2026-11-16
+cloth2.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_cloth2.ogg,2026-11-16
+handleCoins2.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_handlecoins2.ogg,2026-11-16
+bookFlip2.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_bookflip2.ogg,2026-11-16
+metalLatch.ogg (Kenney Rpg Audio),"efeito sonoro (OGG, ui)",Kenney,https://kenney.nl/assets/rpg-audio,Kenney (kenney.nl),CC0,assets/audio/sfx/ui/kenney_metallatch.ogg,2026-11-16

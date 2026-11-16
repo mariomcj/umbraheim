@@ -1,0 +1,18 @@
+{
+	"_doc": "PvP com consequências. Ataque a jogador: Ctrl+clique (ou Ctrl+tecla de magia), fora de zonas seguras, os dois com nível >= min_level, na mesma região, fora do mesmo grupo e da mesma guilda. Membros de guildas em guerra (data/guilds.json -> war) se atacam sem infâmia e a morte conta no placar da guerra. Quem é atacado sem motivo ganha autodefesa contra o agressor por self_defense_s. Matar sem motivo soma 1 de infâmia; outlaw_levels define o nível de Fora da Lei pela infâmia (cor do nome, penalidades). Matar um Fora da Lei (sem ser um) soma pontos de herói. A infâmia cai 1 ponto a cada decay_online_s online ou a cada decay_monster_kills monstros mortos. Magias de área e corrente não atingem jogadores. damage_mult: o dano entre jogadores é multiplicado por este valor (combates mais longos que contra monstros).",
+	"min_level": 6,
+	"damage_mult": 0.6,
+	"self_defense_s": 60.0,
+	"outlaw_levels": [
+		{ "infamy": 1, "name": "Fora da Lei", "color": [1.0, 0.6, 0.2], "xp_loss_pct": 0.05, "item_drop_chance": 0.15, "drop_equipped": false, "shops_refuse": false },
+		{ "infamy": 3, "name": "Fora da Lei Rubro", "color": [1.0, 0.25, 0.2], "xp_loss_pct": 0.1, "item_drop_chance": 0.35, "drop_equipped": false, "shops_refuse": true },
+		{ "infamy": 6, "name": "Fora da Lei Carmesim", "color": [0.75, 0.05, 0.1], "xp_loss_pct": 0.2, "item_drop_chance": 0.6, "drop_equipped": true, "shops_refuse": true }
+	],
+	"hero_levels": [
+		{ "points": 1, "name": "Herói", "color": [0.45, 0.8, 1.0] },
+		{ "points": 5, "name": "Herói Lendário", "color": [0.65, 0.95, 1.0] }
+	],
+	"decay_online_s": 1200.0,
+	"decay_monster_kills": 40,
+	"dropped_item_owner_s": 0.0
+}

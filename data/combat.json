@@ -1,0 +1,11 @@
+{
+	"_doc": "Crítico = dano máximo. Excelente = dano máximo * excellent_mult. Dano final = rolagem * mult + bônus - defesa * defense_factor (mínimo min_damage).",
+	"crit_chance": 0.05,
+	"excellent_chance": 0.02,
+	"excellent_mult": 1.2,
+	"defense_factor": 1.0,
+	"min_damage": 1,
+	"range_tolerance_m": 0.3,
+	"repath_interval_s": 0.4,
+	"auto_target_radius_m": 2.5
+}

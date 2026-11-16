@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbraheim — Kit de componentes (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0D; --iron-a:#1A1719; --iron-b:#0F0D10; --iron-edge:#3A3128;
+  --gold:#C9A24A; --gold-dim:#7A6533; --ember:#E07A2E; --bone:#D9D1BD; --bone-dim:#8F887A;
+  --blood:#D11A33; --frost:#5AB4FF; --void:#9E47FF; --spectral:#59FF8C; --arcane:#E0B040;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#070608;color:var(--bone);font:400 14px "Alegreya Sans",sans-serif}
+body{background:radial-gradient(ellipse at 50% 0%,#1a1420,#070608 60%)}
+main{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font:700 24px Cinzel,serif;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin:0 0 4px}
+.lead{color:var(--bone-dim);margin:0 0 28px}
+h2.sec{font:600 12px Cinzel,serif;letter-spacing:.28em;color:var(--gold-dim);text-transform:uppercase;margin:36px 0 14px;border-bottom:1px solid #2a231c;padding-bottom:6px}
+.row{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.cap{font-size:11px;color:#6d675c;margin-top:8px;text-align:center;letter-spacing:.04em}
+.win{position:relative;background:linear-gradient(180deg,var(--iron-a),var(--iron-b));border:1px solid var(--iron-edge);
+  box-shadow:0 0 0 1px #000,0 16px 34px rgba(0,0,0,.75),inset 0 0 0 3px var(--iron-b),inset 0 0 0 4px rgba(201,162,74,.35)}
+.cn{position:absolute;width:8px;height:8px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 1px #000}
+.cn.tl{left:-4px;top:-4px}.cn.tr{right:-4px;top:-4px}.cn.bl{left:-4px;bottom:-4px}.cn.br{right:-4px;bottom:-4px}
+.title{position:relative;display:flex;align-items:center;justify-content:center;height:40px}
+.title h3{margin:0;font:700 15px Cinzel,serif;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+.x{position:absolute;right:16px;top:11px;width:18px;height:18px;transform:rotate(45deg);border:1px solid var(--gold-dim);background:var(--ink);display:grid;place-items:center}
+.x span{transform:rotate(-45deg);font:700 12px "Alegreya Sans";color:var(--bone-dim);line-height:1}
+.sep{height:9px;position:relative;margin:6px 0}
+.sep::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 20%,var(--gold) 50%,var(--gold-dim) 80%,transparent)}
+.sep::after{content:"";position:absolute;left:50%;top:1px;width:6px;height:6px;margin-left:-3px;background:var(--ink);border:1px solid var(--gold);transform:rotate(45deg)}
+.body{padding:6px 18px 18px}
+.well{background:#08070a;border:1px solid #221d18;box-shadow:inset 0 3px 10px rgba(0,0,0,.95)}
+/* botões */
+.btn{position:relative;height:34px;padding:0 18px;font:600 12px Cinzel,serif;letter-spacing:.18em;text-transform:uppercase;color:var(--bone);cursor:pointer;
+  background:linear-gradient(180deg,#2a2420,#141115);border:1px solid var(--gold-dim);
+  box-shadow:inset 0 1px 0 rgba(255,220,150,.10),inset 0 -3px 8px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.6);transition:all .12s}
+.btn:hover,.btn.h{border-color:var(--gold);color:#fff1d2;box-shadow:inset 0 1px 0 rgba(255,220,150,.18),inset 0 0 14px rgba(224,122,46,.28),0 0 10px rgba(224,122,46,.25)}
+.btn:active,.btn.p{transform:translateY(1px);box-shadow:inset 0 3px 8px rgba(0,0,0,.8);color:var(--gold)}
+.btn.f{outline:1px dashed var(--gold);outline-offset:3px}
+.btn:disabled{opacity:.45;cursor:default;box-shadow:none}
+.btn.primary{color:var(--gold);border-color:var(--gold);background:linear-gradient(180deg,#3b2a17,#1a120b)}
+.btn.primary::before,.btn.primary::after{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-4px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 1px #000}
+.btn.primary::before{left:-4px}.btn.primary::after{right:-4px}
+.btn.ghost{background:transparent;border-color:#3a3128;color:var(--bone-dim);box-shadow:none}
+.btn.danger{background:linear-gradient(180deg,#2c1013,#140809);border-color:#6d1a22;color:#e9a3a8}
+.btn.danger:hover{border-color:var(--blood);box-shadow:0 0 10px rgba(209,26,51,.35)}
+.dbtn{width:34px;height:34px;transform:rotate(45deg);border:1px solid var(--gold-dim);background:linear-gradient(135deg,#221d1a,#0c0b0d);display:grid;place-items:center;box-shadow:0 0 0 1px #000;margin:6px;cursor:pointer;transition:all .12s}
+.dbtn span{transform:rotate(-45deg);font:700 12px Cinzel;color:var(--gold)}
+.dbtn:hover,.dbtn.h{border-color:var(--gold);box-shadow:0 0 0 1px #000,0 0 12px rgba(224,122,46,.5)}
+.dbtn.sel{border-color:var(--void);box-shadow:0 0 0 1px #000,0 0 14px rgba(158,71,255,.6),inset 0 0 10px rgba(158,71,255,.4)}
+.dbtn.off{opacity:.4}
+/* campos */
+.lbl{font:600 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 5px 2px}
+.field{width:240px;height:34px;background:var(--ink);border:1px solid #241f1a;border-bottom-color:var(--gold-dim);color:var(--bone);font:500 15px "Alegreya Sans";padding:0 12px;outline:none;box-shadow:inset 0 2px 6px rgba(0,0,0,.8)}
+.field.fo,.field:focus{border-bottom-color:var(--gold);box-shadow:inset 0 2px 6px rgba(0,0,0,.8),0 3px 10px -4px rgba(201,162,74,.6)}
+.field.err{border-bottom-color:var(--blood)}
+.chk{display:flex;align-items:center;gap:12px;cursor:pointer;margin:8px 0}
+.chk i{width:14px;height:14px;transform:rotate(45deg);border:1px solid var(--gold-dim);background:var(--ink);display:grid;place-items:center}
+.chk i::after{content:"";width:6px;height:6px;background:var(--gold);opacity:0}
+.chk.on i::after{opacity:1}
+.tabs{display:flex;gap:4px}
+.tab{height:30px;padding:0 14px;display:flex;align-items:center;gap:8px;font:600 10px Cinzel,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);border:1px solid #2a231c;border-bottom:none;background:linear-gradient(180deg,#151215,#0c0b0d)}
+.tab i{width:7px;height:7px;transform:rotate(45deg);border:1px solid currentColor}
+.tab.on{color:var(--gold);border-color:var(--gold-dim);background:linear-gradient(180deg,#2a2218,#100d0b)}.tab.on i{background:var(--gold)}
+.pbar{width:240px;height:10px;background:#050405;border:1px solid #2a231c;position:relative;margin:6px 0 14px}
+.pbar i{position:absolute;left:0;top:0;bottom:0}
+.scroll{width:10px;height:120px;background:#060507;border:1px solid #221d18;position:relative}
+.scroll i{position:absolute;left:1px;right:1px;top:24px;height:40px;background:linear-gradient(90deg,#3a3128,#6a5532,#3a3128)}
+.scroll::before,.scroll::after{content:"";position:absolute;left:1px;width:6px;height:6px;transform:rotate(45deg);background:var(--gold-dim)}
+.scroll::before{top:-4px}.scroll::after{bottom:-4px}
+/* tipografia */
+.ty div{margin:6px 0}
+.cz{font-family:Cinzel,serif;letter-spacing:.2em;text-transform:uppercase}
+.fell{font-family:"IM Fell English",serif}
+/* paleta */
+.sw{width:110px}
+.sw i{display:block;height:46px;border:1px solid #000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.sw b{display:block;font:600 11px Cinzel;letter-spacing:.1em;margin-top:6px;color:var(--bone)}
+.sw small{color:var(--bone-dim);font-size:11px}
+/* diálogo */
+.dlg-wrap{position:relative;width:520px;height:260px;background:url("../img/atual_hud.png") center/cover;overflow:hidden;border:1px solid #222}
+.dlg-wrap::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
+.dlg{position:absolute;left:90px;top:44px;width:340px}
+.dlg p{margin:4px 0 16px;text-align:center;line-height:1.45}
+.dlg p b{color:var(--r,#59FF73)}
+.dlg .acts{display:flex;justify-content:space-between}
+/* atributos */
+.attr{width:300px}
+.ar{display:flex;align-items:center;gap:14px;padding:7px 2px;border-bottom:1px solid rgba(255,255,255,.04)}
+.ar .ic{width:20px;height:20px;transform:rotate(45deg);border:1px solid var(--gold-dim);background:var(--ink);margin:0 4px}
+.ar .k{flex:1;font:600 12px Cinzel,serif;letter-spacing:.14em;text-transform:uppercase}
+.ar .v{font:700 18px "Alegreya Sans";color:var(--gold);width:40px;text-align:right}
+.ar .plus{width:20px;height:20px;transform:rotate(45deg);border:1px solid var(--ember);display:grid;place-items:center;background:#2a150b;box-shadow:0 0 8px rgba(224,122,46,.6);animation:pl 1.8s ease-in-out infinite}
+.ar .plus span{transform:rotate(-45deg);color:#ffb070;font:700 14px "Alegreya Sans";line-height:1}
+@keyframes pl{50%{box-shadow:0 0 14px rgba(224,122,46,.9)}}
+.free{display:flex;justify-content:space-between;margin:8px 2px 4px;font-size:13px;color:var(--bone-dim)}
+.free b{color:var(--ember);font-size:15px}
+.der{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:13px;color:var(--bone-dim);margin-top:4px}
+.der b{color:var(--bone);float:right}
+/* maestria */
+.mast{width:430px}
+.tracks{display:flex;justify-content:space-between;padding:0 6px}
+.trk{width:120px;display:flex;flex-direction:column;align-items:center}
+.trk h4{margin:0 0 10px;font:600 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;color:var(--c)}
+.node{display:flex;flex-direction:column;align-items:center;margin-bottom:6px}
+.node .d{width:30px;height:30px;transform:rotate(45deg);border:1px solid color-mix(in srgb,var(--c) 60%,#000);background:var(--ink);display:grid;place-items:center}
+.node .d span{transform:rotate(-45deg);font:700 11px "Alegreya Sans";color:var(--bone-dim)}
+.node.av .d{border-color:var(--c);box-shadow:0 0 12px color-mix(in srgb,var(--c) 70%,transparent)}
+.node.has .d{background:color-mix(in srgb,var(--c) 30%,#000);border-color:var(--c)}
+.node.has .d span{color:#fff}
+.node .n{font-size:11px;color:var(--bone);margin-top:6px}
+.node .pb{width:60px;height:3px;background:#050405;margin-top:3px}
+.node .pb i{display:block;height:100%;background:var(--c)}
+.link{width:1px;height:10px;background:color-mix(in srgb,var(--c) 40%,#000);margin-bottom:6px}
+/* aviso, toast, título de área */
+.banner{width:600px;text-align:center;padding:12px 0 14px;background:linear-gradient(90deg,transparent,rgba(11,11,13,.85) 20%,rgba(11,11,13,.85) 80%,transparent)}
+.banner .t{font:700 28px Cinzel,serif;letter-spacing:.24em;color:var(--ember);text-transform:uppercase;text-shadow:0 0 3px #000}
+.banner .s{font-size:15px}.banner .s b{color:var(--gold)}
+.banner .sep{width:360px;margin:6px auto}
+.area{text-align:center}
+.area .t{font:700 44px Cinzel,serif;letter-spacing:.25em;color:#efe4c8;text-transform:uppercase;text-shadow:0 0 3px #000,0 4px 22px rgba(0,0,0,.9)}
+.area .s{font:500 13px "Alegreya Sans";letter-spacing:.3em;text-transform:uppercase;color:var(--spectral)}
+.toast{display:flex;align-items:center;gap:12px;width:260px;padding:8px 10px;background:rgba(11,11,13,.9);border:1px solid #2a231c;border-left:2px solid var(--c);font-size:13px;margin-bottom:6px}
+.toast i{width:20px;height:20px;transform:rotate(45deg);border:1px solid var(--c);margin-left:3px;flex:none;background:var(--ink)}
+.toast b{color:var(--c)}
+/* pergaminho */
+.parch{width:340px;padding:22px 26px;color:#3b2f20;background:radial-gradient(ellipse at 30% 20%,#e8dcc0,#cdb98f 70%,#a88d5c);box-shadow:0 10px 30px rgba(0,0,0,.7),inset 0 0 40px rgba(90,60,20,.45);
+  clip-path:polygon(0 3%,4% 0,30% 2%,60% 0,96% 1%,100% 5%,99% 40%,100% 96%,95% 100%,50% 98%,4% 100%,0 95%,1% 50%)}
+.parch h4{margin:0 0 6px;font:400 22px "IM Fell English",serif;color:#2a1f12}
+.parch p{font:italic 15px "IM Fell English",serif;margin:0 0 12px;line-height:1.35}
+.obj{display:flex;align-items:center;gap:12px;font:15px "IM Fell English",serif;margin:6px 0}
+.obj i{width:11px;height:11px;transform:rotate(45deg);border:1px solid #5a4528;margin:0 3px}
+.obj.done i{background:#5a4528}.obj.done{color:#6b5a40;text-decoration:line-through}
+.prog{margin-left:auto;font-weight:700}
+@media (max-width:640px){.dlg-wrap{width:100%}.banner{width:100%}}
+</style>
+</head>
+<body>
+<main>
+<h1>Kit de componentes</h1>
+<p class="lead">Base do <code>Theme</code> proposto. Cada peça vira um tipo ou uma variação de tipo no Godot (anotado em cinza embaixo de cada uma). Passe o mouse nos botões para ver o hover.</p>
+
+<h2 class="sec">Paleta (do guia de arte)</h2>
+<div class="row">
+  <div class="sw"><i style="background:#0B0B0D"></i><b>ink</b><small>#0B0B0D</small></div>
+  <div class="sw"><i style="background:linear-gradient(#1A1719,#0F0D10)"></i><b>iron</b><small>#1A1719 → #0F0D10</small></div>
+  <div class="sw"><i style="background:#C9A24A"></i><b>gold</b><small>#C9A24A</small></div>
+  <div class="sw"><i style="background:#7A6533"></i><b>gold_dim</b><small>#7A6533</small></div>
+  <div class="sw"><i style="background:#E07A2E"></i><b>ember</b><small>#E07A2E</small></div>
+  <div class="sw"><i style="background:#D9D1BD"></i><b>bone</b><small>#D9D1BD</small></div>
+  <div class="sw"><i style="background:#D11A33"></i><b>blood</b><small>#D11A33</small></div>
+  <div class="sw"><i style="background:#5AB4FF"></i><b>frost</b><small>#5AB4FF</small></div>
+  <div class="sw"><i style="background:#9E47FF"></i><b>void</b><small>#9E47FF</small></div>
+  <div class="sw"><i style="background:#59FF8C"></i><b>spectral</b><small>#59FF8C</small></div>
+</div>
+
+<h2 class="sec">Tipografia (Google Fonts, OFL)</h2>
+<div class="row ty">
+  <div style="flex:1;min-width:280px">
+    <div class="cz" style="font-size:44px;font-weight:700;color:#efe4c8">Vel'Morth</div><div class="cap" style="text-align:left">Cinzel 700 · 44 · título de área</div>
+    <div class="cz" style="font-size:18px;font-weight:700;color:var(--gold);letter-spacing:.32em">Inventário</div><div class="cap" style="text-align:left">Cinzel 700 · 18 · título de janela (TitleLabel)</div>
+    <div class="cz" style="font-size:12px;font-weight:600;letter-spacing:.18em">Entrar no mundo</div><div class="cap" style="text-align:left">Cinzel 600 · 12 · botões</div>
+  </div>
+  <div style="flex:1;min-width:280px">
+    <div style="font-size:15px">Dano mágico <b style="color:var(--gold)">38 ~ 52</b> · Defesa <b style="color:var(--gold)">211</b></div><div class="cap" style="text-align:left">Alegreya Sans 400/700 · 13–15 · texto e valores</div>
+    <div style="font-size:11px;color:var(--bone-dim)">Clique de novo para vender por 1.200 óbolos.</div><div class="cap" style="text-align:left">Alegreya Sans 400 · 11 · dica (HintLabel)</div>
+    <div class="fell" style="font-size:20px;font-style:italic">"O caminho só existe no seu diário."</div><div class="cap" style="text-align:left">IM Fell English itálico · 15–22 · pergaminho e falas</div>
+  </div>
+</div>
+
+<h2 class="sec">Botões e estados</h2>
+<div class="row">
+  <div><button class="btn">Normal</button><div class="cap">Button</div></div>
+  <div><button class="btn h">Hover</button><div class="cap">hover + som</div></div>
+  <div><button class="btn p">Pressionado</button><div class="cap">pressed + clique</div></div>
+  <div><button class="btn f">Foco</button><div class="cap">focus (teclado)</div></div>
+  <div><button class="btn" disabled>Desabilitado</button><div class="cap">disabled</div></div>
+  <div><button class="btn primary">Confirmar</button><div class="cap">PrimaryButton</div></div>
+  <div><button class="btn ghost">Cancelar</button><div class="cap">GhostButton</div></div>
+  <div><button class="btn danger">Apagar</button><div class="cap">DangerButton</div></div>
+</div>
+<div class="row" style="margin-top:18px">
+  <div><div class="dbtn"><span>I</span></div><div class="cap">DiamondButton</div></div>
+  <div><div class="dbtn h"><span>G</span></div><div class="cap">hover</div></div>
+  <div><div class="dbtn sel"><span>1</span></div><div class="cap">selecionado (cor da classe)</div></div>
+  <div><div class="dbtn off"><span>K</span></div><div class="cap">desabilitado</div></div>
+  <div style="margin-left:20px"><div class="tabs"><div class="tab on"><i></i>Membros</div><div class="tab"><i></i>Guerra</div><div class="tab"><i></i>Símbolo</div></div><div class="well" style="width:300px;height:30px;border-top:1px solid var(--gold-dim)"></div><div class="cap">TabBar / TabContainer</div></div>
+</div>
+
+<h2 class="sec">Campos e controles</h2>
+<div class="row">
+  <div><div class="lbl">Nome</div><input class="field" placeholder="nome do personagem"><div class="cap">LineEdit</div></div>
+  <div><div class="lbl">Foco</div><input class="field fo" value="Morwen"><div class="cap">focus: filete acende</div></div>
+  <div><div class="lbl">Erro</div><input class="field err" value="M"><div class="cap" style="color:#d65a66">nome curto demais</div></div>
+  <div><div class="chk on"><i></i>Aceitar convites de grupo</div><div class="chk"><i></i>Mostrar nomes</div><div class="cap">CheckBox em losango</div></div>
+  <div><div class="lbl">Progresso</div><div class="pbar"><i style="width:62%;background:linear-gradient(180deg,#e9c66a,#8a6a24)"></i></div><div class="pbar"><i style="width:35%;background:linear-gradient(180deg,#e2384a,#8f0f1f)"></i></div><div class="cap">ProgressBar (XP, vida)</div></div>
+  <div><div class="scroll"><i></i></div><div class="cap">ScrollBar</div></div>
+</div>
+
+<h2 class="sec">Diálogo (prompt_dialog)</h2>
+<div class="row">
+  <div class="dlg-wrap">
+    <div class="win dlg">
+      <div class="title"><h3>Confirmar</h3><div class="x"><span>×</span></div></div><div class="sep"></div>
+      <div class="body"><p>Jogar <b>Vara do Eclipse +7</b> no chão?<br><span style="color:var(--bone-dim);font-size:12px">Outros jogadores poderão pegá-la.</span></p>
+      <div class="acts"><button class="btn ghost">Cancelar</button><button class="btn danger">Jogar no chão</button></div></div>
+    </div>
+  </div>
+  <div style="max-width:380px;color:var(--bone-dim);font-size:13px;line-height:1.5">Fundo do jogo escurece 40% (sem blur, que custa caro na Web). Ação destrutiva usa o botão de perigo e fica à direita; Esc = cancelar. Janela abre em 140 ms (escala 0,96 → 1).</div>
+</div>
+
+<h2 class="sec">Janelas: atributos e maestria</h2>
+<div class="row">
+  <div class="win attr">
+    <div class="title"><h3>Atributos</h3><div class="x"><span>×</span></div></div><div class="sep"></div>
+    <div class="body">
+      <div style="text-align:center;font:600 13px Cinzel;letter-spacing:.12em;color:var(--void)">FEITICEIRO ABISSAL <span style="color:var(--bone-dim);font:500 13px 'Alegreya Sans';letter-spacing:0">· nível 87</span></div>
+      <div class="free"><span>Pontos livres</span><b>5</b></div>
+      <div class="ar"><i class="ic"></i><span class="k">Força</span><span class="v">42</span><span class="plus"><span>+</span></span></div>
+      <div class="ar"><i class="ic"></i><span class="k">Agilidade</span><span class="v">60</span><span class="plus"><span>+</span></span></div>
+      <div class="ar"><i class="ic"></i><span class="k">Vitalidade</span><span class="v">55</span><span class="plus"><span>+</span></span></div>
+      <div class="ar"><i class="ic"></i><span class="k">Energia</span><span class="v">132</span><span class="plus"><span>+</span></span></div>
+      <div class="sep" style="margin:10px 0"></div>
+      <div class="der"><span>Vida <b>1.720</b></span><span>Mana <b>860</b></span><span>Dano mágico <b>96~141</b></span><span>Defesa <b>211</b></span></div>
+      <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" style="flex:1" disabled>Renascer</button><button class="btn" style="flex:1">Maestria</button></div>
+    </div>
+  </div>
+  <div class="win mast">
+    <div class="title"><h3>Maestria</h3><div class="x"><span>×</span></div></div><div class="sep"></div>
+    <div class="body">
+      <div style="text-align:center;font-size:13px;color:var(--bone-dim);margin-bottom:12px">Pontos disponíveis: <b style="color:var(--ember)">2</b></div>
+      <div class="tracks">
+        <div class="trk" style="--c:#ff6b5a"><h4>Ataque</h4>
+          <div class="node has"><div class="d"><span>4</span></div><div class="n">Fúria</div><div class="pb"><i style="width:40%"></i></div></div><div class="link"></div>
+          <div class="node av"><div class="d"><span>0</span></div><div class="n">Golpe Preciso</div><div class="pb"><i style="width:0"></i></div></div><div class="link"></div>
+          <div class="node"><div class="d"><span>0</span></div><div class="n">Mão Pesada</div><div class="pb"><i style="width:0"></i></div></div></div>
+        <div class="trk" style="--c:#6cb6ff"><h4>Defesa</h4>
+          <div class="node has"><div class="d"><span>10</span></div><div class="n">Pele de Pedra</div><div class="pb"><i style="width:100%"></i></div></div><div class="link"></div>
+          <div class="node has"><div class="d"><span>2</span></div><div class="n">Vigor</div><div class="pb"><i style="width:20%"></i></div></div><div class="link"></div>
+          <div class="node"><div class="d"><span>0</span></div><div class="n">Espinhos</div><div class="pb"><i style="width:0"></i></div></div></div>
+        <div class="trk" style="--c:#6ee68a"><h4>Utilidade</h4>
+          <div class="node av"><div class="d"><span>0</span></div><div class="n">Fluxo Arcano</div><div class="pb"><i style="width:0"></i></div></div><div class="link"></div>
+          <div class="node"><div class="d"><span>0</span></div><div class="n">Fortuna</div><div class="pb"><i style="width:0"></i></div></div><div class="link"></div>
+          <div class="node"><div class="d"><span>0</span></div><div class="n">Celeridade</div><div class="pb"><i style="width:0"></i></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec">Missão em pergaminho</h2>
+<div class="row">
+  <div class="parch">
+    <h4>Ossos inquietos</h4>
+    <p>"Os mortos do muro norte não dormem. Quebre-os antes que a névoa desça." — Ancião Varek</p>
+    <div class="obj done"><i></i>Fale com o Ancião Varek<span class="prog">✓</span></div>
+    <div class="obj"><i></i>Derrote Carniçais das Ruínas<span class="prog">4/10</span></div>
+    <div class="obj"><i></i>Volte ao Refúgio das Cinzas</div>
+  </div>
+</div>
+
+<h2 class="sec">Avisos</h2>
+<div class="row" style="flex-direction:column;align-items:center;gap:26px;padding:24px;background:radial-gradient(ellipse at 50% 40%,#3a3a2c,#14130f 70%);border:1px solid #222">
+  <div class="area"><div class="t" style="font-size:34px">Bosque das Cinzas Mortas</div><div class="sep" style="width:300px;margin:6px auto"></div><div class="s" style="color:#ff8c38">área de caça · PvP livre</div></div>
+  <div class="banner"><div class="t">Arena das Ondas</div><div class="sep"></div><div class="s">começa em <b>0:30</b> · onda 1 de 8</div></div>
+  <div>
+    <div class="toast" style="--c:var(--spectral)"><i></i>Obtido: <b>Anel de Brasa</b></div>
+    <div class="toast" style="--c:var(--frost)"><i></i><b>Ilsa</b> entrou no jogo</div>
+    <div class="toast" style="--c:var(--ember)"><i></i>Nível <b>88</b> · 5 pontos livres</div>
+  </div>
+</div>
+</main>
+<script>
+document.querySelectorAll(".win").forEach(w=>["tl","tr","bl","br"].forEach(k=>{const i=document.createElement("i");i.className="cn "+k;w.appendChild(i)}));
+</script>
+</body>
+</html>

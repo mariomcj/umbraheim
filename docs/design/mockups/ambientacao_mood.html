@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbraheim — clima por região</title>
+<style>
+  :root {
+    --bg: #0b0b0d; --ink: #d9d1bd; --dim: #8a8475; --gold: #c9a24a; --line: #2a2730;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 Georgia, "Times New Roman", serif; }
+  header, section { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+  h1, h2 { font-weight: normal; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 32px 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  p.note { color: var(--dim); margin: 0; max-width: 70ch; }
+
+  /* ---------- quadros de clima ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+  .tile { border: 1px solid var(--line); background: #111; }
+  .scene { position: relative; height: 170px; overflow: hidden; background: var(--ground); }
+  /* chão: textura falsa (manchas) */
+  .scene::before { content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 30% 18% at 25% 70%, rgba(0,0,0,.25), transparent 70%),
+      radial-gradient(ellipse 25% 15% at 70% 40%, rgba(255,255,255,.06), transparent 70%),
+      repeating-linear-gradient(35deg, rgba(0,0,0,.08) 0 3px, transparent 3px 11px); }
+  /* luz da assinatura (cristal, braseiro, obelisco) */
+  .glow { position: absolute; width: 120px; height: 80px; border-radius: 50%;
+    left: var(--gx); top: var(--gy); transform: translate(-50%,-50%);
+    background: radial-gradient(closest-side, var(--sig), transparent); opacity: .55; mix-blend-mode: screen; }
+  .core { position: absolute; width: 8px; height: 22px; left: var(--gx); top: var(--gy);
+    transform: translate(-50%,-80%); background: var(--sig); box-shadow: 0 0 12px var(--sig); border-radius: 3px 3px 1px 1px; }
+  /* silhuetas (árvores, pilares) com sombra longa */
+  .prop { position: absolute; bottom: var(--b); left: var(--l); width: 10px; height: var(--h); background: #0d0d0f; }
+  .prop::after { content: ""; position: absolute; left: 6px; bottom: -4px; width: calc(var(--h) * 1.3); height: 6px;
+    background: rgba(0,0,0,.45); transform-origin: left; transform: skewX(-50deg); filter: blur(1px); }
+  /* personagem: mais claro que o chão, com recorte */
+  .hero { position: absolute; left: 48%; bottom: 46px; width: 12px; height: 26px; border-radius: 5px 5px 2px 2px;
+    background: #9a958a; box-shadow: 0 0 0 1px var(--rim), 0 0 8px var(--rim); }
+  .hero::after { content: ""; position: absolute; left: -6px; bottom: -4px; width: 24px; height: 7px; border-radius: 50%;
+    background: rgba(0,0,0,.55); filter: blur(2px); z-index: -1; }
+  /* névoa colorida + vinheta */
+  .scene::after { content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, var(--fog) 0%, transparent 55%),
+      radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.65) 100%); }
+  /* partículas de ambiente */
+  .p { position: absolute; width: var(--s,3px); height: var(--s,3px); border-radius: 50%; background: var(--pc); z-index: 2;
+    animation: var(--anim) var(--d) linear infinite; animation-delay: var(--dl); left: var(--x); top: var(--y); opacity: 0; }
+  @keyframes rise { 0% { transform: translate(0,0); opacity: 0 } 15% { opacity: .9 } 100% { transform: translate(14px,-120px); opacity: 0 } }
+  @keyframes fall { 0% { transform: translate(0,-30px); opacity: 0 } 20% { opacity: .8 } 100% { transform: translate(-20px,140px); opacity: 0 } }
+  @keyframes wind { 0% { transform: translate(-40px,-20px); opacity: 0 } 20% { opacity: .9 } 100% { transform: translate(160px,90px); opacity: 0 } }
+  @keyframes drift { 0%,100% { transform: translate(0,0); opacity: .2 } 50% { transform: translate(8px,-10px); opacity: .9 } }
+
+  .meta { padding: 10px 12px 12px; }
+  .meta b { letter-spacing: .12em; text-transform: uppercase; font-weight: normal; font-size: 13px; }
+  .sw { display: flex; gap: 4px; margin: 8px 0 6px; }
+  .sw i { flex: 1; height: 14px; border: 1px solid rgba(255,255,255,.08); }
+  .meta small { color: var(--dim); display: block; line-height: 1.4; }
+
+  /* ---------- tela de entrada ---------- */
+  .login { position: relative; height: 360px; overflow: hidden; border: 1px solid var(--line);
+    background: radial-gradient(circle at 50% 22%, #b9a6e8 0 38px, #5b3c9a 40px, transparent 110px),
+                linear-gradient(#120a20, #1d1230 45%, #0b0710); }
+  .login .moonpulse { position: absolute; left: 50%; top: 22%; width: 260px; height: 260px; transform: translate(-50%,-50%);
+    border-radius: 50%; background: radial-gradient(closest-side, rgba(158,71,255,.35), transparent); animation: breathe 6s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { opacity: .5 } 50% { opacity: 1 } }
+  .login .flash { position: absolute; inset: 0 0 60% 0; background: rgba(176,124,255,.25); opacity: 0; animation: flash 23s infinite; }
+  @keyframes flash { 0%, 61%, 61.7%, 62.4%, 100% { opacity: 0 } 61.3% { opacity: 1 } 62% { opacity: .4 } }
+  .login .castle { position: absolute; left: 0; right: 0; bottom: 70px; height: 120px; background: #08060c;
+    clip-path: polygon(0 100%,0 60%,6% 60%,6% 40%,9% 40%,9% 60%,22% 60%,24% 30%,26% 60%,40% 60%,42% 20%,44% 50%,47% 10%,50% 0,53% 10%,56% 50%,58% 20%,60% 60%,74% 60%,76% 35%,78% 60%,90% 60%,90% 45%,93% 45%,93% 60%,100% 60%,100% 100%); }
+  .login .title { position: absolute; top: 44%; width: 100%; text-align: center; font-size: 40px; letter-spacing: .3em;
+    color: #d9d1bd; text-shadow: 0 0 18px rgba(158,71,255,.8); }
+  .login .smoke { position: absolute; left: -20%; right: -20%; bottom: 0; height: 130px;
+    background: radial-gradient(ellipse 22% 60% at 20% 70%, rgba(58,48,72,.7), transparent 70%),
+                radial-gradient(ellipse 25% 55% at 55% 80%, rgba(58,48,72,.6), transparent 70%),
+                radial-gradient(ellipse 20% 50% at 85% 70%, rgba(58,48,72,.7), transparent 70%);
+    animation: smoke 30s ease-in-out infinite alternate; }
+  .login .smoke.b { animation-duration: 41s; animation-direction: alternate-reverse; opacity: .7; }
+  @keyframes smoke { from { transform: translateX(-6%) } to { transform: translateX(6%) } }
+  .login .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.75)); }
+  .tint { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .tint button { background: #15131a; color: var(--ink); border: 1px solid var(--line); padding: 6px 12px; letter-spacing: .12em;
+    text-transform: uppercase; font: inherit; font-size: 12px; cursor: pointer; }
+  .tint button.on { border-color: var(--gold); color: var(--gold); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Umbraheim · clima por região</h1>
+  <p class="note">Mockup de clima (não é captura do jogo). Cada quadro mostra o valor do chão, a névoa colorida, a luz da assinatura, a sombra longa, o personagem com recorte e a partícula de ambiente da região. Acompanha o documento <code>docs/design/PROPOSTA_AMBIENTACAO.md</code>.</p>
+</header>
+
+<section>
+  <h2>Regiões</h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section>
+  <h2>Tela de entrada como cena</h2>
+  <div class="login" id="login">
+    <div class="moonpulse"></div>
+    <div class="flash"></div>
+    <div class="castle"></div>
+    <div class="title">UMBRAHEIM</div>
+    <div class="smoke"></div>
+    <div class="smoke b"></div>
+    <div class="vig"></div>
+  </div>
+  <div class="tint" id="tint">
+    <button data-c="#FF8C38,#D11A33" class="on">Entrada (brasas)</button>
+    <button data-c="#9E47FF,#C77DFF">Feiticeiro Abissal</button>
+    <button data-c="#D11A33,#FF5A4A">Cavaleiro Profano</button>
+    <button data-c="#59FF8C,#A8FFC8">Vidente do Véu</button>
+  </div>
+  <p class="note" style="margin-top:8px">Na escolha de personagem, a fumaça e as brasas assumem a cor da classe. No jogo, o fundo é a arte-título atual; aqui ela virou uma silhueta.</p>
+</section>
+
+<script>
+const regions = [
+  { n: "Ruínas de Vel'Morth", ground: "#3a342c", fog: "rgba(28,26,38,.85)", sig: "#9E47FF", rim: "rgba(158,71,255,.6)",
+    pal: ["#1A1B24","#3a342c","#4A4E5C","#B8B4C8","#9E47FF"], part: { c: "#8d8a90", a: "drift", n: 16 },
+    txt: "lua fria e baixa · cinza flutuando · cristais violeta como única cor" },
+  { n: "Refúgio das Cinzas", ground: "#4a3e33", fog: "rgba(30,24,22,.7)", sig: "#FF8C38", rim: "rgba(255,140,56,.6)",
+    pal: ["#1A1B24","#4a3e33","#5A4A40","#FF8C38","#FFF2C0"], part: { c: "#ff8c38", a: "rise", n: 14 },
+    txt: "bolsão quente: poças de luz das tochas · brasas e fumaça" },
+  { n: "Bosque das Cinzas Mortas", ground: "#3c3d35", fog: "rgba(35,42,36,.9)", sig: "#59FF8C", rim: "rgba(89,255,140,.5)",
+    pal: ["#232A24","#3c3d35","#3E4A40","#A9B39C","#59FF8C"], part: { c: "#b5b5ad", a: "fall", n: 20 },
+    txt: "névoa densa · cinza caindo · mata morta agrupada · altar verde" },
+  { n: "Geleira dos Sussurros", ground: "#6c7a8e", fog: "rgba(28,39,56,.85)", sig: "#5AB4FF", rim: "rgba(90,180,255,.6)",
+    pal: ["#1C2738","#6c7a8e","#39465E","#9DB8E8","#5AB4FF"], part: { c: "#e6eeff", a: "wind", n: 24 },
+    txt: "neve azul-acinzentada, não branca · vento lateral · gelo com brilho interno" },
+  { n: "Fortaleza Sitiada", ground: "#4a3328", fog: "rgba(42,22,18,.85)", sig: "#D11A33", rim: "rgba(209,26,51,.6)",
+    pal: ["#2A1612","#4a3328","#3A2C2C","#E8A07A","#D11A33"], part: { c: "#ff7a2e", a: "rise", n: 20 },
+    txt: "crepúsculo vermelho · fumaça · muros frios contra chão quente" },
+  { n: "Arena das Ondas", ground: "#463e33", fog: "rgba(20,18,24,.85)", sig: "#E0B040", rim: "rgba(224,176,64,.55)",
+    pal: ["#141218","#463e33","#2E2C34","#8E95B0","#E0B040"], part: { c: "#a8997a", a: "drift", n: 14 },
+    txt: "noite · braseiros iluminam · poeira rente · pulso dourado a cada onda" },
+  { n: "Círculo que Encolhe", ground: "#3a3048", fog: "rgba(18,10,28,.85)", sig: "#B07CFF", rim: "rgba(176,124,255,.6)",
+    pal: ["#120A1C","#3a3048","#3B3248","#B7A6D9","#B07CFF"], part: { c: "#c9a8ff", a: "rise", n: 18 },
+    txt: "chão volta a ler · motes subindo ao obelisco · borda do círculo é a luz" },
+  { n: "Castelo das Brasas", ground: "#4b3a2e", fog: "rgba(30,18,12,.85)", sig: "#FF8C38", rim: "rgba(255,140,56,.5)",
+    pal: ["#1E120C","#4b3a2e","#3C3330","#F0C9A0","#8A1A22"], part: { c: "#ffa050", a: "drift", n: 16 },
+    txt: "brasas à deriva · estandartes carmesim de pano · tiling quebrado" },
+];
+const grid = document.getElementById("grid");
+let seed = 7;
+const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+for (const r of regions) {
+  const t = document.createElement("div"); t.className = "tile";
+  const gx = (30 + rnd() * 40) + "%", gy = (35 + rnd() * 25) + "%";
+  let props = "";
+  for (let i = 0; i < 5; i++) props += `<div class="prop" style="--l:${(5 + i * 19 + rnd() * 8).toFixed(0)}%;--b:${(20 + rnd() * 90).toFixed(0)}px;--h:${(18 + rnd() * 34).toFixed(0)}px"></div>`;
+  let parts = "";
+  for (let i = 0; i < r.part.n; i++) parts += `<span class="p" style="--pc:${r.part.c};--anim:${r.part.a};--d:${(4 + rnd() * 5).toFixed(1)}s;--dl:-${(rnd() * 8).toFixed(1)}s;--x:${(rnd() * 100).toFixed(0)}%;--y:${(rnd() * 100).toFixed(0)}%;--s:${(2 + rnd() * 2).toFixed(1)}px"></span>`;
+  t.innerHTML = `<div class="scene" style="--ground:${r.ground};--fog:${r.fog};--sig:${r.sig};--rim:${r.rim};--gx:${gx};--gy:${gy}">
+      ${props}<div class="glow"></div><div class="core"></div><div class="hero"></div>${parts}</div>
+    <div class="meta"><b>${r.n}</b><div class="sw">${r.pal.map(c => `<i style="background:${c}" title="${c}"></i>`).join("")}</div>
+      <small>${r.txt}</small><small>névoa · chão · ambiente · luz · assinatura</small></div>`;
+  grid.appendChild(t);
+}
+// brasas da tela de entrada
+const login = document.getElementById("login");
+const embers = [];
+for (let i = 0; i < 50; i++) {
+  const e = document.createElement("span"); e.className = "p";
+  e.style.cssText = `--anim:rise;--d:${(5 + rnd() * 6).toFixed(1)}s;--dl:-${(rnd() * 10).toFixed(1)}s;--x:${(rnd() * 100).toFixed(0)}%;--y:${(70 + rnd() * 28).toFixed(0)}%;--s:${(2 + rnd() * 2.5).toFixed(1)}px`;
+  e.dataset.alt = rnd() < 0.5 ? "1" : "0";
+  login.insertBefore(e, login.querySelector(".vig")); embers.push(e);
+}
+function tint(colors) {
+  const [a, b] = colors.split(",");
+  for (const e of embers) e.style.setProperty("--pc", e.dataset.alt === "1" ? b : a);
+  for (const s of login.querySelectorAll(".smoke")) s.style.filter = `drop-shadow(0 0 30px ${a}55)`;
+}
+tint("#FF8C38,#D11A33");
+document.getElementById("tint").addEventListener("click", ev => {
+  const btn = ev.target.closest("button"); if (!btn) return;
+  document.querySelectorAll("#tint button").forEach(b => b.classList.toggle("on", b === btn));
+  tint(btn.dataset.c);
+});
+</script>
+</body>
+</html>

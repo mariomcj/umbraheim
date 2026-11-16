@@ -1,0 +1,7 @@
+{
+	"_doc": "Fórmulas (Expression): xp_to_next usa 'level'; monster_xp usa 'mlevel'.",
+	"max_level": 400,
+	"xp_to_next": "(level + 9) * level * level * 10",
+	"monster_xp": "mlevel * mlevel * 8 + 20",
+	"player_respawn_s": 4.0
+}

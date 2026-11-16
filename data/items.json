@@ -1,0 +1,227 @@
+{
+	"_doc": "Bases de itens. slot: weapon, shield, helm, armor, pants, gloves, boots, wings, amulet, ring, pet (ou null para não equipáveis). size: [largura, altura] em células do inventário. main: atributo principal que recebe o bônus de refino e a opção extra. stats: bônus fixos (mesmas chaves dos atributos derivados). price: valor base em Óbolos (compra na loja; a venda paga uma fração, ver shops.json). stack_max: quantos cabem numa pilha (consumíveis). use: efeito ao usar com o botão direito (heal_hp, heal_mana, return, learn_spell). classes: lista de classes que podem usar (sem a chave = todas). kind quest: item de missão (não se vende nem se joga fora). kind material: ingrediente da Forja. use event_ticket: entra no evento (event) quando os portões estão abertos. visual: mesh do placeholder no personagem ou do ícone.",
+	"cajado_osso": {
+		"name": "Cajado de Osso", "kind": "equip", "slot": "weapon", "size": [1, 4], "level_req": 1, "price": 80,
+		"classes": ["feiticeiro", "vidente"],
+		"main": "magic", "stats": { "magic_min": 4, "magic_max": 8 },
+		"visual": { "mesh": "staff", "color": [0.55, 0.5, 0.42], "glow": [0.6, 0.3, 1.0] }
+	},
+	"vara_eclipse": {
+		"name": "Vara do Eclipse", "kind": "equip", "slot": "weapon", "size": [1, 4], "level_req": 6, "price": 900,
+		"classes": ["feiticeiro", "vidente"],
+		"main": "magic", "stats": { "magic_min": 8, "magic_max": 14 },
+		"visual": { "mesh": "staff", "color": [0.2, 0.18, 0.22], "glow": [0.85, 0.2, 0.3] }
+	},
+	"cetro_abissal": {
+		"name": "Cetro Abissal", "kind": "equip", "slot": "weapon", "size": [1, 4], "level_req": 15, "price": 6000,
+		"classes": ["feiticeiro", "vidente"],
+		"main": "magic", "stats": { "magic_min": 14, "magic_max": 22 },
+		"visual": { "mesh": "staff", "color": [0.12, 0.1, 0.16], "glow": [0.35, 1.0, 0.75] }
+	},
+	"broquel_cinzas": {
+		"name": "Broquel de Cinzas", "kind": "equip", "slot": "shield", "size": [2, 2], "level_req": 3, "price": 300,
+		"main": "defense", "stats": { "defense": 6 },
+		"visual": { "mesh": "shield", "color": [0.3, 0.28, 0.26], "glow": [0.8, 0.5, 0.2] }
+	},
+	"capuz_acolito": {
+		"name": "Capuz do Acólito", "kind": "equip", "slot": "helm", "size": [2, 2], "level_req": 1, "price": 140,
+		"main": "defense", "stats": { "defense": 3 },
+		"visual": { "mesh": "hood", "color": [0.22, 0.16, 0.3], "glow": [0.6, 0.3, 1.0] }
+	},
+	"manto_acolito": {
+		"name": "Manto do Acólito", "kind": "equip", "slot": "armor", "size": [2, 3], "level_req": 1, "price": 220,
+		"main": "defense", "stats": { "defense": 6 },
+		"visual": { "mesh": "robe", "color": [0.22, 0.16, 0.3], "glow": [0.6, 0.3, 1.0] }
+	},
+	"calcas_acolito": {
+		"name": "Calças do Acólito", "kind": "equip", "slot": "pants", "size": [2, 2], "level_req": 1, "price": 160,
+		"main": "defense", "stats": { "defense": 4 },
+		"visual": { "mesh": "skirt", "color": [0.18, 0.14, 0.22], "glow": [0.6, 0.3, 1.0] }
+	},
+	"luvas_acolito": {
+		"name": "Luvas do Acólito", "kind": "equip", "slot": "gloves", "size": [2, 2], "level_req": 1, "price": 110,
+		"main": "defense", "stats": { "defense": 2 },
+		"visual": { "mesh": "gloves", "color": [0.16, 0.12, 0.18], "glow": [0.6, 0.3, 1.0] }
+	},
+	"botas_acolito": {
+		"name": "Botas do Acólito", "kind": "equip", "slot": "boots", "size": [2, 2], "level_req": 1, "price": 110,
+		"main": "defense", "stats": { "defense": 2 },
+		"visual": { "mesh": "boots", "color": [0.14, 0.11, 0.1], "glow": [0.6, 0.3, 1.0] }
+	},
+	"amuleto_fumaca": {
+		"name": "Amuleto de Fumaça", "kind": "equip", "slot": "amulet", "size": [1, 1], "level_req": 5, "price": 1500,
+		"main": "", "stats": { "mana_max": 15 },
+		"visual": { "mesh": "", "color": [0.5, 0.5, 0.55], "glow": [0.5, 0.7, 1.0] }
+	},
+	"anel_brasa": {
+		"name": "Anel de Brasa", "kind": "equip", "slot": "ring", "size": [1, 1], "level_req": 5, "price": 1500,
+		"main": "", "stats": { "hp_max": 12 },
+		"visual": { "mesh": "", "color": [0.7, 0.3, 0.15], "glow": [1.0, 0.5, 0.2] }
+	},
+	"asas_fuligem": {
+		"name": "Asas de Fuligem", "kind": "equip", "slot": "wings", "size": [3, 2], "level_req": 15, "price": 30000,
+		"tier": 1, "main": "defense", "stats": { "defense": 10, "damage_pct": 0.1, "damage_reduction_pct": 0.1 },
+		"visual": { "mesh": "wings", "color": [0.16, 0.14, 0.14], "glow": [1.0, 0.45, 0.15] }
+	},
+	"asas_veu": {
+		"name": "Asas do Véu Rasgado", "kind": "equip", "slot": "wings", "size": [3, 2], "level_req": 15, "price": 30000,
+		"tier": 1, "main": "defense", "stats": { "defense": 7, "damage_pct": 0.14, "damage_reduction_pct": 0.06, "mana_max": 20 },
+		"visual": { "mesh": "wings", "color": [0.2, 0.12, 0.3], "glow": [0.65, 0.35, 1.0] }
+	},
+	"joia_consagrada": {
+		"name": "Lágrima Consagrada", "kind": "jewel", "jewel": "bless", "slot": null, "size": [1, 1], "level_req": 0, "price": 900,
+		"main": "", "stats": {},
+		"visual": { "mesh": "", "color": [0.85, 0.85, 1.0], "glow": [0.85, 0.85, 1.0] }
+	},
+	"joia_alma": {
+		"name": "Fragmento de Alma", "kind": "jewel", "jewel": "soul", "slot": null, "size": [1, 1], "level_req": 0, "price": 1200,
+		"main": "", "stats": {},
+		"visual": { "mesh": "", "color": [0.7, 0.4, 1.0], "glow": [0.7, 0.4, 1.0] }
+	},
+	"joia_vortice": {
+		"name": "Gema do Vórtice", "kind": "jewel", "jewel": "vortex", "slot": null, "size": [1, 2], "level_req": 0, "price": 800,
+		"main": "", "stats": {},
+		"visual": { "mesh": "", "color": [0.9, 0.3, 0.2], "glow": [0.9, 0.3, 0.2] }
+	},
+	"joia_vida": {
+		"name": "Seiva Vital", "kind": "jewel", "jewel": "life", "slot": null, "size": [1, 1], "level_req": 0, "price": 1500,
+		"main": "", "stats": {},
+		"visual": { "mesh": "", "color": [0.3, 0.95, 0.5], "glow": [0.3, 0.95, 0.5] }
+	},
+	"talisma_fortuna": {
+		"name": "Talismã da Fortuna", "kind": "charm", "slot": null, "size": [1, 1], "level_req": 0, "price": 400,
+		"main": "", "stats": {}, "help": "Na Forja do Vórtice: +10% de chance no refino superior (até 3).",
+		"visual": { "mesh": "", "color": [0.4, 0.9, 0.6], "glow": [0.4, 0.9, 0.6] }
+	},
+	"selo_preservacao": {
+		"name": "Selo de Preservação", "kind": "charm", "slot": null, "size": [1, 1], "level_req": 0, "price": 1000,
+		"main": "", "stats": {}, "help": "Na Forja do Vórtice: se o refino falhar, o item não é destruído.",
+		"visual": { "mesh": "", "color": [0.7, 0.75, 0.9], "glow": [0.7, 0.75, 0.9] }
+	},
+	"joia_genese": {
+		"name": "Pedra da Gênese", "kind": "jewel", "jewel": "genesis", "slot": null, "size": [1, 1], "level_req": 0, "price": 2000,
+		"main": "", "stats": {},
+		"visual": { "mesh": "", "color": [1.0, 0.8, 0.35], "glow": [1.0, 0.8, 0.35] }
+	},
+	"pocao_vida_menor": {
+		"name": "Tônico de Sangue", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 0, "price": 12,
+		"main": "", "stats": {}, "stack_max": 20,
+		"use": { "type": "heal_hp", "amount": 45, "cooldown_s": 1.0 },
+		"help": "Recupera 45 de vida. Atalho: Z.",
+		"visual": { "mesh": "potion", "color": [0.75, 0.08, 0.1], "glow": [1.0, 0.3, 0.3] }
+	},
+	"pocao_vida": {
+		"name": "Tônico de Sangue Forte", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 8, "price": 40,
+		"main": "", "stats": {}, "stack_max": 20,
+		"use": { "type": "heal_hp", "amount": 110, "cooldown_s": 1.0 },
+		"help": "Recupera 110 de vida. Atalho: Z (usa o mais forte que você pode).",
+		"visual": { "mesh": "potion", "color": [0.55, 0.02, 0.08], "glow": [1.0, 0.2, 0.35] }
+	},
+	"pocao_mana_menor": {
+		"name": "Essência Azulada", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 0, "price": 12,
+		"main": "", "stats": {}, "stack_max": 20,
+		"use": { "type": "heal_mana", "amount": 40, "cooldown_s": 1.0 },
+		"help": "Recupera 40 de mana. Atalho: X.",
+		"visual": { "mesh": "potion", "color": [0.12, 0.3, 0.85], "glow": [0.4, 0.6, 1.0] }
+	},
+	"pergaminho_retorno": {
+		"name": "Pergaminho do Retorno", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 0, "price": 60,
+		"main": "", "stats": {}, "stack_max": 10,
+		"use": { "type": "return", "cooldown_s": 10.0 },
+		"help": "Leva você de volta ao Refúgio das Cinzas.",
+		"visual": { "mesh": "scroll", "color": [0.8, 0.72, 0.55], "glow": [0.9, 0.75, 0.4] }
+	},
+	"grimorio_brasas": {
+		"name": "Grimório: Chuva de Brasas", "kind": "consumable", "slot": null, "size": [1, 2], "level_req": 8, "price": 1500,
+		"main": "", "stats": {},
+		"classes": ["feiticeiro"],
+		"use": { "type": "learn_spell", "spell": "chuva_brasas", "cooldown_s": 0.0 },
+		"help": "Ensina a magia Chuva de Brasas (tecla 4).",
+		"visual": { "mesh": "book", "color": [0.45, 0.12, 0.08], "glow": [1.0, 0.55, 0.15] }
+	},
+	"espada_ferrugem": {
+		"name": "Espada Enferrujada", "kind": "equip", "slot": "weapon", "size": [1, 3], "level_req": 1, "price": 90,
+		"classes": ["cavaleiro"],
+		"main": "magic", "stats": { "magic_min": 5, "magic_max": 9 },
+		"visual": { "mesh": "sword", "color": [0.45, 0.38, 0.32], "glow": [0.95, 0.3, 0.2] }
+	},
+	"lamina_penitente": {
+		"name": "Lâmina do Penitente", "kind": "equip", "slot": "weapon", "size": [1, 3], "level_req": 6, "price": 950,
+		"classes": ["cavaleiro"],
+		"main": "magic", "stats": { "magic_min": 10, "magic_max": 16 },
+		"visual": { "mesh": "sword", "color": [0.3, 0.28, 0.3], "glow": [1.0, 0.2, 0.15] }
+	},
+	"montante_eclipse": {
+		"name": "Montante do Eclipse", "kind": "equip", "slot": "weapon", "size": [1, 4], "level_req": 15, "price": 6200,
+		"classes": ["cavaleiro"],
+		"main": "magic", "stats": { "magic_min": 17, "magic_max": 26 },
+		"visual": { "mesh": "sword", "color": [0.14, 0.12, 0.16], "glow": [1.0, 0.78, 0.3] }
+	},
+	"cota_cinzas": {
+		"name": "Cota de Cinzas", "kind": "equip", "slot": "armor", "size": [2, 3], "level_req": 1, "price": 260,
+		"classes": ["cavaleiro"],
+		"main": "defense", "stats": { "defense": 8 },
+		"visual": { "mesh": "robe", "color": [0.32, 0.3, 0.3], "glow": [0.95, 0.35, 0.2] }
+	},
+	"grimorio_juramento": {
+		"name": "Grimório: Juramento Sombrio", "kind": "consumable", "slot": null, "size": [1, 2], "level_req": 8, "price": 1500,
+		"main": "", "stats": {},
+		"classes": ["cavaleiro"],
+		"use": { "type": "learn_spell", "spell": "juramento_sombrio", "cooldown_s": 0.0 },
+		"help": "Ensina o Juramento Sombrio (tecla 4): +25% de dano e +10 de defesa por 20 s.",
+		"visual": { "mesh": "book", "color": [0.4, 0.1, 0.08], "glow": [1.0, 0.42, 0.2] }
+	},
+	"grimorio_espirito": {
+		"name": "Grimório: Invocar Espírito", "kind": "consumable", "slot": null, "size": [1, 2], "level_req": 8, "price": 1500,
+		"main": "", "stats": {},
+		"classes": ["vidente"],
+		"use": { "type": "learn_spell", "spell": "invocar_espirito", "cooldown_s": 0.0 },
+		"help": "Ensina Invocar Espírito (tecla 4): um Espírito do Véu luta ao seu lado por 40 s.",
+		"visual": { "mesh": "book", "color": [0.1, 0.2, 0.35], "glow": [0.6, 0.92, 1.0] }
+	},
+	"selo_juramento": {
+		"name": "Selo do Juramento Antigo", "kind": "quest", "slot": null, "size": [1, 1], "level_req": 0, "price": 0,
+		"main": "", "stats": {},
+		"help": "Arrancado do Colosso da Geleira. Leve ao Ancião Varek, no Refúgio.",
+		"visual": { "mesh": "scroll", "color": [0.85, 0.75, 0.4], "glow": [1.0, 0.85, 0.4] }
+	},
+	"pergaminho_sitiante": {
+		"name": "Pergaminho do Sitiante", "kind": "material", "slot": null, "size": [1, 2], "level_req": 0, "price": 400,
+		"main": "", "stats": {}, "stack_max": 5,
+		"help": "Metade de um Selo da Fortaleza. Combine na Forja do Vórtice.",
+		"visual": { "mesh": "scroll", "color": [0.55, 0.42, 0.3], "glow": [1.0, 0.5, 0.2] }
+	},
+	"osso_brasa": {
+		"name": "Osso em Brasa", "kind": "material", "slot": null, "size": [1, 1], "level_req": 0, "price": 400,
+		"main": "", "stats": {}, "stack_max": 5,
+		"help": "Ainda quente. Combine na Forja do Vórtice para fazer um Selo da Fortaleza.",
+		"visual": { "mesh": "gem", "color": [0.85, 0.8, 0.7], "glow": [1.0, 0.45, 0.15] }
+	},
+	"selo_fortaleza": {
+		"name": "Selo da Fortaleza", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 15, "price": 3000,
+		"main": "", "stats": {}, "stack_max": 5,
+		"use": { "type": "event_ticket", "event": "fortaleza", "cooldown_s": 2.0 },
+		"help": "Ingresso da Fortaleza Sitiada. Use quando os portões estiverem abertos (veja o contador de eventos).",
+		"visual": { "mesh": "scroll", "color": [0.7, 0.2, 0.15], "glow": [1.0, 0.55, 0.2] }
+	},
+	"reliquia_ardente": {
+		"name": "Relíquia Ardente", "kind": "quest", "slot": null, "size": [1, 2], "level_req": 0, "price": 0,
+		"main": "", "stats": {},
+		"help": "Arrancada do Guardião Profanado. Leve ao Altar do Guardião antes que o tempo acabe.",
+		"visual": { "mesh": "staff", "color": [0.9, 0.7, 0.3], "glow": [1.0, 0.6, 0.2] }
+	},
+	"emblema_arena": {
+		"name": "Emblema da Arena", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 15, "price": 2500,
+		"main": "", "stats": {}, "stack_max": 5,
+		"use": { "type": "event_ticket", "event": "arena", "cooldown_s": 2.0 },
+		"help": "Ingresso da Arena das Ondas. Use quando os portões estiverem abertos.",
+		"visual": { "mesh": "gem", "color": [0.6, 0.5, 0.2], "glow": [1.0, 0.8, 0.3] }
+	},
+	"marca_circulo": {
+		"name": "Marca do Círculo", "kind": "consumable", "slot": null, "size": [1, 1], "level_req": 15, "price": 2500,
+		"main": "", "stats": {}, "stack_max": 5,
+		"use": { "type": "event_ticket", "event": "circulo", "cooldown_s": 2.0 },
+		"help": "Ingresso do Círculo que Encolhe (todos contra todos; equipamento e poções de fora não valem lá dentro).",
+		"visual": { "mesh": "gem", "color": [0.35, 0.15, 0.45], "glow": [0.8, 0.4, 1.0] }
+	}
+}

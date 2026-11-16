@@ -1,0 +1,66 @@
+{
+	"_doc": "Receitas da Forja do Vórtice. type 'refine': 1 equipamento + joias exatas por nível atual (de +9 até +14 -> +10 até +15), Óbolos e chance; Sorte soma luck_bonus, Excelente/Ancestral subtrai rarity_penalty; cada Talismã da Fortuna soma charm_bonus (até charm_max); na falha o item é destruído, a menos que haja um Selo de Preservação. type 'craft': ingredientes exatos -> resultado, com chance; na falha os ingredientes se perdem.",
+	"refine_high": {
+		"type": "refine",
+		"name": "Refino superior",
+		"levels": {
+			"9": { "chance": 0.6, "joia_consagrada": 1, "joia_alma": 1, "joia_vortice": 1, "joia_genese": 0, "cost": 500 },
+			"10": { "chance": 0.58, "joia_consagrada": 2, "joia_alma": 2, "joia_vortice": 1, "joia_genese": 0, "cost": 800 },
+			"11": { "chance": 0.55, "joia_consagrada": 3, "joia_alma": 3, "joia_vortice": 1, "joia_genese": 0, "cost": 1200 },
+			"12": { "chance": 0.52, "joia_consagrada": 4, "joia_alma": 4, "joia_vortice": 1, "joia_genese": 1, "cost": 1800 },
+			"13": { "chance": 0.5, "joia_consagrada": 5, "joia_alma": 5, "joia_vortice": 1, "joia_genese": 1, "cost": 2600 },
+			"14": { "chance": 0.5, "joia_consagrada": 6, "joia_alma": 6, "joia_vortice": 1, "joia_genese": 1, "cost": 3600 }
+		},
+		"luck_bonus": 0.1,
+		"rarity_penalty": 0.1,
+		"charm": "talisma_fortuna",
+		"charm_bonus": 0.1,
+		"charm_max": 3,
+		"protector": "selo_preservacao",
+		"max_chance": 0.9
+	},
+	"asas_t1": {
+		"type": "wings",
+		"name": "Criar Asas (nível 1)",
+		"_doc": "1 equipamento (não asas) +item_min_level ou mais é sacrificado junto com as joias exatas. Chance = base_chance + per_level × (nível do item − item_min_level) + bônus (Sorte, Excelente), até max_chance. O resultado é sorteado entre 'results'.",
+		"item_min_level": 7,
+		"ingredients": { "joia_vortice": 2, "joia_genese": 1, "joia_alma": 1 },
+		"cost": 6000,
+		"base_chance": 0.3,
+		"per_level": 0.05,
+		"luck_bonus": 0.05,
+		"excellent_bonus": 0.1,
+		"max_chance": 0.7,
+		"results": ["asas_fuligem", "asas_veu"]
+	},
+	"talisma": {
+		"type": "craft", "name": "Forjar Talismã da Fortuna",
+		"ingredients": { "joia_genese": 1, "joia_vortice": 1 },
+		"cost": 300, "chance": 0.7, "result": "talisma_fortuna"
+	},
+	"selo": {
+		"type": "craft", "name": "Gravar Selo de Preservação",
+		"ingredients": { "joia_genese": 2, "joia_alma": 2, "joia_vortice": 1 },
+		"cost": 600, "chance": 0.6, "result": "selo_preservacao"
+	},
+	"selo_fortaleza": {
+		"type": "craft", "name": "Gravar Selo da Fortaleza",
+		"ingredients": { "pergaminho_sitiante": 1, "osso_brasa": 1, "joia_alma": 1 },
+		"cost": 1500, "chance": 0.8, "result": "selo_fortaleza"
+	},
+	"emblema_arena": {
+		"type": "craft", "name": "Forjar Emblema da Arena",
+		"ingredients": { "osso_brasa": 1, "joia_consagrada": 1 },
+		"cost": 1200, "chance": 0.8, "result": "emblema_arena"
+	},
+	"marca_circulo": {
+		"type": "craft", "name": "Gravar Marca do Círculo",
+		"ingredients": { "pergaminho_sitiante": 1, "joia_vida": 1 },
+		"cost": 1200, "chance": 0.8, "result": "marca_circulo"
+	},
+	"seiva": {
+		"type": "craft", "name": "Destilar Seiva Vital",
+		"ingredients": { "joia_consagrada": 2, "joia_alma": 1, "joia_vortice": 1 },
+		"cost": 150, "chance": 0.8, "result": "joia_vida"
+	}
+}

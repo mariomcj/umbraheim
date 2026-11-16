@@ -1,0 +1,25 @@
+{
+	"_doc": "Lojas dos NPCs. Preço de compra = price do item (items.json). Valor de um item = price * (1 + nível² * level_sq_mult) * rarity_mult[raridade] * (luck_mult se tiver Sorte) * (1 + extra * extra_mult) * (1 + opções excelentes * exc_option_mult). Venda = valor * sell_fraction (pilhas: por unidade). confirm_sell_min: vendas a partir deste valor pedem um segundo clique. buy_stack: quantidade comprada com Shift+clique em itens empilháveis.",
+	"sell_fraction": 0.3,
+	"value": {
+		"level_sq_mult": 0.12,
+		"rarity_mult": [1.0, 2.5, 4.0],
+		"luck_mult": 1.25,
+		"extra_mult": 0.15,
+		"exc_option_mult": 0.5
+	},
+	"confirm_sell_min": 150,
+	"buy_stack": 10,
+	"shops": {
+		"ferreiro": {
+			"title": "Forja de Hálvor",
+			"greeting": "Aço e osso, forasteiro. O que vai levar?",
+			"stock": ["cajado_osso", "vara_eclipse", "espada_ferrugem", "lamina_penitente", "broquel_cinzas", "cota_cinzas", "capuz_acolito", "manto_acolito", "calcas_acolito", "luvas_acolito", "botas_acolito"]
+		},
+		"mago": {
+			"title": "Bancada de Ysolde",
+			"greeting": "Tônicos frescos e um grimório ou outro. Cuidado com o que lê.",
+			"stock": ["pocao_vida_menor", "pocao_vida", "pocao_mana_menor", "pergaminho_retorno", "grimorio_brasas", "grimorio_juramento", "grimorio_espirito"]
+		}
+	}
+}

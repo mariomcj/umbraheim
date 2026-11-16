@@ -1,0 +1,206 @@
+{
+	"_doc": "Árvore de maestria. No nível máximo (progression.json -> max_level), a XP passa a encher níveis de maestria (xp_to_next usa mlevel, o nível de maestria atual), até max_level; cada nível dá points_per_level pontos. Cada nó soma per_point × pontos ao atributo stat (as mesmas chaves dos bônus de equipamento). requires: [[nó, pontos mínimos]] antes de poder pôr pontos. text: como o bônus aparece (o valor vai multiplicado por scale). A maestria fica no reset.",
+	"xp_to_next": "(mlevel + 1) * 400000",
+	"max_level": 200,
+	"points_per_level": 1,
+	"trees": [
+		{
+			"id": "ataque",
+			"name": "Ataque",
+			"color": [
+				1.0,
+				0.45,
+				0.3
+			],
+			"nodes": [
+				{
+					"id": "furia",
+					"name": "Fúria",
+					"max": 10,
+					"stat": "damage_pct",
+					"per_point": 0.01,
+					"scale": 100,
+					"text": "+%s%% de dano",
+					"requires": []
+				},
+				{
+					"id": "golpe_preciso",
+					"name": "Golpe Preciso",
+					"max": 10,
+					"stat": "crit_chance",
+					"per_point": 0.005,
+					"scale": 100,
+					"text": "+%s%% de chance de crítico",
+					"requires": [
+						[
+							"furia",
+							5
+						]
+					]
+				},
+				{
+					"id": "golpe_excelente",
+					"name": "Golpe Excelente",
+					"max": 10,
+					"stat": "excellent_chance",
+					"per_point": 0.005,
+					"scale": 100,
+					"text": "+%s%% de chance de dano excelente",
+					"requires": [
+						[
+							"golpe_preciso",
+							5
+						]
+					]
+				},
+				{
+					"id": "mao_pesada",
+					"name": "Mão Pesada",
+					"max": 20,
+					"stat": "magic_max",
+					"per_point": 2,
+					"scale": 1,
+					"text": "+%s de dano máximo",
+					"requires": [
+						[
+							"golpe_excelente",
+							5
+						]
+					]
+				}
+			]
+		},
+		{
+			"id": "defesa",
+			"name": "Defesa",
+			"color": [
+				0.45,
+				0.75,
+				1.0
+			],
+			"nodes": [
+				{
+					"id": "pele_pedra",
+					"name": "Pele de Pedra",
+					"max": 10,
+					"stat": "defense",
+					"per_point": 4,
+					"scale": 1,
+					"text": "+%s de defesa",
+					"requires": []
+				},
+				{
+					"id": "vigor",
+					"name": "Vigor",
+					"max": 10,
+					"stat": "hp_max_pct",
+					"per_point": 0.02,
+					"scale": 100,
+					"text": "+%s%% de vida máxima",
+					"requires": [
+						[
+							"pele_pedra",
+							5
+						]
+					]
+				},
+				{
+					"id": "absorcao",
+					"name": "Absorção",
+					"max": 10,
+					"stat": "damage_reduction_pct",
+					"per_point": 0.01,
+					"scale": 100,
+					"text": "absorve +%s%% do dano",
+					"requires": [
+						[
+							"vigor",
+							5
+						]
+					]
+				},
+				{
+					"id": "espinhos",
+					"name": "Espinhos",
+					"max": 10,
+					"stat": "reflect_pct",
+					"per_point": 0.01,
+					"scale": 100,
+					"text": "devolve +%s%% do dano",
+					"requires": [
+						[
+							"absorcao",
+							5
+						]
+					]
+				}
+			]
+		},
+		{
+			"id": "utilidade",
+			"name": "Utilidade",
+			"color": [
+				0.55,
+				0.95,
+				0.55
+			],
+			"nodes": [
+				{
+					"id": "fluxo",
+					"name": "Fluxo Arcano",
+					"max": 10,
+					"stat": "mana_max_pct",
+					"per_point": 0.02,
+					"scale": 100,
+					"text": "+%s%% de mana máxima",
+					"requires": []
+				},
+				{
+					"id": "fortuna",
+					"name": "Fortuna",
+					"max": 10,
+					"stat": "currency_pct",
+					"per_point": 0.03,
+					"scale": 100,
+					"text": "+%s%% de Óbolos",
+					"requires": [
+						[
+							"fluxo",
+							5
+						]
+					]
+				},
+				{
+					"id": "sifao",
+					"name": "Sifão",
+					"max": 10,
+					"stat": "hp_on_kill_frac",
+					"per_point": 0.005,
+					"scale": 100,
+					"text": "recupera %s%% da vida por monstro",
+					"requires": [
+						[
+							"fortuna",
+							5
+						]
+					]
+				},
+				{
+					"id": "celeridade",
+					"name": "Celeridade",
+					"max": 10,
+					"stat": "attack_speed",
+					"per_point": 0.02,
+					"scale": 100,
+					"text": "+%s%% de velocidade de ataque",
+					"requires": [
+						[
+							"sifao",
+							5
+						]
+					]
+				}
+			]
+		}
+	]
+}

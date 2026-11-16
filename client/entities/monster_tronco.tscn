@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/entities/avatar.gd" id="1_avatar"]
+
+[sub_resource type="StandardMaterial3D" id="BarkMat"]
+albedo_color = Color(0.22, 0.16, 0.11, 1)
+roughness = 1.0
+
+[sub_resource type="CylinderMesh" id="TrunkMesh"]
+material = SubResource("BarkMat")
+top_radius = 0.32
+bottom_radius = 0.5
+height = 2.2
+radial_segments = 7
+rings = 2
+
+[sub_resource type="BoxMesh" id="ArmMesh"]
+material = SubResource("BarkMat")
+size = Vector3(0.18, 1.2, 0.18)
+
+[sub_resource type="StandardMaterial3D" id="RotMat"]
+shading_mode = 0
+albedo_color = Color(0.55, 0.9, 0.3, 1)
+
+[sub_resource type="SphereMesh" id="EyeMesh"]
+material = SubResource("RotMat")
+radius = 0.07
+height = 0.14
+radial_segments = 6
+rings = 3
+
+[node name="Tronco" type="Node3D"]
+script = ExtResource("1_avatar")
+hover_color = Color(1, 0.35, 0.25, 1)
+body_height = 2.4
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.1, 0)
+mesh = SubResource("TrunkMesh")
+
+[node name="ArmL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.55, 0.35, 0.1)
+rotation = Vector3(0.3, 0, 0.7)
+mesh = SubResource("ArmMesh")
+
+[node name="ArmR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.55, 0.45, 0.05)
+rotation = Vector3(0.2, 0, -0.8)
+mesh = SubResource("ArmMesh")
+
+[node name="EyeL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.13, 0.6, 0.36)
+mesh = SubResource("EyeMesh")
+
+[node name="EyeR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.13, 0.62, 0.36)
+mesh = SubResource("EyeMesh")
+
+[node name="Glow" type="OmniLight3D" parent="."]
+position = Vector3(0, 1.8, 0.6)
+light_color = Color(0.55, 0.9, 0.3, 1)
+light_energy = 0.5
+omni_range = 2.5
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.9, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.9, 0.55, 0.45, 1)
+outline_modulate = Color(0, 0, 0, 0.85)
+pixel_size = 0.005
+font_size = 40
+outline_size = 10
+text = "?"

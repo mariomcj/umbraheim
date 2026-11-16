@@ -1,0 +1,32 @@
+{
+	"_doc": "Classe Vidente do Véu: à distância e suporte. Cura o grupo, protege com o véu e invoca um espírito que luta ao seu lado. Fórmulas: Expression da Godot com level, str, agi, vit, ene.",
+	"id": "vidente",
+	"name": "Vidente do Véu",
+	"description": "Suporte à distância. Cura e protege o grupo e invoca um Espírito do Véu que ataca os inimigos por você.",
+	"color": [0.16, 0.36, 0.5],
+	"damage_label": "Dano mágico",
+	"base_stats": { "str": 15, "agi": 24, "vit": 18, "ene": 28 },
+	"points_per_level": 5,
+	"derived": {
+		"hp_max": "70.0 + (level - 1) * 1.2 + (vit - 18) * 2.2",
+		"mana_max": "55.0 + (level - 1) * 1.8 + (ene - 28) * 2.0",
+		"magic_min": "ene / 10.0 + agi / 20.0",
+		"magic_max": "ene / 5.5 + agi / 14.0",
+		"defense": "agi / 4.0",
+		"attack_speed": "1.0 + agi / 250.0",
+		"hp_regen_s": "0.6 + vit / 45.0",
+		"mana_regen_s": "1.2 + ene / 35.0",
+		"move_speed_mps": "5.2"
+	},
+	"starting_items": [
+		{ "base": "cajado_osso", "equip": true },
+		{ "base": "manto_acolito", "equip": true },
+		{ "base": "pocao_vida_menor", "count": 5 },
+		{ "base": "pocao_mana_menor", "count": 5 }
+	],
+	"_spells_doc": "spells: todas as magias da classe (a ordem é o índice na rede). starting_spells: as que o personagem já sabe; as outras se aprendem com grimórios ou na evolução.",
+	"spells": ["toque_veu", "dardo_espectral", "bencao_curativa", "veu_protetor", "invocar_espirito", "bencao_oraculo"],
+	"starting_spells": ["toque_veu", "dardo_espectral", "bencao_curativa", "veu_protetor"],
+	"_evolution_doc": "evolution: a evolução de classe (missão em data/quests.json, entregue ao Ancião no Refúgio). name = novo título; points_per_level_bonus = pontos extras por nível depois de evoluir; points_bonus = pontos dados na hora; spells = magias liberadas ao evoluir (estão no fim de spells, para não mudar os índices).",
+	"evolution": { "name": "Oráculo do Véu", "points_per_level_bonus": 2, "points_bonus": 10, "spells": ["bencao_oraculo"] }
+}

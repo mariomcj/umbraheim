@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/ground/brown_mud_leaves_01/brown_mud_leaves_01_albedo.jpg" id="1_albedo"]
+[ext_resource type="Texture2D" path="res://assets/textures/ground/brown_mud_leaves_01/brown_mud_leaves_01_normal.jpg" id="2_normal"]
+
+[resource]
+albedo_color = Color(0.55, 0.52, 0.5, 1)
+albedo_texture = ExtResource("1_albedo")
+roughness = 0.95
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = ExtResource("2_normal")
+uv1_scale = Vector3(22.0, 22.0, 1)

@@ -1,0 +1,37 @@
+{
+	"id": "geleira",
+	"name": "Geleira dos Sussurros",
+	"level_req": 20,
+	"teleport_cost": 800,
+	"paper_px_per_m": 13.0,
+	"ink_tremor": 1.4,
+	"entrance_label": "Entrada",
+	"death_label": "Aqui caí",
+	"scene": "res://client/world/regions/geleira.tscn",
+	"player_spawn": [0.0, 30.0],
+	"teleport_point": [0.0, 29.0],
+	"respawn_region": "ruinas",
+	"nav_cell_m": 0.5,
+	"nav_agent_radius_m": 0.4,
+	"safe_zones": [
+		{ "id": "abrigo", "name": "Abrigo do Portal", "rect": [-5.0, 26.0, 5.0, 37.0] }
+	],
+	"portals": [
+		{ "id": "sul", "pos": [0.0, 34.5], "radius_m": 1.4, "to_region": "bosque", "to_portal": "norte", "arrival": [0.0, 30.0], "label": "Bosque das Cinzas Mortas" }
+	],
+	"npcs": [],
+	"monster_spawns": [
+		{ "monster": "chefe_colosso", "pos": [-8.0, -20.0], "count": 1, "radius_m": 0.0 },
+		{ "monster": "espectro_gelido", "pos": [-12.0, 12.0], "count": 6, "radius_m": 4.5 },
+		{ "monster": "espectro_gelido", "pos": [12.0, 14.0], "count": 6, "radius_m": 4.5 },
+		{ "monster": "espectro_gelido", "pos": [0.0, -8.0], "count": 6, "radius_m": 3.9 },
+		{ "monster": "golem_gelo", "pos": [-14.0, -16.0], "count": 4, "radius_m": 3.2 },
+		{ "monster": "golem_gelo", "pos": [14.0, -18.0], "count": 4, "radius_m": 3.2 }
+	],
+	"landmarks": [
+		{ "id": "portal_sul", "name": "Portal do Bosque", "symbol": "portal", "pos": [0.0, 34.5], "radius_m": 4.0 },
+		{ "id": "lago", "name": "Lago Congelado", "symbol": "hatch", "pos": [10.0, 2.0], "radius_m": 6.0 },
+		{ "id": "pilar", "name": "Pilar de Gelo Eterno", "symbol": "star", "pos": [-8.0, -26.0], "radius_m": 5.0 },
+		{ "id": "golens", "name": "Vale dos Golens", "symbol": "cross", "pos": [14.0, -18.0], "radius_m": 4.0 }
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"_doc": "Eventos do mundo. golden: variantes douradas geradas para cada monstro de 'monsters' (id + '_dourado'), com vida, dano e XP multiplicados e a tabela de drop da invasão. invasion: a cada intervalo sorteado, uma região (por peso) recebe 'count' monstros dourados por 'duration_s' segundos. bosses: avisos ao nascer e ao morrer; os chefes são entradas de monster_spawns com um monstro 'boss'.",
+	"golden": {
+		"suffix": " Dourado",
+		"hp_mult": 3.0,
+		"damage_mult": 1.4,
+		"xp_mult": 4.0,
+		"drop_table": "invasao",
+		"drop_rolls": 2,
+		"monsters": ["carnical", "espectro", "lobo_cinzas", "tronco_podre", "espectro_gelido", "golem_gelo"]
+	},
+	"invasion": {
+		"first_delay_s": 180.0,
+		"interval_min_s": 900.0,
+		"interval_max_s": 1500.0,
+		"duration_s": 300.0,
+		"spawn_margin_m": 6.0,
+		"regions": {
+			"ruinas": { "weight": 3, "count": 8, "monsters": ["carnical", "espectro"] },
+			"bosque": { "weight": 2, "count": 8, "monsters": ["lobo_cinzas", "tronco_podre"] },
+			"geleira": { "weight": 1, "count": 7, "monsters": ["espectro_gelido", "golem_gelo"] }
+		}
+	}
+}

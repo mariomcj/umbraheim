@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/entities/avatar.gd" id="1_avatar"]
+
+[sub_resource type="StandardMaterial3D" id="FurMat"]
+albedo_color = Color(0.32, 0.31, 0.3, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BodyMesh"]
+material = SubResource("FurMat")
+size = Vector3(0.55, 0.5, 1.2)
+
+[sub_resource type="BoxMesh" id="HeadMesh"]
+material = SubResource("FurMat")
+size = Vector3(0.38, 0.36, 0.5)
+
+[sub_resource type="BoxMesh" id="LegMesh"]
+material = SubResource("FurMat")
+size = Vector3(0.14, 0.5, 0.14)
+
+[sub_resource type="PrismMesh" id="EarMesh"]
+material = SubResource("FurMat")
+size = Vector3(0.12, 0.18, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="EyeMat"]
+shading_mode = 0
+albedo_color = Color(1, 0.55, 0.15, 1)
+
+[sub_resource type="SphereMesh" id="EyeMesh"]
+material = SubResource("EyeMat")
+radius = 0.04
+height = 0.08
+radial_segments = 6
+rings = 3
+
+[node name="Lobo" type="Node3D"]
+script = ExtResource("1_avatar")
+hover_color = Color(1, 0.35, 0.25, 1)
+body_height = 1.2
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.75, 0)
+mesh = SubResource("BodyMesh")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, 0.15, 0.72)
+mesh = SubResource("HeadMesh")
+
+[node name="EarL" type="MeshInstance3D" parent="Body/Head"]
+position = Vector3(-0.11, 0.25, -0.08)
+mesh = SubResource("EarMesh")
+
+[node name="EarR" type="MeshInstance3D" parent="Body/Head"]
+position = Vector3(0.11, 0.25, -0.08)
+mesh = SubResource("EarMesh")
+
+[node name="EyeL" type="MeshInstance3D" parent="Body/Head"]
+position = Vector3(-0.1, 0.06, 0.25)
+mesh = SubResource("EyeMesh")
+
+[node name="EyeR" type="MeshInstance3D" parent="Body/Head"]
+position = Vector3(0.1, 0.06, 0.25)
+mesh = SubResource("EyeMesh")
+
+[node name="LegFL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.2, -0.45, 0.42)
+mesh = SubResource("LegMesh")
+
+[node name="LegFR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.2, -0.45, 0.42)
+mesh = SubResource("LegMesh")
+
+[node name="LegBL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.2, -0.45, -0.42)
+mesh = SubResource("LegMesh")
+
+[node name="LegBR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.2, -0.45, -0.42)
+mesh = SubResource("LegMesh")
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 1.75, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.9, 0.55, 0.45, 1)
+outline_modulate = Color(0, 0, 0, 0.85)
+pixel_size = 0.005
+font_size = 40
+outline_size = 10
+text = "?"

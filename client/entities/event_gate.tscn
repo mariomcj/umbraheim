@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/entities/avatar.gd" id="1_avatar"]
+
+[sub_resource type="StandardMaterial3D" id="WoodMat"]
+albedo_color = Color(0.2, 0.13, 0.08, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="DoorMesh"]
+material = SubResource("WoodMat")
+size = Vector3(5.4, 4.0, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="IronMat"]
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+metallic = 0.7
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BandMesh"]
+material = SubResource("IronMat")
+size = Vector3(5.6, 0.25, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="RuneMat"]
+shading_mode = 0
+albedo_color = Color(1, 0.45, 0.15, 1)
+
+[sub_resource type="SphereMesh" id="RuneMesh"]
+material = SubResource("RuneMat")
+radius = 0.22
+height = 0.44
+radial_segments = 8
+rings = 4
+
+[node name="Gate" type="Node3D"]
+script = ExtResource("1_avatar")
+hover_color = Color(1, 0.6, 0.25, 1)
+body_height = 3.2
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.0, 0)
+mesh = SubResource("DoorMesh")
+
+[node name="BandTop" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, 1.2, 0)
+mesh = SubResource("BandMesh")
+
+[node name="BandLow" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, -1.1, 0)
+mesh = SubResource("BandMesh")
+
+[node name="Rune" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, 0.1, 0.4)
+mesh = SubResource("RuneMesh")
+
+[node name="Glow" type="OmniLight3D" parent="."]
+position = Vector3(0, 2.2, 1.0)
+light_color = Color(1, 0.5, 0.2, 1)
+light_energy = 1.2
+omni_range = 5.0
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 4.6, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.9, 0.55, 0.45, 1)
+outline_modulate = Color(0, 0, 0, 0.85)
+pixel_size = 0.005
+font_size = 40
+outline_size = 10
+text = "?"

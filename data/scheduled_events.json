@@ -1,0 +1,101 @@
+{
+	"_doc": "Eventos com horário. Cada evento começa a cada every_min minutos, no minuto at_min de cada ciclo (horário do servidor, em UTC). Os portões abrem entry_s segundos antes do começo: quem usar o ingresso nesse intervalo entra na instância da sua faixa de nível (bands; cada faixa tem a própria cópia da região, até max_players). Durante duration_s o evento acontece; depois, linger_s segundos para ver o resultado, e todos voltam à cidade. reminder_s: avisos antes de abrir. A Fortaleza: matar gate_kills monstros no pátio torna o portão vulnerável; derrubado o portão, o salão e o chefe despertam; o chefe deixa a relíquia com quem mais o feriu; entregá-la no altar vence o evento. logic: fortress, waves ou circle. Arena (waves): ondas em sequência (count monstros do índice monster da faixa; boss = o chefe da faixa); a próxima vem wave_gap_s depois da anterior acabar, ou depois de wave_max_s; cada morte dá event_points do monstro a quem matou; no fim, ranking: XP = xp_per_point × pontos, Óbolos = currency_per_point × pontos, e os rank_items para os três primeiros. Círculo (circle): todos contra todos (pvp free, sem infâmia), equipamento e poções de fora não valem (no_items); o anel encolhe de start_radius a end_radius entre shrink_start_s e shrink_end_s, e quem está fora perde damage_pct_s da vida por segundo; matar um jogador vale player_points, um guarda guard_points; vence o último de pé (ou, no fim do tempo, quem tiver mais pontos entre os vivos). Precisa de min_players ou é cancelado (o ingresso volta). Cerco (siege): semanal (every_min 10080; at_min conta da quinta-feira 00:00 UTC, então 4080 = sábado 20:00 UTC); entra quem é de guilda inscrita ou da dona do castelo, pelo Arauto do Cerco (sem ingresso, também durante o cerco); quem morre volta ao próprio lado (acampamento ou sala dos defensores); uma guilda toma o trono ficando sozinha a até capture_radius_m dele por capture_s segundos; quem estiver com o trono no fim fica com o castelo (castle.json). Sem dona, o trono é guardado por guards Guardiões. reward: XP = xp_per_level × nível, Óbolos e itens para todos os que estão dentro; quem entrega ganha deliverer_items a mais.",
+	"announce_interval_s": 5.0,
+	"events": {
+		"fortaleza": {
+			"name": "Fortaleza Sitiada",
+			"logic": "fortress",
+			"region": "fortaleza",
+			"ticket": "selo_fortaleza",
+			"every_min": 30,
+			"at_min": 0,
+			"entry_s": 180,
+			"duration_s": 900,
+			"linger_s": 20,
+			"reminder_s": [300],
+			"max_players": 10,
+			"bands": [
+				{ "min_level": 15, "max_level": 39, "monster": "sentinela_cinza", "boss": "guardiao_profanado", "gate": "portao_fortaleza", "xp_per_level": 900, "currency": 4000 },
+				{ "min_level": 40, "max_level": 400, "monster": "sentinela_cinza_ii", "boss": "guardiao_profanado_ii", "gate": "portao_fortaleza_ii", "xp_per_level": 2600, "currency": 12000 }
+			],
+			"courtyard_alive": 7,
+			"gate_kills": 20,
+			"hall_count": 6,
+			"relic": "reliquia_ardente",
+			"reward_items": ["joia_consagrada", "joia_alma"],
+			"deliverer_items": ["joia_vortice", "joia_genese", "joia_vida"]
+		},
+		"arena": {
+			"name": "Arena das Ondas",
+			"logic": "waves",
+			"region": "arena",
+			"ticket": "emblema_arena",
+			"every_min": 30,
+			"at_min": 10,
+			"entry_s": 180,
+			"duration_s": 600,
+			"linger_s": 25,
+			"reminder_s": [300],
+			"max_players": 10,
+			"bands": [
+				{ "min_level": 15, "max_level": 39, "monsters": ["cria_arena", "bruto_arena"], "boss": "campeao_arena", "xp_per_point": 60, "currency_per_point": 12 },
+				{ "min_level": 40, "max_level": 400, "monsters": ["cria_arena_ii", "bruto_arena_ii"], "boss": "campeao_arena_ii", "xp_per_point": 160, "currency_per_point": 30 }
+			],
+			"waves": [
+				{ "count": 8, "monster": 0 },
+				{ "count": 12, "monster": 0 },
+				{ "count": 7, "monster": 1 },
+				{ "count": 10, "monster": 1 },
+				{ "count": 6, "monster": 1, "boss": true }
+			],
+			"wave_gap_s": 8.0,
+			"wave_max_s": 100.0,
+			"rank_items": [["joia_genese", "joia_vortice", "joia_vida"], ["joia_vortice", "joia_alma"], ["joia_alma"]]
+		},
+		"circulo": {
+			"name": "Círculo que Encolhe",
+			"logic": "circle",
+			"region": "circulo",
+			"ticket": "marca_circulo",
+			"every_min": 30,
+			"at_min": 20,
+			"entry_s": 180,
+			"duration_s": 420,
+			"linger_s": 25,
+			"reminder_s": [300],
+			"max_players": 12,
+			"min_players": 2,
+			"bands": [
+				{ "min_level": 15, "max_level": 39, "guard": "guarda_circulo", "xp_per_level": 1200, "currency": 6000 },
+				{ "min_level": 40, "max_level": 400, "guard": "guarda_circulo_ii", "xp_per_level": 3200, "currency": 16000 }
+			],
+			"guards": 8,
+			"ring": { "center": [0.0, 0.0], "start_radius": 26.0, "end_radius": 4.0, "shrink_start_s": 40.0, "shrink_end_s": 330.0, "damage_pct_s": 0.06 },
+			"player_points": 5,
+			"guard_points": 1,
+			"winner_items": ["joia_genese", "joia_vortice", "joia_vida", "joia_alma"],
+			"points_xp_per_level": 60
+		},
+		"cerco": {
+			"name": "Cerco ao Castelo",
+			"logic": "siege",
+			"region": "castelo",
+			"ticket": "",
+			"every_min": 10080,
+			"at_min": 4080,
+			"entry_s": 600,
+			"duration_s": 1800,
+			"linger_s": 30,
+			"reminder_s": [3600, 1800],
+			"max_players": 60,
+			"bands": [ { "min_level": 20, "max_level": 400 } ],
+			"gate": "portao_castelo",
+			"guard": "guarda_castelo",
+			"guards": 6,
+			"capture_s": 20,
+			"capture_radius_m": 3.5,
+			"winner_xp_per_level": 3000,
+			"winner_items": ["joia_genese", "joia_vortice", "joia_vida"]
+		}
+	}
+}

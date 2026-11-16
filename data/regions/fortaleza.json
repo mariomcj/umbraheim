@@ -1,0 +1,42 @@
+{
+	"_doc": "Região instanciada de evento (Fortaleza Sitiada). event: id em scheduled_events.json; cada faixa de nível ganha a sua cópia (id fortaleza@<faixa>). pvp: false = jogadores não se atacam aqui. dynamic_blockers: retângulos que começam bloqueados e o evento abre (a grade da antessala na largada, o portão quando é derrubado); o nó de mesmo nome em Blockers some no cliente.",
+	"id": "fortaleza",
+	"name": "Fortaleza Sitiada",
+	"event": "fortaleza",
+	"pvp": false,
+	"level_req": 15,
+	"teleport_cost": 0,
+	"paper_px_per_m": 13.0,
+	"ink_tremor": 1.2,
+	"entrance_label": "Antessala",
+	"death_label": "Aqui caí",
+	"scene": "res://client/world/regions/fortaleza.tscn",
+	"player_spawn": [0.0, 30.0],
+	"teleport_point": [0.0, 30.0],
+	"respawn_region": "ruinas",
+	"nav_cell_m": 0.5,
+	"nav_agent_radius_m": 0.4,
+	"safe_zones": [
+		{ "id": "antessala", "name": "Antessala", "rect": [-8.0, 26.0, 8.0, 35.0] }
+	],
+	"dynamic_blockers": [
+		{ "id": "grade", "rect": [-3.0, 24.6, 3.0, 25.6] },
+		{ "id": "portao", "rect": [-2.8, -4.8, 2.8, -3.2] }
+	],
+	"portals": [],
+	"npcs": [
+		{ "id": "altar_guardiao", "role": "event_altar", "name": "Altar do Guardião", "pos": [0.0, -30.0], "interact_range_m": 3.0, "scene_node": "AltarNpc" }
+	],
+	"monster_spawns": [],
+	"spawn_points": {
+		"courtyard": [[-10.0, 18.0], [10.0, 18.0], [-12.0, 8.0], [12.0, 8.0], [-6.0, 2.0], [6.0, 2.0], [0.0, 12.0], [-14.0, -1.0], [14.0, -1.0]],
+		"hall": [[-9.0, -12.0], [9.0, -12.0], [-12.0, -20.0], [12.0, -20.0], [-6.0, -26.0], [6.0, -26.0]],
+		"gate": [0.0, -4.0],
+		"boss": [0.0, -21.0]
+	},
+	"landmarks": [
+		{ "id": "antessala", "name": "Antessala", "symbol": "house", "pos": [0.0, 30.0], "radius_m": 5.0 },
+		{ "id": "portao", "name": "Portão", "symbol": "x", "pos": [0.0, -4.0], "radius_m": 5.0 },
+		{ "id": "altar", "name": "Altar do Guardião", "symbol": "circle", "pos": [0.0, -30.0], "radius_m": 5.0 }
+	]
+}

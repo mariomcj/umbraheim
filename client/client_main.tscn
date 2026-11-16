@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/client_main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://client/world/test_world.tscn" id="2_world"]
+[ext_resource type="Script" path="res://client/camera/iso_camera_rig.gd" id="3_cam"]
+[ext_resource type="Script" path="res://client/ui/debug_overlay.gd" id="4_overlay"]
+
+[node name="ClientMain" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="World" parent="." instance=ExtResource("2_world")]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("3_cam")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+current = true
+far = 120.0
+
+[node name="DebugOverlay" type="CanvasLayer" parent="."]
+script = ExtResource("4_overlay")

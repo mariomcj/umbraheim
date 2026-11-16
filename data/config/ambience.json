@@ -1,0 +1,189 @@
+{
+	"_doc": "Clima de cada região, aplicado no cliente pelo AmbienceDirector por cima da cena (docs/design/PROPOSTA_AMBIENTACAO.md). Cores em hex. sun: cor, energia, elevação e azimute em graus (a única luz com sombra). fill: luz de preenchimento sem sombra, oposta ao sol (dá volume aos modelos). ambient: cor e energia da luz ambiente. fog: cor, densidade, altura (fog_height) e densidade de altura. sky: topo e horizonte do céu procedural. glow: intensidade e limiar. adjust: contraste e saturação. tonemap: filmic, aces, agx ou reinhard, e o branco. vignette: cor e força (0 = sem vinheta). fake_fog: cor e densidade das camadas de névoa falsa da cena (Fog/*), na ordem. ground: tint multiplica a cor do chão (material padrão ou as cores do shader). profiles: qualidade (glow, sombra, msaa, camadas de névoa); default_profile_web / default_profile_desktop.",
+	"default_profile_web": "medio",
+	"default_profile_desktop": "alto",
+	"profiles": {
+		"baixo": { "glow": false, "glow_levels": 0, "shadow_max_distance": 25.0, "msaa_3d": 0, "fake_fog_layers": 1, "particle_mult": 0.4, "character_rim": false, "ground_anti_tile": false, "decor_mult": 0.45 },
+		"medio": { "glow": true, "glow_levels": 3, "shadow_max_distance": 30.0, "msaa_3d": 1, "fake_fog_layers": 2, "particle_mult": 0.7, "character_rim": true, "ground_anti_tile": true, "decor_mult": 0.75 },
+		"alto": { "glow": true, "glow_levels": 5, "shadow_max_distance": 30.0, "msaa_3d": 1, "fake_fog_layers": 3, "particle_mult": 1.0, "character_rim": true, "ground_anti_tile": true, "decor_mult": 1.0 }
+	},
+	"_materials_doc": "Materiais (parte 5): regions.<id>.ground.macro troca o chão com textura pelo ground_macro.gdshader (anti_tile, macro_scale, macro_dark, stain_color, stain_amount, desaturate); ground.bump dá relevo ao chão procedural (ground_dirt); rim = contorno dos personagens (cor, intensity, power; perfil character_rim); banners = estandartes de pano no lugar das caixas 'Banner*' de Decor (cloth_banner.gdshader). materials.ice: parâmetros do ice.gdshader dos blocos e espinhos de gelo.",
+	"contact_shadow": { "size_m": 0.9, "alpha": 0.5, "lift_m": 0.03 },
+	"materials": {
+		"ice": { "ice_color": "#6A8FB4", "deep_color": "#1A2E52", "rim_color": "#8CD2FF", "rim_power": 3.0, "rim_strength": 0.55, "glow": 0.3, "vein_scale": 1.4, "crack_amount": 0.5, "ice_roughness": 0.18 }
+	},
+	"_particles_doc": "Partículas de ambiente (AmbienceDirector): cada região lista {type, count, color}; o emissor segue o personagem numa caixa de area_m (meia largura, meia altura, meia profundidade) erguida height_m acima do chão. particle_types: textura do pacote da Kenney (assets/vfx/particles/kenney_particle_pack, sem .png; vazio = disco macio), size_m, lifetime_s, velocity (mín e máx, m/s), direction e spread_deg, gravity (m/s²), intensity (brilho aditivo), spin, fade_in (fração da vida). count é multiplicado por particle_mult do perfil.",
+	"_decor_doc": "Decoração (DecorLayer), só no cliente e sem colisão: regions.<id>.decor = {seed, layers}. Cada camada: models (pasta/arquivo sem .gltf, pastas em decor_dirs), count (vezes o decor_mult do perfil), scale [mín, máx] (do tamanho original), tint (multiplica a cor dos materiais), zone inside (área andável, margin_m da borda) | ring (faixa ring_m [de, até] fora da área andável) | rect [x1, z1, x2, z2], clear (evita trilhas, áreas livres e zonas seguras; obstáculos sempre), shadow, tilt_deg, sink_m (afunda, vezes a escala), visibility_m (some além disso). scenery_tint: {tipo do RegionScenery: cor}. fires: [{nodes (caminhos na cena; 'Pai/*' = todos os filhos), offset, model, model_offset, model_scale, face_center, emit: [{type, count, color, alpha, area_m, offset}]}].",
+	"decor_dirs": {
+		"nature": "res://assets/models/environment/quaternius_stylized_nature/",
+		"props": "res://assets/models/props/quaternius_fantasy_props/",
+		"village": "res://assets/models/environment/quaternius_medieval_village/"
+	},
+	"particle_types": {
+		"cinza_flutuando": { "texture": "", "size_m": 0.2, "lifetime_s": 9.0, "velocity": [0.05, 0.25], "direction": [1.0, 0.1, 0.3], "spread_deg": 180.0, "gravity": [0.0, -0.03, 0.0], "intensity": 0.9, "spin": 0.0, "area_m": [14.0, 2.0, 14.0], "height_m": 2.0, "fade_in": 0.2 },
+		"cinza_caindo": { "texture": "", "size_m": 0.22, "lifetime_s": 8.0, "velocity": [0.1, 0.3], "direction": [0.3, -1.0, 0.1], "spread_deg": 25.0, "gravity": [0.15, -0.35, 0.0], "intensity": 0.8, "spin": 0.0, "area_m": [15.0, 1.0, 15.0], "height_m": 7.0, "fade_in": 0.15 },
+		"neve_vento": { "texture": "", "size_m": 0.17, "lifetime_s": 4.5, "velocity": [2.0, 3.2], "direction": [1.0, -0.55, 0.35], "spread_deg": 12.0, "gravity": [0.4, -0.6, 0.0], "intensity": 1.1, "spin": 0.0, "area_m": [16.0, 3.0, 16.0], "height_m": 4.0, "fade_in": 0.1 },
+		"cintila_gelo": { "texture": "star_06", "size_m": 0.35, "lifetime_s": 1.4, "velocity": [0.0, 0.0], "direction": [0.0, 1.0, 0.0], "spread_deg": 0.0, "gravity": [0.0, 0.0, 0.0], "intensity": 2.2, "spin": 1.5, "area_m": [12.0, 0.05, 12.0], "height_m": 0.08, "fade_in": 0.4 },
+		"vaga_lume": { "texture": "", "size_m": 0.32, "lifetime_s": 5.0, "velocity": [0.15, 0.45], "direction": [0.0, 0.3, 1.0], "spread_deg": 180.0, "gravity": [0.0, 0.02, 0.0], "intensity": 2.4, "spin": 0.0, "area_m": [13.0, 1.0, 13.0], "height_m": 1.2, "fade_in": 0.35 },
+		"fiapo_espectral": { "texture": "smoke_03", "size_m": 1.1, "lifetime_s": 4.0, "velocity": [0.1, 0.3], "direction": [0.0, 1.0, 0.0], "spread_deg": 60.0, "gravity": [0.0, 0.12, 0.0], "intensity": 1.2, "spin": 0.5, "area_m": [12.0, 0.5, 12.0], "height_m": 0.6, "fade_in": 0.3 },
+		"chama": { "texture": "flame_02", "size_m": 0.55, "lifetime_s": 0.55, "velocity": [0.6, 1.1], "direction": [0.0, 1.0, 0.0], "spread_deg": 8.0, "gravity": [0.0, 0.6, 0.0], "intensity": 1.5, "spin": 0.0, "area_m": [0.12, 0.05, 0.12], "height_m": 0.0, "fade_in": 0.12, "scale": [0.7, 1.1], "scale_end": 0.25 },
+		"fagulha": { "texture": "", "size_m": 0.07, "lifetime_s": 1.6, "velocity": [0.8, 1.6], "direction": [0.0, 1.0, 0.0], "spread_deg": 25.0, "gravity": [0.15, 0.3, 0.0], "intensity": 3.0, "spin": 0.0, "area_m": [0.2, 0.05, 0.2], "height_m": 0.0, "fade_in": 0.08 },
+		"fumaca": { "texture": "smoke_04", "blend": "mix", "size_m": 0.9, "lifetime_s": 4.0, "velocity": [0.4, 0.7], "direction": [0.1, 1.0, 0.0], "spread_deg": 12.0, "gravity": [0.12, 0.08, 0.0], "intensity": 1.0, "spin": 0.25, "area_m": [0.15, 0.05, 0.15], "height_m": 0.0, "fade_in": 0.25, "scale": [0.6, 0.9], "scale_end": 2.4 },
+		"brasa": { "texture": "", "size_m": 0.16, "lifetime_s": 3.5, "velocity": [0.3, 0.9], "direction": [0.2, 1.0, 0.0], "spread_deg": 35.0, "gravity": [0.1, 0.4, 0.0], "intensity": 2.6, "spin": 0.0, "area_m": [14.0, 0.5, 14.0], "height_m": 0.4, "fade_in": 0.1 },
+		"poeira": { "texture": "", "size_m": 0.3, "lifetime_s": 4.0, "velocity": [0.4, 0.9], "direction": [1.0, 0.05, 0.2], "spread_deg": 20.0, "gravity": [0.0, -0.02, 0.0], "intensity": 0.6, "spin": 0.0, "area_m": [14.0, 0.3, 14.0], "height_m": 0.35, "fade_in": 0.2 },
+		"mote_vazio": { "texture": "", "size_m": 0.2, "lifetime_s": 5.0, "velocity": [0.2, 0.5], "direction": [0.0, 1.0, 0.0], "spread_deg": 30.0, "gravity": [0.0, 0.25, 0.0], "intensity": 2.0, "spin": 0.0, "area_m": [14.0, 0.5, 14.0], "height_m": 0.3, "fade_in": 0.25 }
+	},
+	"regions": {
+		"ruinas": {
+			"decor": { "seed": 5101, "layers": [
+				{"models": ["nature/Grass_Wispy_Short", "nature/Grass_Wispy_Tall"], "count": 420, "scale": [0.35, 0.75], "tint": "#7C7462", "clear": true},
+				{"models": ["nature/Pebble_Round_1", "nature/Pebble_Round_3", "nature/Pebble_Square_2", "nature/Pebble_Square_4"], "count": 200, "scale": [0.8, 1.6], "tint": "#8A8580", "clear": true},
+				{"models": ["props/Vase_Rubble_Medium", "village/Prop_Brick1", "village/Prop_Brick3"], "count": 70, "scale": [0.8, 1.4], "tint": "#9A9088", "clear": true},
+				{"models": ["nature/Mushroom_Common", "nature/Mushroom_Laetiporus"], "count": 26, "scale": [0.45, 0.8], "tint": "#9C86B8", "clear": true},
+				{"models": ["nature/TwistedTree_1", "nature/TwistedTree_2", "nature/TwistedTree_3", "nature/TwistedTree_4", "nature/TwistedTree_5"], "count": 30, "scale": [0.45, 0.75], "tint": "#3A3440", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false},
+				{"models": ["nature/Rock_Medium_1", "nature/Rock_Medium_2", "nature/Rock_Medium_3"], "count": 26, "scale": [1.4, 2.4], "tint": "#4A4650", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false}
+			] },
+			"scenery_tint": {"rock": "#8E8A90"},
+			"fires": [
+				{"nodes": ["Refuge/BrazierLight"], "hide": ["Refuge/Flame"], "offset": [0, -0.75, 0], "emit": [{"type": "chama", "count": 22, "color": "#FF7424", "alpha": 0.95, "area_m": [0.3, 0.05, 0.3], "size_m": 1.0, "velocity": [1.0, 1.7], "lifetime_s": 0.7, "offset": [0, 0.1, 0]}, {"type": "fagulha", "count": 14, "color": "#FFB060", "alpha": 1.0, "area_m": [0.4, 0.05, 0.4], "offset": [0, 0.2, 0]}, {"type": "fumaca", "count": 10, "color": "#2A2622", "alpha": 0.55, "area_m": [0.3, 0.05, 0.3], "offset": [0, 0.9, 0], "size_m": 1.3}]},
+				{"nodes": ["Refuge/SmithLight"], "offset": [0, -0.2, 0], "emit": [{"type": "chama", "count": 8, "color": "#FF7424", "alpha": 0.9}, {"type": "fagulha", "count": 6, "color": "#FFB060", "alpha": 1.0, "offset": [0, 0.15, 0]}, {"type": "fumaca", "count": 5, "color": "#2A2622", "alpha": 0.45, "offset": [0, 0.45, 0]}]},
+				{"nodes": ["Refuge/GateTorchWest", "Refuge/GateTorchEast"], "offset": [0, -0.3, 0], "model": "props/Torch_Metal", "model_offset": [0, -0.25, -0.2], "model_scale": 1.4, "emit": [{"type": "chama", "count": 8, "color": "#FF7424", "alpha": 0.9}, {"type": "fagulha", "count": 6, "color": "#FFB060", "alpha": 1.0, "offset": [0, 0.15, 0]}, {"type": "fumaca", "count": 5, "color": "#2A2622", "alpha": 0.45, "offset": [0, 0.45, 0]}]}
+			],
+			"sun": { "color": "#B8B4C8", "energy": 1.05, "elevation": 35.0, "azimuth": 315.0 },
+			"fill": { "color": "#6A5A8A", "energy": 0.22 },
+			"ambient": { "color": "#525766", "energy": 0.62 },
+			"fog": { "color": "#1A1B24", "density": 0.022, "height": 0.6, "height_density": 0.15 },
+			"sky": { "top": "#07080C", "horizon": "#1C1A26" },
+			"glow": { "intensity": 0.75, "threshold": 0.9 },
+			"adjust": { "contrast": 1.08, "saturation": 0.72 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#05060A", "strength": 0.45 },
+			"fake_fog": [{ "color": "#3A3848", "density": 0.3 }, { "color": "#2E2C3A", "density": 0.24 }, { "color": "#262433", "density": 0.18 }],
+			"ground": { "tint": [0.82, 0.8, 0.8], "macro": { "anti_tile": 0.6, "macro_scale": 0.05, "macro_dark": 0.3, "stain_color": "#2E2A20", "stain_amount": 0.35, "desaturate": 0.3 } },
+			"rim": { "color": "#9E47FF", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "cinza_flutuando", "count": 60, "color": "#B4B0C2", "alpha": 0.6 }, { "type": "vaga_lume", "count": 12, "color": "#9E47FF", "alpha": 0.9 }]
+		},
+		"bosque": {
+			"decor": { "seed": 5202, "layers": [
+				{"models": ["nature/Grass_Wispy_Short", "nature/Grass_Wispy_Tall"], "count": 480, "scale": [0.4, 0.85], "tint": "#6E6A55", "clear": true},
+				{"models": ["nature/Fern_1", "nature/Plant_7"], "count": 40, "scale": [0.12, 0.25], "tint": "#5A5E48", "clear": true},
+				{"models": ["nature/Pebble_Round_1", "nature/Pebble_Round_3", "nature/Pebble_Square_2", "nature/Pebble_Square_4"], "count": 80, "scale": [0.8, 1.5], "tint": "#7E7A72", "clear": true},
+				{"models": ["nature/Mushroom_Common", "nature/Mushroom_Laetiporus"], "count": 40, "scale": [0.45, 0.85], "tint": "#B08A70", "clear": true},
+				{"models": ["nature/DeadTree_1", "nature/DeadTree_2", "nature/DeadTree_3", "nature/DeadTree_4", "nature/DeadTree_5"], "count": 34, "scale": [0.9, 1.4], "tint": "#2E2A28", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false},
+				{"models": ["nature/TwistedTree_1", "nature/TwistedTree_2", "nature/TwistedTree_3", "nature/TwistedTree_4", "nature/TwistedTree_5"], "count": 16, "scale": [0.5, 0.8], "tint": "#34302C", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false}
+			] },
+			"scenery_tint": {"pine": "#8E6C4E", "rock": "#9A948A"},
+			"sun": { "color": "#A9B39C", "energy": 1.15, "elevation": 32.0, "azimuth": 90.0 },
+			"fill": { "color": "#4E6A58", "energy": 0.2 },
+			"ambient": { "color": "#55605A", "energy": 0.8 },
+			"fog": { "color": "#232A24", "density": 0.022, "height": 0.8, "height_density": 0.2 },
+			"sky": { "top": "#060807", "horizon": "#1A201B" },
+			"glow": { "intensity": 0.75, "threshold": 0.9 },
+			"adjust": { "contrast": 1.06, "saturation": 0.66 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#040605", "strength": 0.5 },
+			"fake_fog": [{ "color": "#3C443C", "density": 0.34 }, { "color": "#30382F", "density": 0.26 }],
+			"ground": { "tint": [1.0, 0.96, 0.92], "bump": 2.0, "bump_scale": 0.9 },
+			"rim": { "color": "#59FF8C", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "cinza_caindo", "count": 90, "color": "#AEB2A8", "alpha": 0.6 }, { "type": "fiapo_espectral", "count": 15, "color": "#59FF8C", "alpha": 0.18 }]
+		},
+		"geleira": {
+			"decor": { "seed": 5303, "layers": [
+				{"models": ["nature/Pebble_Round_1", "nature/Pebble_Round_3", "nature/Pebble_Square_2", "nature/Pebble_Square_4"], "count": 90, "scale": [0.9, 1.8], "tint": "#B8C6D8", "clear": true},
+				{"models": ["nature/Grass_Wispy_Short"], "count": 140, "scale": [0.3, 0.55], "tint": "#9AA4B0", "clear": true},
+				{"models": ["nature/Pine_1", "nature/Pine_2", "nature/Pine_3", "nature/Pine_4", "nature/Pine_5"], "count": 34, "scale": [1.0, 1.6], "tint": "#5A6878", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false},
+				{"models": ["nature/Rock_Medium_1", "nature/Rock_Medium_2", "nature/Rock_Medium_3"], "count": 26, "scale": [1.6, 2.6], "tint": "#8C9AAE", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false}
+			] },
+			"scenery_tint": {"pine": "#6E86A6", "rock": "#B0BCCC"},
+			"sun": { "color": "#9DB8E8", "energy": 0.85, "elevation": 30.0, "azimuth": 270.0 },
+			"fill": { "color": "#5A6E9A", "energy": 0.25 },
+			"ambient": { "color": "#39465E", "energy": 0.6 },
+			"fog": { "color": "#1C2738", "density": 0.026, "height": 0.6, "height_density": 0.15 },
+			"sky": { "top": "#05070D", "horizon": "#1E2A3E" },
+			"glow": { "intensity": 0.7, "threshold": 0.9 },
+			"adjust": { "contrast": 1.08, "saturation": 0.78 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#03050A", "strength": 0.5 },
+			"fake_fog": [{ "color": "#6A7A92", "density": 0.26 }, { "color": "#4E5C74", "density": 0.2 }],
+			"ground": { "tint": [0.68, 0.7, 0.74], "bump": 3.5, "bump_scale": 0.7 },
+			"rim": { "color": "#5AB4FF", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "neve_vento", "count": 120, "color": "#C8D6EC", "alpha": 0.55 }, { "type": "cintila_gelo", "count": 20, "color": "#9FD4FF", "alpha": 0.8 }]
+		},
+		"fortaleza": {
+			"decor": { "seed": 5404, "layers": [
+				{"models": ["props/Vase_Rubble_Medium", "village/Prop_Brick1", "village/Prop_Brick3", "props/Chain_Coil"], "count": 50, "scale": [0.8, 1.3], "tint": "#8A7E74", "clear": true},
+				{"models": ["nature/Pebble_Round_1", "nature/Pebble_Round_3", "nature/Pebble_Square_2", "nature/Pebble_Square_4"], "count": 50, "scale": [0.8, 1.4], "tint": "#7A7068", "clear": true},
+				{"models": ["props/Barrel", "props/Crate_Wooden", "props/Cage_Small"], "count": 14, "scale": [0.9, 1.1], "tint": "#B8A898", "clear": true},
+				{"models": ["nature/DeadTree_1", "nature/DeadTree_2", "nature/DeadTree_3", "nature/DeadTree_4", "nature/DeadTree_5"], "count": 24, "scale": [0.9, 1.4], "tint": "#2A2220", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false}
+			] },
+			"fires": [
+				{"nodes": ["Lights/*"], "offset": [0, -0.2, 0], "model": "props/Torch_Metal", "model_offset": [0, -0.45, -0.4], "model_scale": 2.0, "face_center": true, "emit": [{"type": "chama", "count": 8, "color": "#FF7424", "alpha": 0.9}, {"type": "fagulha", "count": 6, "color": "#FFB060", "alpha": 1.0, "offset": [0, 0.15, 0]}, {"type": "fumaca", "count": 5, "color": "#2A2622", "alpha": 0.45, "offset": [0, 0.45, 0]}]}
+			],
+			"sun": { "color": "#E8A07A", "energy": 0.8, "elevation": 25.0, "azimuth": 240.0 },
+			"fill": { "color": "#4A3A5A", "energy": 0.22 },
+			"ambient": { "color": "#3A2C2C", "energy": 0.6 },
+			"fog": { "color": "#2A1612", "density": 0.025, "height": 0.6, "height_density": 0.12 },
+			"sky": { "top": "#0A0505", "horizon": "#3A1A10" },
+			"glow": { "intensity": 0.8, "threshold": 0.9 },
+			"adjust": { "contrast": 1.08, "saturation": 0.7 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#0A0302", "strength": 0.5 },
+			"fake_fog": [],
+			"ground": { "tint": [0.85, 0.8, 0.78], "macro": { "anti_tile": 0.3, "macro_scale": 0.05, "macro_dark": 0.35, "stain_color": "#1A1210", "stain_amount": 0.45, "desaturate": 0.15 } },
+			"rim": { "color": "#D11A33", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "brasa", "count": 80, "color": "#FF7A2E", "alpha": 0.9 }]
+		},
+		"arena": {
+			"sun": { "color": "#8E95B0", "energy": 0.6, "elevation": 35.0, "azimuth": 200.0 },
+			"fill": { "color": "#3A3850", "energy": 0.2 },
+			"ambient": { "color": "#2E2C34", "energy": 0.65 },
+			"fog": { "color": "#141218", "density": 0.018, "height": 0.6, "height_density": 0.1 },
+			"sky": { "top": "#050508", "horizon": "#15131C" },
+			"glow": { "intensity": 0.8, "threshold": 0.9 },
+			"adjust": { "contrast": 1.06, "saturation": 0.6 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#040306", "strength": 0.5 },
+			"fake_fog": [],
+			"ground": { "tint": [0.75, 0.72, 0.72], "macro": { "anti_tile": 0.0, "macro_scale": 0.06, "macro_dark": 0.3, "stain_color": "#3A3226", "stain_amount": 0.3, "desaturate": 0.4 } },
+			"rim": { "color": "#E0B040", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "poeira", "count": 40, "color": "#A08C70", "alpha": 0.35 }]
+		},
+		"circulo": {
+			"sun": { "color": "#B7A6D9", "energy": 0.9, "elevation": 40.0, "azimuth": 330.0 },
+			"fill": { "color": "#5A4A7A", "energy": 0.22 },
+			"ambient": { "color": "#3B3248", "energy": 0.85 },
+			"fog": { "color": "#120A1C", "density": 0.02, "height": 0.6, "height_density": 0.12 },
+			"sky": { "top": "#040208", "horizon": "#1C1028" },
+			"glow": { "intensity": 0.85, "threshold": 0.9 },
+			"adjust": { "contrast": 1.12, "saturation": 0.8 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#05020A", "strength": 0.45 },
+			"fake_fog": [],
+			"ground": { "tint": [1.15, 1.12, 1.18], "macro": { "anti_tile": 0.0, "macro_scale": 0.05, "macro_dark": 0.2, "stain_color": "#2A1E3A", "stain_amount": 0.25, "desaturate": 0.0 } },
+			"rim": { "color": "#B07CFF", "intensity": 0.35, "power": 3.2 },
+			"particles": [{ "type": "mote_vazio", "count": 70, "color": "#B07CFF", "alpha": 0.8 }]
+		},
+		"castelo": {
+			"decor": { "seed": 5505, "layers": [
+				{"models": ["nature/Pebble_Round_1", "nature/Pebble_Round_3", "nature/Pebble_Square_2", "nature/Pebble_Square_4"], "count": 50, "scale": [0.8, 1.4], "tint": "#8A8078", "clear": true},
+				{"models": ["nature/Grass_Wispy_Short"], "count": 160, "scale": [0.3, 0.55], "tint": "#7A6E58", "clear": true},
+				{"models": ["nature/TwistedTree_1", "nature/TwistedTree_2", "nature/TwistedTree_3", "nature/TwistedTree_4", "nature/TwistedTree_5"], "count": 22, "scale": [0.45, 0.75], "tint": "#2C2624", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false},
+				{"models": ["nature/DeadTree_1", "nature/DeadTree_2", "nature/DeadTree_3", "nature/DeadTree_4", "nature/DeadTree_5"], "count": 18, "scale": [1.0, 1.5], "tint": "#2A2422", "zone": "ring", "ring_m": [39.5, 47.0], "clear": false, "shadow": false}
+			] },
+			"sun": { "color": "#F0C9A0", "energy": 0.85, "elevation": 35.0, "azimuth": 140.0 },
+			"fill": { "color": "#3A3F5A", "energy": 0.2 },
+			"ambient": { "color": "#3C3330", "energy": 0.6 },
+			"fog": { "color": "#1E120C", "density": 0.02, "height": 0.6, "height_density": 0.1 },
+			"sky": { "top": "#080504", "horizon": "#2A160C" },
+			"glow": { "intensity": 0.8, "threshold": 0.9 },
+			"adjust": { "contrast": 1.06, "saturation": 0.72 },
+			"tonemap": { "mode": "filmic", "white": 1.0 },
+			"vignette": { "color": "#080302", "strength": 0.45 },
+			"fake_fog": [],
+			"ground": { "tint": [0.85, 0.82, 0.8], "macro": { "anti_tile": 0.0, "macro_scale": 0.05, "macro_dark": 0.3, "stain_color": "#221812", "stain_amount": 0.4, "desaturate": 0.2 } },
+			"rim": { "color": "#FF8C38", "intensity": 0.35, "power": 3.2 },
+			"banners": { "prefix": "Banner", "size_m": [1.0, 2.0], "subdivide_w": 3, "subdivide_h": 10, "params": { "cloth_color": "#8A1A22", "trim_color": "#C9A24A", "sway": 0.14, "speed": 1.2, "folds": 3.0, "glow": 0.12 } },
+			"particles": [{ "type": "brasa", "count": 60, "color": "#FF8C38", "alpha": 0.85 }]
+		}
+	}
+}

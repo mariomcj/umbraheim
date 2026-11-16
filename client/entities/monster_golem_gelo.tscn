@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/entities/avatar.gd" id="1_avatar"]
+
+[sub_resource type="StandardMaterial3D" id="IceMat"]
+albedo_color = Color(0.55, 0.7, 0.85, 1)
+metallic = 0.2
+roughness = 0.25
+emission_enabled = true
+emission = Color(0.2, 0.4, 0.7, 1)
+emission_energy_multiplier = 0.25
+
+[sub_resource type="BoxMesh" id="TorsoMesh"]
+material = SubResource("IceMat")
+size = Vector3(1.2, 1.1, 0.8)
+
+[sub_resource type="BoxMesh" id="HeadMesh"]
+material = SubResource("IceMat")
+size = Vector3(0.5, 0.45, 0.5)
+
+[sub_resource type="BoxMesh" id="ArmMesh"]
+material = SubResource("IceMat")
+size = Vector3(0.38, 1.1, 0.38)
+
+[sub_resource type="BoxMesh" id="LegMesh"]
+material = SubResource("IceMat")
+size = Vector3(0.42, 0.8, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="CoreMat"]
+shading_mode = 0
+albedo_color = Color(0.7, 0.95, 1, 1)
+
+[sub_resource type="SphereMesh" id="CoreMesh"]
+material = SubResource("CoreMat")
+radius = 0.12
+height = 0.24
+radial_segments = 6
+rings = 3
+
+[node name="GolemGelo" type="Node3D"]
+script = ExtResource("1_avatar")
+hover_color = Color(1, 0.35, 0.25, 1)
+body_height = 2.6
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.4, 0)
+mesh = SubResource("TorsoMesh")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, 0.8, 0.05)
+mesh = SubResource("HeadMesh")
+
+[node name="Core" type="MeshInstance3D" parent="Body"]
+position = Vector3(0, 0.1, 0.42)
+mesh = SubResource("CoreMesh")
+
+[node name="ArmL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.82, -0.15, 0)
+rotation = Vector3(0, 0, 0.15)
+mesh = SubResource("ArmMesh")
+
+[node name="ArmR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.82, -0.15, 0)
+rotation = Vector3(0, 0, -0.15)
+mesh = SubResource("ArmMesh")
+
+[node name="LegL" type="MeshInstance3D" parent="Body"]
+position = Vector3(-0.3, -0.95, 0)
+mesh = SubResource("LegMesh")
+
+[node name="LegR" type="MeshInstance3D" parent="Body"]
+position = Vector3(0.3, -0.95, 0)
+mesh = SubResource("LegMesh")
+
+[node name="Glow" type="OmniLight3D" parent="."]
+position = Vector3(0, 1.6, 0.8)
+light_color = Color(0.6, 0.85, 1, 1)
+light_energy = 0.7
+omni_range = 3.5
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 3.2, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.9, 0.55, 0.45, 1)
+outline_modulate = Color(0, 0, 0, 0.85)
+pixel_size = 0.005
+font_size = 40
+outline_size = 10
+text = "?"

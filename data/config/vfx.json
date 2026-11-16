@@ -1,0 +1,47 @@
+{
+	"_doc": "Limites de efeitos por preset de qualidade (o preset ativo é 'quality'). Partículas: CPUParticles3D (mais previsível no WebGL 2).",
+	"quality": "medio",
+	"presets": {
+		"baixo": { "particle_scale": 0.4, "lights": false, "shake": 0.6 },
+		"medio": { "particle_scale": 1.0, "lights": true, "shake": 1.0 },
+		"alto": { "particle_scale": 1.6, "lights": true, "shake": 1.0 }
+	},
+	"projectile_trail_particles": 24,
+	"impact_particles": 28,
+	"area_particles": 90,
+	"levelup_particles": 60,
+	"death_particles": 30,
+	"shake_cast": 0.06,
+	"shake_area": 0.22,
+	"shake_hit_taken": 0.12,
+	"refine_glow": [
+		{ "min_level": 7, "energy": 0.7, "particles": 0 },
+		{ "min_level": 9, "energy": 1.8, "particles": 0 },
+		{ "min_level": 11, "energy": 2.6, "particles": 14 }
+	],
+	"rarity_rim": {
+		"excellent": [0.35, 1.0, 0.45],
+		"ancestral": [0.45, 0.72, 1.0]
+	},
+	"_particles_doc": "particle_shapes: forma de cada tipo de partícula (texturas do pacote da Kenney em assets/vfx/particles/kenney_particle_pack, sem .png); vazio = disco macio. spin = giro (rad/s). particle_shape_size: multiplica o tamanho das partículas com forma (a forma ocupa menos do quadrado que o disco).",
+	"particle_shape_size": 1.4,
+	"particle_shapes": {
+		"trail": { "texture": "magic_01", "spin": 2.0 },
+		"impact": { "texture": "spark_04", "spin": 0.0 },
+		"area": { "texture": "flame_03", "spin": 0.0 },
+		"smoke": { "texture": "smoke_03", "spin": 0.6 },
+		"aura": { "texture": "star_06", "spin": 1.5 },
+		"levelup": { "texture": "star_04", "spin": 2.5 },
+		"death": { "texture": "smoke_07", "spin": 0.8 },
+		"chain": { "texture": "trace_02", "spin": 0.0 }
+	},
+	"_dissolve_doc": "Morte: o corpo some de cima para baixo com borda brilhante (assets/shaders/dissolve_world.gdshader). Com modelo animado, começa depois da animação de morte (anim_wait_max_s no máximo) e usa a altura do corpo caído (lying_height_m).",
+	"dissolve": { "duration_s": 1.2, "anim_wait_max_s": 1.6, "lying_height_m": 0.7, "border_color": [0.72, 0.32, 1.0], "border_m": 0.1, "emission": 3.5 },
+	"_portal_doc": "Véu dos portais (assets/shaders/portal_dither.gdshader): cor do centro vem da região; edge = cor da borda dos buracos.",
+	"portal": { "edge": [0.06, 0.0, 0.1], "edge_alpha": 0.9, "layers": 10, "depth": 0.9, "radius": 0.42, "pixel_size": 6.0 },
+	"_aura_doc": "Auras em volta do corpo (monstros com 'aura' em monsters.json): casca pulsante (assets/vfx/shaders/pulse_aura_for_3d_character.gdshader, CC0).",
+	"auras": {
+		"veu": { "color": [0.55, 0.3, 1.0], "alpha": 0.22, "thickness_m": 0.06, "pulse_speed": 2.2, "pulse_strength": 0.6 },
+		"gelo": { "color": [0.45, 0.8, 1.0], "alpha": 0.22, "thickness_m": 0.06, "pulse_speed": 1.6, "pulse_strength": 0.5 }
+	}
+}

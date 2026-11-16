@@ -1,0 +1,9 @@
+{
+	"_doc": "Castelo e impostos. A guilda dona do castelo cobra imposto (tax_pct, de 0 a tax_max_pct, escolhido pelo mestre) sobre as compras nas lojas dos NPCs; o imposto vai para o tesouro do castelo, que o mestre saca no Arauto do Cerco. Uma guilda nova no castelo começa com tax_default_pct. Inscrição no cerco: o mestre, no Arauto, com a guilda tendo pelo menos min_members membros, pagando register_fee; fecha quando os portões do cerco abrem. A dona do castelo defende sem se inscrever.",
+	"id": "castelo",
+	"name": "Castelo das Brasas",
+	"tax_max_pct": 0.2,
+	"tax_default_pct": 0.05,
+	"register_fee": 50000,
+	"min_members": 1
+}

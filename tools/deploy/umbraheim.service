@@ -1,0 +1,28 @@
+# Servidor de jogo Umbraheim (Godot headless, autoritativo).
+# Copiar para /etc/systemd/system/umbraheim.service; depois:
+#   systemctl daemon-reload && systemctl enable --now umbraheim
+# Escuta só em 127.0.0.1:7777; o nginx expõe em wss://<domínio>/ws.
+# Nunca usar --allow-gm em produção.
+
+[Unit]
+Description=Umbraheim game server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=umbraheim
+Group=umbraheim
+WorkingDirectory=/opt/umbraheim/app
+ExecStart=/opt/umbraheim/godot/godot --headless --path /opt/umbraheim/app -- --server --bind=127.0.0.1 --port=7777 --db=/var/lib/umbraheim/umbraheim.db
+Restart=always
+RestartSec=5
+# o servidor grava o banco ao parar (autosave): dar tempo
+TimeoutStopSec=30
+KillSignal=SIGINT
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/umbraheim /opt/umbraheim
+
+[Install]
+WantedBy=multi-user.target

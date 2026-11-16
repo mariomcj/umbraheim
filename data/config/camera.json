@@ -1,0 +1,12 @@
+{
+	"pitch_deg": 45.0,
+	"initial_yaw_deg": 45.0,
+	"fov_deg": 40.0,
+	"distance_m": 18.0,
+	"min_distance_m": 11.0,
+	"max_distance_m": 26.0,
+	"zoom_step_m": 1.5,
+	"rotate_speed_deg_s": 90.0,
+	"follow_sharpness": 8.0,
+	"look_height_m": 1.0
+}

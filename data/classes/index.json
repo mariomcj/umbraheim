@@ -1,0 +1,5 @@
+{
+	"_doc": "Classes jogáveis, na ordem da tela de criação. Cada uma tem data/classes/<id>.json. default: classe dos personagens antigos sem classe conhecida.",
+	"order": ["feiticeiro", "cavaleiro", "vidente"],
+	"default": "feiticeiro"
+}

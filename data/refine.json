@@ -1,0 +1,12 @@
+{
+	"_doc": "Uso direto de joias sobre itens (inventário). bless: +1 com 100% enquanto o item estiver abaixo de max_level. soul: +1 com 'chance' (+luck_bonus se o item tiver Sorte) até max_level; na falha, 'fail_rules' decide o novo nível pelo nível atual (down1 = perde 1, zero = volta a +0). life: +1 na opção extra com 'chance'; falha zera a opção extra. Acima de +9 o refino é na Forja do Vórtice (recipes.json).",
+	"bless": { "max_level": 6, "chance": 1.0 },
+	"soul": {
+		"max_level": 9, "chance": 0.55, "luck_bonus": 0.25,
+		"fail_rules": [
+			{ "from": 0, "to": 6, "result": "down1" },
+			{ "from": 7, "to": 8, "result": "zero" }
+		]
+	},
+	"life": { "chance": 0.5, "luck_bonus": 0.0, "fail": "reset" }
+}

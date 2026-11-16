@@ -1,0 +1,261 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbraheim — HUD (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0D; --iron-a:#1A1719; --iron-b:#0F0D10; --iron-edge:#3A3128;
+  --gold:#C9A24A; --gold-dim:#7A6533; --ember:#E07A2E; --bone:#D9D1BD; --bone-dim:#8F887A;
+  --blood:#D11A33; --frost:#5AB4FF; --void:#9E47FF; --spectral:#59FF8C; --arcane:#E0B040;
+  --cls:#9E47FF;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#050506;color:var(--bone);font-family:"Alegreya Sans",sans-serif}
+.mk{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 16px;background:#111;border-bottom:1px solid #222;font-size:13px;color:#aaa}
+.mk b{color:#ddd;font-weight:500}
+.mk button{font:inherit;background:#1d1d1f;color:#ccc;border:1px solid #333;padding:4px 10px;border-radius:3px;cursor:pointer}
+.wrap{display:flex;justify-content:center;padding:16px}
+.stage-box{position:relative;width:100%;max-width:1280px;aspect-ratio:16/9;overflow:hidden;box-shadow:0 0 0 1px #222}
+.stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;overflow:hidden;background:#111}
+/* o mundo: captura real do jogo, recortada para tirar o texto de depuração e o HUD antigo do enquadramento */
+.world{position:absolute;left:-128px;top:-132px;width:1536px;height:864px;background:url("../img/atual_hud.png") 0 0/1536px 864px;filter:saturate(.92) brightness(.9)}
+.world-vign{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 50% 45%,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+.old-cover{position:absolute;backdrop-filter:blur(6px) brightness(.8);-webkit-backdrop-filter:blur(6px) brightness(.8);-webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent);mask-image:radial-gradient(closest-side,#000 60%,transparent)}
+.out{text-shadow:0 0 2px #000,0 1px 2px #000,0 0 6px rgba(0,0,0,.8)}
+.win{position:absolute;background:linear-gradient(180deg,rgba(26,23,25,.94),rgba(15,13,16,.94));border:1px solid var(--iron-edge);
+  box-shadow:0 0 0 1px #000,0 10px 24px rgba(0,0,0,.6),inset 0 0 0 3px var(--iron-b),inset 0 0 0 4px rgba(201,162,74,.3)}
+.cn{position:absolute;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 1px #000}
+.cn.tl{left:-4px;top:-4px}.cn.tr{right:-4px;top:-4px}.cn.bl{left:-4px;bottom:-4px}.cn.br{right:-4px;bottom:-4px}
+.sep{height:9px;position:relative;margin:6px 0}
+.sep::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 20%,var(--gold) 50%,var(--gold-dim) 80%,transparent)}
+.sep::after{content:"";position:absolute;left:50%;top:1px;width:6px;height:6px;margin-left:-3px;background:var(--ink);border:1px solid var(--gold);transform:rotate(45deg)}
+.dia{display:grid;place-items:center;transform:rotate(45deg);border:1px solid var(--gold-dim);background:linear-gradient(135deg,#221d1a,#0c0b0d);box-shadow:0 0 0 1px #000,inset 0 0 6px rgba(0,0,0,.8)}
+.dia>*{transform:rotate(-45deg)}
+
+/* região */
+.region{position:absolute;left:24px;top:18px}
+.region .t{font:700 22px Cinzel,serif;letter-spacing:.2em;color:#efe4c8;text-transform:uppercase}
+.region .s{font:500 12px "Alegreya Sans";letter-spacing:.2em;text-transform:uppercase;color:var(--spectral);margin-top:2px}
+.region .s em{font-style:normal;color:var(--bone-dim)}
+.region .ln{width:220px;height:1px;margin-top:6px;background:linear-gradient(90deg,var(--gold),transparent)}
+/* grupo */
+.party{position:absolute;left:24px;top:96px;width:200px;display:flex;flex-direction:column;gap:8px}
+.pm{display:flex;align-items:center;gap:12px;padding:6px 8px 6px 6px;background:linear-gradient(90deg,rgba(11,11,13,.8),rgba(11,11,13,.2));border-left:2px solid var(--c)}
+.pm .dia{width:24px;height:24px;flex:none;margin:0 3px;border-color:var(--c);background:radial-gradient(circle,color-mix(in srgb,var(--c) 45%,#000),#000)}
+.pm .n{font:600 12px Cinzel,serif;letter-spacing:.06em;color:var(--bone);display:flex;justify-content:space-between}
+.pm .n small{font:500 11px "Alegreya Sans";color:var(--bone-dim)}
+.bar{height:5px;background:#050405;border:1px solid #2a231c;margin-top:3px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0}
+.pm .w{flex:1}
+/* alvo */
+.target{left:490px;top:16px;width:300px;padding:9px 16px 11px;text-align:center}
+.target .n{font:700 15px Cinzel,serif;letter-spacing:.12em;color:#f08a7c}
+.target .n small{font:500 12px "Alegreya Sans";color:var(--bone-dim);letter-spacing:.04em;margin-left:6px}
+.target .bar{height:8px;margin-top:6px}
+.target .bar i{background:linear-gradient(180deg,#e2384a,#8f0f1f);width:64%}
+/* aviso de evento */
+.notice{position:absolute;left:340px;top:96px;width:600px;text-align:center;padding:12px 0 14px;
+  background:linear-gradient(90deg,transparent,rgba(11,11,13,.78) 20%,rgba(11,11,13,.78) 80%,transparent);animation:drop .5s ease-out}
+@keyframes drop{from{transform:translateY(-12px);opacity:0}}
+.notice .t{font:700 28px Cinzel,serif;letter-spacing:.24em;color:var(--ember);text-transform:uppercase}
+.notice .s{font:500 15px "Alegreya Sans";color:var(--bone);margin-top:2px}
+.notice .s b{color:var(--gold)}
+.notice .sep{width:360px;margin:6px auto}
+/* eventos */
+.events{right:18px;top:250px;width:250px;padding:10px 14px 12px}
+.events h4{margin:0;font:600 12px Cinzel,serif;letter-spacing:.24em;color:var(--gold);display:flex;justify-content:space-between;align-items:center}
+.events h4 span{font:500 14px "Alegreya Sans";color:var(--bone-dim);cursor:pointer}
+.ev{display:flex;align-items:center;gap:10px;font-size:13px;padding:4px 0}
+.ev .d{width:8px;height:8px;transform:rotate(45deg);background:var(--st);box-shadow:0 0 6px var(--st);flex:none}
+.ev .nm{color:var(--bone)}
+.ev .tm{margin-left:auto;font-weight:700;color:var(--st)}
+/* toasts */
+.toasts{position:absolute;right:18px;top:150px;width:250px;display:flex;flex-direction:column;gap:6px}
+.toast{display:flex;align-items:center;gap:12px;padding:7px 10px;background:rgba(11,11,13,.85);border:1px solid #2a231c;border-left:2px solid var(--c);font-size:13px}
+.toast .dia{width:20px;height:20px;flex:none;margin-left:3px;border-color:var(--c)}
+.toast b{color:var(--c);font-weight:700}
+/* mapa */
+.mapbtn{position:absolute;right:30px;top:24px;display:flex;align-items:center;gap:12px;font:600 11px Cinzel,serif;letter-spacing:.2em;color:var(--bone-dim)}
+.mapbtn .dia{width:34px;height:34px;border-color:var(--gold)}
+.mapbtn .dia span{font:700 14px Cinzel;color:var(--gold)}
+/* chat */
+.chat{position:absolute;left:14px;top:420px;width:400px;height:158px;padding:8px 10px;background:linear-gradient(180deg,rgba(11,11,13,0),rgba(11,11,13,.55) 25%);font-size:13.5px;line-height:1.45;display:flex;flex-direction:column;justify-content:flex-end}
+.chat .l{color:var(--c)}
+.chat .tag{display:inline-block;min-width:26px;font:700 10px "Alegreya Sans";letter-spacing:.06em;color:#0b0b0d;background:var(--c);padding:0 4px;margin-right:6px;text-align:center;border-radius:1px;vertical-align:1px}
+.chat .who{color:var(--bone);font-weight:700}
+.chatin{position:absolute;left:14px;top:582px;width:400px;height:28px;display:flex;align-items:center;gap:12px;padding:0 10px 0 8px;background:rgba(11,11,13,.85);border:1px solid #2a231c;border-bottom-color:var(--gold-dim);font-size:13px;color:#5c574d}
+.chatin .dia{width:16px;height:16px;border-color:#7fd3ff}
+.chatin .dia span{font:700 9px "Alegreya Sans";color:#7fd3ff}
+/* barra inferior */
+.plate{position:absolute;left:330px;top:640px;width:620px;height:70px;
+  background:linear-gradient(180deg,#221d1b,#0f0d0f);border:1px solid var(--iron-edge);
+  box-shadow:0 0 0 1px #000,0 -6px 20px rgba(0,0,0,.6),inset 0 0 0 3px #0f0d10,inset 0 0 0 4px rgba(201,162,74,.28),inset 0 1px 0 5px rgba(255,230,170,.04);
+  clip-path:polygon(0 18px,18px 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.slots{position:absolute;left:400px;top:651px;display:flex;gap:6px}
+.slot{position:relative;width:48px;height:48px;background:#08070a;border:1px solid #2a231c;box-shadow:inset 0 3px 8px rgba(0,0,0,.9);
+  clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px),0 6px)}
+.slot.full{border-color:var(--gold-dim)}
+.slot.full::before{content:"";position:absolute;inset:0;border:1px solid var(--gold-dim);clip-path:inherit;pointer-events:none}
+.slot svg{position:absolute;inset:6px;width:36px;height:36px}
+.slot .k{position:absolute;left:3px;top:3px;font:700 10px "Alegreya Sans";color:var(--bone-dim)}
+.slot.full .k{color:var(--gold)}
+.slot.sel{border-color:var(--cls);box-shadow:inset 0 0 14px color-mix(in srgb,var(--cls) 55%,transparent),inset 0 3px 8px rgba(0,0,0,.6);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:inset 0 0 22px color-mix(in srgb,var(--cls) 80%,transparent),inset 0 3px 8px rgba(0,0,0,.6)}}
+.slot .cd{position:absolute;inset:0;background:conic-gradient(rgba(0,0,0,0) 0 var(--p),rgba(0,0,0,.72) var(--p) 100%);display:grid;place-items:center;font:700 16px "Alegreya Sans";color:#fff;text-shadow:0 0 3px #000}
+.slot.lock{opacity:.55}
+.slot.lock span.lk{position:absolute;inset:0;display:grid;place-items:center;color:#4a4339;font-size:16px}
+.xp{position:absolute;left:400px;top:704px;width:480px;height:7px;background:#050405;border:1px solid #2a231c}
+.xp i{position:absolute;left:0;top:0;bottom:0;width:37%;background:linear-gradient(180deg,#e9c66a,#8a6a24);box-shadow:0 0 8px rgba(224,176,64,.7)}
+.xp::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 47px,rgba(0,0,0,.85) 47px 48px)}
+.lvl{position:absolute;left:622px;top:614px;width:36px;height:36px;border-color:var(--gold);background:linear-gradient(135deg,#3a2a14,#120c08);box-shadow:0 0 0 1px #000,0 0 12px rgba(201,162,74,.4)}
+.lvl span{font:700 15px Cinzel;color:#f3e2b4}
+.lvl-cap{position:absolute;left:580px;top:600px;width:120px;text-align:center;font:600 9px Cinzel,serif;letter-spacing:.3em;color:var(--gold-dim)}
+/* orbes */
+.orb{position:absolute;width:126px;height:126px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#1b1715 58%,#3a3128 60%,#6a5532 63%,#2a231c 66%,#0b0a0b 70%,#000 71%);
+  box-shadow:0 0 0 2px #000,0 6px 18px rgba(0,0,0,.8)}
+.orb .glass{position:absolute;inset:14px;border-radius:50%;overflow:hidden;background:#050304;box-shadow:inset 0 0 18px #000}
+.orb .liq{position:absolute;left:0;right:0;bottom:0;height:var(--f)}
+.orb .liq::before{content:"";position:absolute;left:-50%;top:-8px;width:200%;height:200%;border-radius:42%;background:var(--top);animation:wave 7s linear infinite;opacity:.55}
+@keyframes wave{to{transform:rotate(360deg)}}
+.orb .hl{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(ellipse 60% 38% at 42% 22%,rgba(255,255,255,.35),transparent 70%),radial-gradient(circle at 50% 120%,rgba(255,255,255,.08),transparent 50%);pointer-events:none}
+.orb .v{position:absolute;inset:0;display:grid;place-items:center;font:700 16px "Alegreya Sans";color:#fff;letter-spacing:.02em}
+.orb .stud{position:absolute;width:9px;height:9px;transform:rotate(45deg);background:linear-gradient(135deg,#e6c77a,#7a5d24);box-shadow:0 0 0 1px #000}
+.hp{left:237px;top:588px}.mp{left:917px;top:588px}
+.hp .liq{background:radial-gradient(circle at 50% 30%,#ff4a5c,#a3101f 55%,#4d0610);--top:#ff6b78}
+.mp .liq{background:radial-gradient(circle at 50% 30%,#7cc8ff,#1f62c4 55%,#0a2253);--top:#a6dcff}
+.potion{position:absolute;width:30px;height:30px;border-color:var(--gold-dim)}
+.potion span{font:700 11px "Alegreya Sans";color:var(--bone);text-align:center;line-height:1}
+.potion small{display:block;font-size:9px;color:var(--bone-dim)}
+.p1{left:365px;top:604px}.p2{left:885px;top:604px}
+.pot-label{position:absolute;font:700 11px "Alegreya Sans";color:var(--bone)}
+/* buffs */
+.buffs{position:absolute;left:408px;top:604px;display:flex;gap:18px}
+.buff{display:flex;align-items:center;gap:9px}
+.buff .dia{width:20px;height:20px;border-color:var(--c);box-shadow:0 0 0 1px #000,0 0 8px color-mix(in srgb,var(--c) 60%,transparent)}
+.buff small{font:700 10px "Alegreya Sans";color:var(--bone)}
+/* botões de sistema */
+.sys{position:absolute;right:26px;top:672px;display:flex;gap:16px}
+.sys .dia{width:30px;height:30px;cursor:pointer;transition:all .12s}
+.sys .dia:hover{border-color:var(--gold);box-shadow:0 0 0 1px #000,0 0 10px rgba(224,122,46,.5)}
+.sys .dia span{font:700 11px Cinzel;color:var(--gold)}
+.sys .dia.alert{border-color:var(--ember);box-shadow:0 0 0 1px #000,0 0 10px rgba(224,122,46,.7)}
+.tip{position:absolute;right:120px;top:612px;padding:6px 10px;background:rgba(11,11,13,.95);border:1px solid var(--gold-dim);font-size:12px;white-space:nowrap}
+.tip b{font:600 11px Cinzel;letter-spacing:.14em;color:var(--gold)}
+.tip kbd{font:700 11px "Alegreya Sans";color:var(--ember);margin-left:6px}
+/* anotações */
+.ann .a{position:absolute;font:500 11px "Alegreya Sans";color:#111;background:#f2d36b;padding:1px 6px;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.6);white-space:nowrap}
+.hide-ann .ann{display:none}
+</style>
+</head>
+<body>
+<div class="mk"><b>HUD em jogo</b><span>Fundo: captura real do jogo (Refúgio das Cinzas), recortada. Tudo por cima é a proposta.</span><button id="tg">Mostrar/ocultar anotações</button></div>
+<div class="wrap"><div class="stage-box" id="box"><div class="stage" id="stage">
+  <div class="world"></div><div class="world-vign"></div>
+  <!-- borra o texto do HUD antigo que sobra na captura -->
+  <div class="old-cover" style="left:480px;top:62px;width:320px;height:44px"></div>
+  <div class="old-cover" style="left:1120px;top:205px;width:175px;height:160px"></div>
+  <div class="old-cover" style="left:-20px;top:550px;width:240px;height:44px"></div>
+  <div class="old-cover" style="left:290px;top:570px;width:70px;height:36px"></div>
+  <div class="old-cover" style="left:905px;top:570px;width:70px;height:36px"></div>
+  <div class="old-cover" style="left:350px;top:612px;width:90px;height:30px"></div>
+
+  <div class="region out"><div class="t">Ruínas de Vel'Morth</div><div class="s">Refúgio das Cinzas <em>· zona segura</em></div><div class="ln"></div></div>
+
+  <div class="party">
+    <div class="pm" style="--c:var(--blood)"><div class="dia"></div><div class="w"><div class="n">Brannoc <small>42</small></div><div class="bar"><i style="width:82%;background:#c3263a"></i></div><div class="bar" style="height:3px;margin-top:2px"><i style="width:40%;background:#3f86d8"></i></div></div></div>
+    <div class="pm" style="--c:var(--spectral)"><div class="dia"></div><div class="w"><div class="n">Ilsa <small>12</small></div><div class="bar"><i style="width:55%;background:#c3263a"></i></div><div class="bar" style="height:3px;margin-top:2px"><i style="width:90%;background:#3f86d8"></i></div></div></div>
+  </div>
+
+  <div class="win target"><div class="n">Carniçal das Ruínas<small>nível 3</small></div><div class="bar"><i></i></div></div>
+
+  <div class="notice out"><div class="t">Fortaleza Sitiada</div><div class="sep"></div><div class="s">abre em <b>4:05</b> · fale com o Arauto do Cerco</div></div>
+
+  <div class="mapbtn out">DIÁRIO<div class="dia"><span>M</span></div></div>
+
+  <div class="toasts">
+    <div class="toast" style="--c:var(--spectral)"><div class="dia"></div><div>Obtido: <b>Anel de Brasa</b></div></div>
+    <div class="toast" style="--c:var(--gold)"><div class="dia"></div><div>Missão: <b>Ossos inquietos</b> 4/10</div></div>
+  </div>
+  <div class="win events">
+    <h4>Eventos <span>–</span></h4><div class="sep"></div>
+    <div class="ev" style="--st:var(--ember)"><span class="d"></span><span class="nm">Fortaleza Sitiada</span><span class="tm">4:05</span></div>
+    <div class="ev" style="--st:#6d675c"><span class="d"></span><span class="nm">Arena das Ondas</span><span class="tm">14:05</span></div>
+    <div class="ev" style="--st:#6d675c"><span class="d"></span><span class="nm">Círculo que Encolhe</span><span class="tm">24:05</span></div>
+    <div class="ev" style="--st:#6d675c"><span class="d"></span><span class="nm">Cerco ao Castelo</span><span class="tm">6d 21h</span></div>
+  </div>
+
+  <div class="chat out">
+    <div class="l" style="--c:#f2cc73"><span class="tag">!</span>Bem-vindo às Ruínas de Vel'Morth.</div>
+    <div class="l" style="--c:#ebe6d6"><span class="tag">G</span><span class="who">Taren:</span> alguém pra Fortaleza?</div>
+    <div class="l" style="--c:#80d9ff"><span class="tag">GR</span><span class="who">Brannoc:</span> vou puxar os carniçais</div>
+    <div class="l" style="--c:#f29af2"><span class="tag">S</span><span class="who">Ilsa:</span> tenho bênção pronta</div>
+    <div class="l" style="--c:#8cf28c"><span class="tag">GU</span><span class="who">Velha Guarda:</span> guerra às 21h</div>
+  </div>
+  <div class="chatin"><div class="dia"><span>GR</span></div>Enter para falar no grupo…</div>
+
+  <div class="buffs">
+    <div class="buff" style="--c:var(--spectral)"><div class="dia"></div><small>2:41</small></div>
+    <div class="buff" style="--c:var(--frost)"><div class="dia"></div><small>0:58</small></div>
+  </div>
+
+  <div class="plate"></div>
+  <div class="lvl-cap">NÍVEL</div>
+  <div class="dia lvl"><span>87</span></div>
+  <div class="slots">
+    <div class="slot full sel"><span class="k">1</span><svg viewBox="0 0 36 36"><path d="M18 4c4 7 10 10 10 18a10 10 0 0 1-20 0c0-5 3-7 4-11 2 3 3 4 5 4-1-4-1-7 1-11z" fill="#b57bff"/><path d="M18 18c2 3 4 4 4 7a4 4 0 0 1-8 0c0-2 2-4 4-7z" fill="#f1e2ff"/></svg></div>
+    <div class="slot full"><span class="k">2</span><svg viewBox="0 0 36 36"><path d="M6 30L26 10M26 10l-8 1M26 10l-1 8" stroke="#c38cff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="27" cy="9" r="3" fill="#efe0ff"/></svg></div>
+    <div class="slot full"><span class="k">3</span><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="12" stroke="#8e4cff" stroke-width="2.5" fill="none"/><circle cx="18" cy="18" r="6" stroke="#d4b2ff" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/><path d="M18 3v4M18 29v4M3 18h4M29 18h4" stroke="#c9a2ff" stroke-width="2"/></svg><div class="cd" style="--p:30%">4</div></div>
+    <div class="slot full"><span class="k">4</span><svg viewBox="0 0 36 36"><path d="M6 10c6 0 6 6 12 6s6-6 12-6M6 20c6 0 6 6 12 6s6-6 12-6" stroke="#a46cff" stroke-width="2.5" fill="none"/></svg></div>
+    <div class="slot lock"><span class="k">5</span><span class="lk">◆</span></div>
+    <div class="slot"><span class="k">6</span></div>
+    <div class="slot"><span class="k">7</span></div>
+    <div class="slot"><span class="k">8</span></div>
+    <div class="slot"><span class="k">9</span></div>
+  </div>
+  <div class="xp"><i></i></div>
+
+  <div class="orb hp"><div class="glass"><div class="liq" style="--f:72%"></div></div><div class="hl"></div><div class="v out">1.240 / 1.720</div>
+    <i class="stud" style="left:58px;top:-1px"></i><i class="stud" style="left:58px;bottom:-1px"></i><i class="stud" style="left:-1px;top:58px"></i><i class="stud" style="right:-1px;top:58px"></i></div>
+  <div class="orb mp"><div class="glass"><div class="liq" style="--f:48%"></div></div><div class="hl"></div><div class="v out">410 / 860</div>
+    <i class="stud" style="left:58px;top:-1px"></i><i class="stud" style="left:58px;bottom:-1px"></i><i class="stud" style="left:-1px;top:58px"></i><i class="stud" style="right:-1px;top:58px"></i></div>
+  <div class="dia potion p1" style="border-color:#b8343f"><span>Z<small>×5</small></span></div>
+  <div class="dia potion p2" style="border-color:#3f74c0"><span>X<small>×5</small></span></div>
+
+  <div class="tip">
+    <b>INVENTÁRIO</b><kbd>I</kbd>
+  </div>
+  <div class="sys">
+    <div class="dia"><span>C</span></div>
+    <div class="dia" style="border-color:var(--gold);box-shadow:0 0 0 1px #000,0 0 10px rgba(224,122,46,.5)"><span>I</span></div>
+    <div class="dia"><span>Q</span></div>
+    <div class="dia alert"><span>G</span></div>
+    <div class="dia"><span>F</span></div>
+    <div class="dia"><span>K</span></div>
+  </div>
+
+  <div class="ann">
+    <span class="a" style="left:24px;top:2px">região no canto (debug só no F3)</span>
+    <span class="a" style="left:796px;top:22px">alvo</span>
+    <span class="a" style="left:946px;top:100px">aviso de evento animado</span>
+    <span class="a" style="left:1012px;top:132px">toasts</span>
+    <span class="a" style="left:24px;top:76px">grupo: retrato em losango na cor da classe</span>
+    <span class="a" style="left:14px;top:400px">chat com fundo que some e etiqueta de canal</span>
+    <span class="a" style="left:408px;top:584px">buffs</span>
+    <span class="a" style="left:440px;top:700px">vaga selecionada na cor da classe · recarga radial · vazias apagadas</span>
+    <span class="a" style="left:1046px;top:650px">botões de sistema (tecla no tooltip)</span>
+  </div>
+</div></div></div>
+<script>
+document.querySelectorAll(".win").forEach(w=>["tl","tr","bl","br"].forEach(k=>{const i=document.createElement("i");i.className="cn "+k;w.appendChild(i)}));
+document.getElementById("tg").onclick=()=>document.body.classList.toggle("hide-ann");
+function fit(){const b=document.getElementById("box");document.getElementById("stage").style.transform=`scale(${b.clientWidth/1280})`}
+addEventListener("resize",fit);fit();
+</script>
+</body>
+</html>

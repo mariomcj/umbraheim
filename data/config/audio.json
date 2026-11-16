@@ -1,0 +1,98 @@
+{
+	"_doc": "Sons do cliente (SoundDirector). sounds: nome -> files (em assets/audio), volume_db, pitch_min/pitch_max (sorteio por toque), cooldown_s (intervalo mínimo entre dois toques do mesmo som), loop. Sons no mundo caem de volume com a distância até o próprio personagem: 0 dB até full_m, mudo a partir de max_m (falloff). buses: volume de cada canal em dB. music: faixa por tela. ambient: som de fundo por região (default para as outras). spells: som por tipo de magia (kind) no lançamento e no impacto; spell_overrides troca por id. monsters: voz por id do monstro, sem o sufixo _dourado (depois pelo modelo, depois default): attack (com cooldown_s por monstro) e death. footsteps: passos do próprio personagem a cada stride_m andados, conjunto por região. ui: som de cada evento de interface (click, open/close de janela, confirm/error, item_pick/item_place/item_equip na mochila, coins quando o ouro muda, page no diário e nas missões, latch no cofre).",
+	"buses": { "Music": -8.0, "Ambient": -12.0, "SFX": -4.0, "UI": -10.0 },
+	"falloff": { "full_m": 6.0, "max_m": 28.0 },
+	"voices_max": 16,
+	"music_fade_s": 1.5,
+	"sounds": {
+		"menu_music": { "files": ["music/incompetech_oppressive_gloom.ogg"], "volume_db": 0.0, "loop": true },
+		"amb_masmorra": { "files": ["sfx/ambient/fs166187_creepy_dungeon_ambience.ogg"], "volume_db": 0.0, "loop": true },
+		"amb_eco": { "files": ["sfx/ambient/fs422720_a_dungeon_ambience_loop_wav.ogg"], "volume_db": 0.0, "loop": true },
+		"amb_coral": { "files": ["sfx/ambient/fs607205_ooooo_chorus_and_reverb.ogg"], "volume_db": -4.0, "loop": true },
+
+		"ui_click": { "files": ["sfx/ui/kenney_select_002.ogg", "sfx/ui/kenney_click3.ogg"], "volume_db": -2.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.05 },
+		"ui_hover": { "files": ["sfx/ui/fs488381_uihover1_wav.ogg"], "volume_db": -6.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.08 },
+		"ui_open": { "files": ["sfx/ui/kenney_handlesmallleather.ogg"], "volume_db": -2.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.1 },
+		"ui_close": { "files": ["sfx/ui/kenney_handlesmallleather2.ogg"], "volume_db": -4.0, "pitch_min": 0.9, "pitch_max": 1.0, "cooldown_s": 0.1 },
+		"ui_confirm": { "files": ["sfx/ui/kenney_confirmation_002.ogg"], "volume_db": -3.0, "cooldown_s": 0.2 },
+		"ui_error": { "files": ["sfx/ui/kenney_error_006.ogg"], "volume_db": -4.0, "cooldown_s": 0.3 },
+		"ui_item_pick": { "files": ["sfx/ui/kenney_belthandle1.ogg"], "volume_db": -3.0, "pitch_min": 0.95, "pitch_max": 1.1, "cooldown_s": 0.05 },
+		"ui_item_place": { "files": ["sfx/ui/kenney_dropleather.ogg"], "volume_db": -3.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.05 },
+		"ui_item_equip": { "files": ["sfx/ui/kenney_cloth2.ogg"], "volume_db": 0.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.1 },
+		"ui_coins": { "files": ["sfx/ui/kenney_handlecoins2.ogg"], "volume_db": -2.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.15 },
+		"ui_page": { "files": ["sfx/ui/kenney_bookflip2.ogg"], "volume_db": -2.0, "pitch_min": 0.95, "pitch_max": 1.05, "cooldown_s": 0.2 },
+		"ui_latch": { "files": ["sfx/ui/kenney_metallatch.ogg"], "volume_db": -3.0, "cooldown_s": 0.2 },
+
+		"melee_swing": { "files": ["sfx/combat/kenney_drawknife1.ogg", "sfx/combat/kenney_knifeslice.ogg"], "volume_db": -4.0, "pitch_min": 0.9, "pitch_max": 1.1, "cooldown_s": 0.05 },
+		"melee_hit": { "files": ["sfx/combat/kenney_impactpunch_heavy_000.ogg", "sfx/combat/fs492250_imperius_spear_hit_03_wav.ogg"], "volume_db": -3.0, "pitch_min": 0.9, "pitch_max": 1.1, "cooldown_s": 0.04 },
+		"player_hurt": { "files": ["sfx/combat/kenney_impactpunch_heavy_000.ogg"], "volume_db": -2.0, "pitch_min": 0.75, "pitch_max": 0.85, "cooldown_s": 0.25 },
+
+		"cast_bolt": { "files": ["sfx/magic/fs554791_mage_teleport_skill.ogg"], "volume_db": -6.0, "pitch_min": 0.95, "pitch_max": 1.15, "cooldown_s": 0.05 },
+		"cast_fire": { "files": ["sfx/magic/fs522705_fireball_woosh_pass_fast.ogg"], "volume_db": -6.0, "pitch_min": 0.9, "pitch_max": 1.05, "cooldown_s": 0.1 },
+		"cast_arcane": { "files": ["sfx/magic/fs720112_teleport_cast.ogg"], "volume_db": -4.0, "pitch_min": 0.9, "pitch_max": 1.1, "cooldown_s": 0.08 },
+		"cast_blessing": { "files": ["sfx/magic/fs720112_teleport_cast.ogg"], "volume_db": -5.0, "pitch_min": 1.2, "pitch_max": 1.3, "cooldown_s": 0.1 },
+		"cast_summon": { "files": ["sfx/magic/fs861568_dark_ghost_warrior_voice_04_spectral_war.ogg"], "volume_db": -5.0, "pitch_min": 1.0, "pitch_max": 1.1, "cooldown_s": 0.3 },
+		"impact_magic": { "files": ["sfx/magic/fs871710_sound_design_impact_1.ogg"], "volume_db": -6.0, "pitch_min": 0.9, "pitch_max": 1.2, "cooldown_s": 0.04 },
+		"impact_area": { "files": ["sfx/magic/fs871710_sound_design_impact_1.ogg"], "volume_db": -2.0, "pitch_min": 0.6, "pitch_max": 0.75, "cooldown_s": 0.08 },
+		"level_up": { "files": ["sfx/magic/fs720112_teleport_cast.ogg"], "volume_db": 0.0, "pitch_min": 1.35, "pitch_max": 1.35 },
+		"player_death": { "files": ["sfx/magic/fs861568_dark_ghost_warrior_voice_04_spectral_war.ogg"], "volume_db": 0.0, "pitch_min": 0.8, "pitch_max": 0.8 },
+
+		"voz_morto_vivo": { "files": ["sfx/monsters/fs348307_zombie_monster_growl_3.ogg"], "volume_db": -6.0, "pitch_min": 0.85, "pitch_max": 1.15 },
+		"morte_morto_vivo": { "files": ["sfx/monsters/fs555425_zombie_pain_6_wav.ogg"], "volume_db": -4.0, "pitch_min": 0.85, "pitch_max": 1.1 },
+		"voz_fera": { "files": ["sfx/monsters/fs315769_dragon_growl_omnious_aiff.ogg"], "volume_db": -8.0, "pitch_min": 1.4, "pitch_max": 1.6 },
+		"morte_fera": { "files": ["sfx/monsters/fs555425_zombie_pain_6_wav.ogg"], "volume_db": -4.0, "pitch_min": 1.3, "pitch_max": 1.5 },
+		"voz_abismo": { "files": ["sfx/monsters/fs315769_dragon_growl_omnious_aiff.ogg"], "volume_db": -5.0, "pitch_min": 0.9, "pitch_max": 1.1 },
+		"morte_abismo": { "files": ["sfx/monsters/fs315769_dragon_growl_omnious_aiff.ogg"], "volume_db": -3.0, "pitch_min": 0.7, "pitch_max": 0.8 },
+		"voz_espectro": { "files": ["sfx/monsters/fs800277_insect_animal_growl_chitter.ogg"], "volume_db": -8.0, "pitch_min": 0.6, "pitch_max": 0.75 },
+		"morte_espectro": { "files": ["sfx/magic/fs861568_dark_ghost_warrior_voice_04_spectral_war.ogg"], "volume_db": -6.0, "pitch_min": 1.1, "pitch_max": 1.3 },
+		"morte_pedra": { "files": ["sfx/combat/kenney_impactpunch_heavy_000.ogg"], "volume_db": 0.0, "pitch_min": 0.5, "pitch_max": 0.6 },
+
+		"passo_pedra": { "files": ["sfx/footsteps/kenney_footstep_concrete_000.ogg", "sfx/footsteps/kenney_footstep00.ogg", "sfx/footsteps/fs517136_footsteps_stone_7_wav.ogg"], "volume_db": -10.0, "pitch_min": 0.9, "pitch_max": 1.1 },
+		"passo_grama": { "files": ["sfx/footsteps/kenney_footstep_grass_000.ogg"], "volume_db": -8.0, "pitch_min": 0.85, "pitch_max": 1.15 },
+		"passo_gelo": { "files": ["sfx/footsteps/kenney_footstep_grass_000.ogg", "sfx/footsteps/kenney_footstep_concrete_000.ogg"], "volume_db": -10.0, "pitch_min": 1.15, "pitch_max": 1.3 }
+	},
+	"ui": { "click": "ui_click", "hover": "ui_hover", "open": "ui_open", "close": "ui_close", "confirm": "ui_confirm", "error": "ui_error", "item_pick": "ui_item_pick", "item_place": "ui_item_place", "item_equip": "ui_item_equip", "coins": "ui_coins", "page": "ui_page", "latch": "ui_latch" },
+	"music": { "menu": "menu_music" },
+	"ambient": { "default": "amb_masmorra", "bosque": "amb_eco", "geleira": "amb_eco", "circulo": "amb_coral", "arena": "amb_coral", "castelo": "amb_coral" },
+	"spells": {
+		"projectile": { "cast": "cast_bolt", "impact": "impact_magic" },
+		"chain": { "cast": "cast_arcane", "impact": "impact_magic" },
+		"area": { "cast": "cast_arcane", "impact": "impact_area" },
+		"nova": { "cast": "cast_arcane", "impact": "impact_area" },
+		"melee": { "cast": "melee_swing", "impact": "melee_hit" },
+		"buff": { "cast": "cast_blessing" },
+		"heal": { "cast": "cast_blessing" },
+		"summon": { "cast": "cast_summon" }
+	},
+	"spell_overrides": {
+		"chuva_brasas": { "cast": "cast_fire" },
+		"circulo_chamas_negras": { "cast": "cast_fire" },
+		"meteoro_vazio": { "cast": "cast_fire" }
+	},
+	"monsters": {
+		"cooldown_s": 4.0,
+		"attack_chance": 0.5,
+		"default": { "attack": "voz_morto_vivo", "death": "morte_morto_vivo" },
+		"by_model": {
+			"lobo": { "attack": "voz_fera", "death": "morte_fera" },
+			"cria_abismo": { "attack": "voz_abismo", "death": "morte_abismo" },
+			"bruto_acorrentado": { "attack": "voz_abismo", "death": "morte_abismo" }
+		},
+		"by_id": {
+			"espectro": { "attack": "voz_espectro", "death": "morte_espectro" },
+			"espectro_gelido": { "attack": "voz_espectro", "death": "morte_espectro" },
+			"chefe_colosso": { "attack": "voz_abismo", "death": "morte_abismo" },
+			"chefe_abominacao": { "attack": "voz_abismo", "death": "morte_abismo" },
+			"tronco_podre": { "attack": "", "death": "morte_pedra" },
+			"golem_gelo": { "attack": "", "death": "morte_pedra" },
+			"portao_fortaleza": { "attack": "", "death": "morte_pedra" },
+			"portao_fortaleza_ii": { "attack": "", "death": "morte_pedra" },
+			"portao_castelo": { "attack": "", "death": "morte_pedra" }
+		}
+	},
+	"footsteps": {
+		"stride_m": 1.7,
+		"default": "passo_pedra",
+		"by_region": { "bosque": "passo_grama", "geleira": "passo_gelo" }
+	}
+}

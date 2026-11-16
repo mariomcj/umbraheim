@@ -1,0 +1,250 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbraheim — Inventário e loja (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0D; --iron-a:#1A1719; --iron-b:#0F0D10; --iron-edge:#3A3128;
+  --gold:#C9A24A; --gold-dim:#7A6533; --ember:#E07A2E; --bone:#D9D1BD; --bone-dim:#8F887A;
+  --blood:#D11A33; --frost:#5AB4FF; --void:#9E47FF; --spectral:#59FF8C; --arcane:#E0B040;
+  --r-normal:#EBEBE6; --r-exc:#59FF73; --r-anc:#73B8FF; --r-jewel:#FFC74D;
+  --cell:34px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#050506;color:var(--bone);font-family:"Alegreya Sans",sans-serif}
+.mk{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 16px;background:#111;border-bottom:1px solid #222;font-size:13px;color:#aaa}
+.mk b{color:#ddd;font-weight:500}
+.wrap{display:flex;justify-content:center;padding:16px}
+.stage-box{position:relative;width:100%;max-width:1280px;aspect-ratio:16/9;overflow:hidden;box-shadow:0 0 0 1px #222}
+.stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;overflow:hidden;background:#111}
+.world{position:absolute;left:-128px;top:-132px;width:1536px;height:864px;background:url("../img/atual_hud.png") 0 0/1536px 864px;filter:saturate(.8) brightness(.55) blur(1px)}
+.win{position:absolute;background:linear-gradient(180deg,var(--iron-a),var(--iron-b));border:1px solid var(--iron-edge);
+  box-shadow:0 0 0 1px #000,0 16px 34px rgba(0,0,0,.75),inset 0 0 0 3px var(--iron-b),inset 0 0 0 4px rgba(201,162,74,.35);animation:open .14s cubic-bezier(.2,.8,.3,1)}
+@keyframes open{from{transform:scale(.96);opacity:0}}
+.cn{position:absolute;width:8px;height:8px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 0 1px #000}
+.cn.tl{left:-4px;top:-4px}.cn.tr{right:-4px;top:-4px}.cn.bl{left:-4px;bottom:-4px}.cn.br{right:-4px;bottom:-4px}
+.title{position:relative;display:flex;align-items:center;justify-content:center;height:40px}
+.title h2{margin:0;font:700 15px Cinzel,serif;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;text-shadow:0 0 12px rgba(201,162,74,.3)}
+.title .x,.title .q{position:absolute;top:11px;width:18px;height:18px;transform:rotate(45deg);border:1px solid var(--gold-dim);background:var(--ink);display:grid;place-items:center;cursor:pointer}
+.title .x span,.title .q span{transform:rotate(-45deg);font:700 12px "Alegreya Sans";color:var(--bone-dim);line-height:1}
+.title .x{right:16px}.title .q{left:16px}
+.title .x:hover{border-color:var(--blood)}.title .x:hover span{color:#ff8a95}
+.sep{height:9px;position:relative;margin:0 14px}
+.sep::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 20%,var(--gold) 50%,var(--gold-dim) 80%,transparent)}
+.sep::after{content:"";position:absolute;left:50%;top:1px;width:6px;height:6px;margin-left:-3px;background:var(--ink);border:1px solid var(--gold);transform:rotate(45deg)}
+.well{background:#08070a;border:1px solid #221d18;box-shadow:inset 0 3px 10px rgba(0,0,0,.95),inset 0 -1px 0 rgba(255,230,170,.04)}
+.btn{position:relative;height:30px;padding:0 14px;font:600 11px Cinzel,serif;letter-spacing:.16em;text-transform:uppercase;color:var(--bone);cursor:pointer;
+  background:linear-gradient(180deg,#2a2420,#141115);border:1px solid var(--gold-dim);box-shadow:inset 0 1px 0 rgba(255,220,150,.10),inset 0 -3px 8px rgba(0,0,0,.6)}
+.btn:hover{border-color:var(--gold);color:#fff1d2;box-shadow:inset 0 0 14px rgba(224,122,46,.28),0 0 10px rgba(224,122,46,.25)}
+.btn.primary{color:var(--gold);border-color:var(--gold);background:linear-gradient(180deg,#3b2a17,#1a120b)}
+
+/* ---- inventário ---- */
+#inv{left:952px;top:22px;width:316px;height:676px}
+.doll{position:relative;margin:8px 0 0 22px;width:272px;height:270px}
+.doll .ghost{position:absolute;left:86px;top:20px;width:100px;height:240px;opacity:.12}
+.eq{position:absolute;display:grid;place-items:center}
+.eq .sil{width:60%;height:60%;opacity:.2}
+.eq.has{border-color:var(--rc)}
+.eq.has::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 14px color-mix(in srgb,var(--rc) 30%,transparent);pointer-events:none}
+.grid{position:relative;margin:12px 0 0 22px;width:calc(var(--cell)*8 + 2px);height:calc(var(--cell)*8 + 2px);
+  background-image:linear-gradient(90deg,rgba(255,230,170,.05) 1px,transparent 1px),linear-gradient(rgba(255,230,170,.05) 1px,transparent 1px);background-size:var(--cell) var(--cell);background-position:1px 1px}
+.it{position:absolute;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--rc) 60%,#000);
+  background:radial-gradient(ellipse at 50% 40%,color-mix(in srgb,var(--rc) 16%,transparent),rgba(0,0,0,.2) 75%);cursor:pointer}
+.it svg{width:78%;height:78%}
+.it .q{position:absolute;right:3px;bottom:0;font:700 11px "Alegreya Sans";color:var(--bone);text-shadow:0 0 2px #000,0 0 2px #000}
+.it .lv{position:absolute;left:3px;top:1px;font:700 10px "Alegreya Sans";color:var(--gold);text-shadow:0 0 2px #000}
+.it.glow{animation:gl 2.4s ease-in-out infinite}
+@keyframes gl{50%{box-shadow:0 0 10px color-mix(in srgb,var(--rc) 70%,transparent),inset 0 0 10px color-mix(in srgb,var(--rc) 40%,transparent)}}
+.it.hover{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 12px rgba(224,122,46,.5)}
+.it .rd{position:absolute;right:-4px;top:-4px;width:8px;height:8px;transform:rotate(45deg);background:var(--rc);box-shadow:0 0 0 1px #000}
+.drop{position:absolute;border:1px dashed #6dff8c;background:rgba(80,220,110,.13)}
+.foot{position:absolute;left:22px;right:22px;bottom:14px;display:flex;align-items:center;gap:10px}
+.coin{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a0,#b88a2a 55%,#5a400f);box-shadow:0 0 0 1px #000,0 0 6px rgba(224,176,64,.5)}
+.foot .v{font:700 16px "Alegreya Sans";color:var(--arcane)}
+.foot .k{font:600 10px Cinzel,serif;letter-spacing:.2em;color:var(--bone-dim)}
+.foot .btn{margin-left:auto}
+
+/* ---- loja ---- */
+#shop{left:578px;top:46px;width:352px;height:470px}
+.npc{display:flex;align-items:center;gap:14px;margin:6px 18px 0}
+.npc .pt{width:30px;height:30px;transform:rotate(45deg);border:1px solid var(--gold);background:radial-gradient(circle,#4a3a20,#0b0905);margin:6px}
+.npc .n{font:600 13px Cinzel,serif;letter-spacing:.08em;color:var(--bone)}
+.npc .s{font:italic 13px "Alegreya Sans";color:var(--bone-dim)}
+.tabs{display:flex;gap:4px;margin:12px 18px 0}
+.tab{flex:1;height:30px;display:flex;align-items:center;justify-content:center;gap:8px;font:600 10px Cinzel,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);border:1px solid #2a231c;border-bottom:none;background:linear-gradient(180deg,#151215,#0c0b0d);cursor:pointer}
+.tab i{width:7px;height:7px;transform:rotate(45deg);border:1px solid currentColor}
+.tab.on{color:var(--gold);border-color:var(--gold-dim);background:linear-gradient(180deg,#2a2218,#100d0b)}
+.tab.on i{background:var(--gold)}
+.tab:hover:not(.on){color:var(--bone)}
+.shelf{margin:0 18px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px 8px;border-top:1px solid var(--gold-dim)}
+.ware{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer}
+.ware .it{position:relative;width:62px;height:62px}
+.ware .it.tall{height:62px}
+.ware .p{display:flex;align-items:center;gap:5px;font:700 12px "Alegreya Sans";color:var(--arcane)}
+.ware .p .coin{width:10px;height:10px}
+.ware .p.no{color:#a8505a}
+.ware:hover .it{border-color:var(--gold)}
+.shop-foot{position:absolute;left:18px;right:18px;bottom:14px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--bone-dim)}
+.shop-foot .btn{margin-left:auto}
+
+/* ---- tooltip ---- */
+.tip{position:absolute;left:652px;top:296px;width:290px;padding:12px 16px 12px;background:linear-gradient(180deg,rgba(20,17,20,.98),rgba(9,8,10,.98));
+  border:1px solid var(--gold-dim);box-shadow:0 0 0 1px #000,0 12px 30px rgba(0,0,0,.8),inset 0 0 0 2px #0b0a0c,inset 0 0 0 3px rgba(89,255,115,.22);font-size:13px;line-height:1.5}
+.tip .nm{font:700 16px Cinzel,serif;letter-spacing:.06em;color:var(--r-exc);text-shadow:0 0 10px rgba(89,255,115,.35);text-align:center}
+.tip .ty{text-align:center;color:var(--bone-dim);font-size:12px;letter-spacing:.06em}
+.tip .sep{margin:6px 0}
+.tip .row{display:flex;justify-content:space-between}
+.tip .row b{color:var(--bone)}
+.tip .exc{color:var(--r-exc)}
+.tip .bad{color:#ff6b78}
+.tip .ok{color:var(--bone-dim)}
+.tip .price{display:flex;align-items:center;gap:6px;justify-content:center;color:var(--arcane);font-weight:700}
+.tip .hint{margin-top:6px;text-align:center;font-size:11px;color:#6d675c}
+.tip .hint kbd{font:700 11px "Alegreya Sans";color:var(--ember)}
+.tip .lnk{position:absolute;right:-9px;top:100px;width:9px;height:1px;background:var(--gold-dim)}
+
+/* ---- item na mão ---- */
+.held{position:absolute;opacity:.85;filter:drop-shadow(0 8px 10px rgba(0,0,0,.9));pointer-events:none}
+.cursor{position:absolute;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:16px solid #e9dcc0;transform:rotate(-30deg);filter:drop-shadow(0 1px 1px #000)}
+.ann .a{position:absolute;font:500 11px "Alegreya Sans";color:#111;background:#f2d36b;padding:1px 6px;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.6);white-space:nowrap;z-index:5}
+</style>
+</head>
+<body>
+<div class="mk"><b>Inventário + loja</b><span>Inventário (I) aberto com a loja do NPC ao lado; tooltip sobre a Vara do Eclipse; Manto do Acólito "na mão", com a prévia de onde cai na grade.</span></div>
+<div class="wrap"><div class="stage-box" id="box"><div class="stage" id="stage">
+  <div class="world"></div>
+
+  <!-- LOJA -->
+  <div class="win" id="shop">
+    <div class="title"><h2>Loja</h2><div class="x"><span>×</span></div></div>
+    <div class="sep"></div>
+    <div class="npc"><div class="pt"></div><div><div class="n">Ysolde, a Alquimista</div><div class="s">"Frascos frescos, quase sem fumaça."</div></div></div>
+    <div class="tabs"><div class="tab"><i></i>Armas</div><div class="tab"><i></i>Trajes</div><div class="tab on"><i></i>Frascos</div><div class="tab"><i></i>Joias</div></div>
+    <div class="well shelf" id="shelf"></div>
+    <div class="shop-foot">botão direito no inventário: vender<button class="btn">Recomprar</button></div>
+  </div>
+
+  <!-- INVENTÁRIO -->
+  <div class="win" id="inv">
+    <div class="title"><div class="q" title="Clique: pegar/soltar · botão direito: equipar/usar · solte fora para jogar no chão"><span>?</span></div><h2>Inventário</h2><div class="x"><span>×</span></div></div>
+    <div class="sep"></div>
+    <div class="doll" id="doll">
+      <svg class="ghost" viewBox="0 0 100 240"><path d="M50 4c-12 0-20 10-20 22s8 22 20 22 20-10 20-22S62 4 50 4zM28 54c-10 4-16 14-18 28l-6 70h14l6-56 4 60-8 80h20l10-70 10 70h20l-8-80 4-60 6 56h14l-6-70c-2-14-8-24-18-28z" fill="#C9A24A"/></svg>
+    </div>
+    <div class="well grid" id="grid"></div>
+    <div class="foot"><div class="coin"></div><div><div class="k">Óbolos</div><div class="v">48.210</div></div><button class="btn">Ordenar</button></div>
+  </div>
+
+  <!-- TOOLTIP -->
+  <div class="tip" id="tip">
+    <div class="nm">Vara do Eclipse +7</div>
+    <div class="ty">Cajado · duas mãos · excelente</div>
+    <div class="sep"></div>
+    <div class="row"><span>Dano mágico</span><b>38 ~ 52</b></div>
+    <div class="row"><span>Velocidade de ataque</span><b>20</b></div>
+    <div class="row"><span>Aumento de magia</span><b>+21%</b></div>
+    <div class="sep"></div>
+    <div class="exc">+ Dano excelente +2%</div>
+    <div class="exc">+ Mana a cada abate</div>
+    <div class="sep"></div>
+    <div class="row ok"><span>Nível 60</span><span>✓</span></div>
+    <div class="row bad"><span>Energia 140 (você tem 132)</span><span>✕</span></div>
+    <div class="row ok"><span>Feiticeiro Abissal</span><span>✓</span></div>
+    <div class="sep"></div>
+    <div class="price"><span class="coin" style="width:12px;height:12px"></span>Venda: 12.400 óbolos</div>
+    <div class="hint"><kbd>botão direito</kbd> equipar · <kbd>Shift</kbd> comparar</div>
+    <div class="lnk"></div>
+  </div>
+
+  <div id="held"></div>
+
+  <div class="ann">
+    <span class="a" style="left:1060px;top:4px">título em Cinzel, ajuda vira "?"</span>
+    <span class="a" style="left:1010px;top:330px">silhuetas-guia nos slots vazios</span>
+    <span class="a" style="left:652px;top:276px">tooltip: raridade, requisitos em vermelho</span>
+    <span class="a" style="left:578px;top:28px">loja: abas em losango, preço sob o item</span>
+    <span class="a" style="left:1000px;top:700px">moeda com ícone</span>
+  </div>
+</div></div></div>
+
+<script>
+// ícones simples (silhuetas) — na implementação, game-icons.net tingidos
+const ICON={
+  staff:'<svg viewBox="0 0 20 80"><rect x="8.5" y="12" width="3" height="66" rx="1.5" fill="#6b5a44"/><path d="M10 0l7 10-7 8-7-8z" fill="currentColor"/><circle cx="10" cy="9" r="2.5" fill="#fff" opacity=".8"/></svg>',
+  robe:'<svg viewBox="0 0 40 60"><path d="M14 2h12l4 6 8 6-4 10-4-2 2 36H8l2-36-4 2-4-10 8-6z" fill="currentColor" opacity=".9"/><path d="M20 8v48" stroke="#000" stroke-opacity=".4"/></svg>',
+  hood:'<svg viewBox="0 0 40 40"><path d="M20 3C9 3 5 14 5 24l-1 13h32l-1-13C35 14 31 3 20 3z" fill="currentColor"/><path d="M20 14c-6 0-9 5-9 11v6h18v-6c0-6-3-11-9-11z" fill="#000" opacity=".75"/></svg>',
+  shield:'<svg viewBox="0 0 40 40"><path d="M20 3l15 5v11c0 9-7 15-15 18C12 34 5 28 5 19V8z" fill="currentColor"/><path d="M20 9v24" stroke="#000" stroke-opacity=".4" stroke-width="2"/></svg>',
+  potion:'<svg viewBox="0 0 20 20"><rect x="8" y="2" width="4" height="4" fill="#bba"/><path d="M7 6h6v2l3 4a5 5 0 0 1-12 0l3-4z" fill="currentColor"/><ellipse cx="8" cy="12" rx="1.5" ry="2" fill="#fff" opacity=".5"/></svg>',
+  gem:'<svg viewBox="0 0 20 20"><path d="M10 2l7 6-7 10-7-10z" fill="currentColor"/><path d="M3 8h14M10 2l-3 6 3 10 3-10z" stroke="#fff" stroke-opacity=".35" fill="none"/></svg>',
+  ring:'<svg viewBox="0 0 20 20"><circle cx="10" cy="12" r="5.5" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M10 2l3 4-3 3-3-3z" fill="#ff8c38"/></svg>',
+  scroll:'<svg viewBox="0 0 20 20"><rect x="4" y="4" width="12" height="12" rx="1" fill="#cbb98f"/><rect x="3" y="3" width="14" height="3" rx="1.5" fill="#8a7550"/><rect x="3" y="14" width="14" height="3" rx="1.5" fill="#8a7550"/><path d="M7 9h6M7 11h5" stroke="#5a4a30"/></svg>',
+  wings:'<svg viewBox="0 0 70 50"><path d="M35 20C25 4 8 2 2 6c6 4 8 12 6 20 6-2 12 0 16 8 2-6 6-10 11-14zM35 20c10-16 27-18 33-14-6 4-8 12-6 20-6-2-12 0-16 8-2-6-6-10-11-14z" fill="currentColor" opacity=".85"/></svg>',
+  boot:'<svg viewBox="0 0 40 40"><path d="M10 4h12v20l12 6v6H8z" fill="currentColor"/></svg>',
+  glove:'<svg viewBox="0 0 40 40"><path d="M10 36V16l2-10h4v10-12h4v12V6h4v12-8h4v18l-6 8z" fill="currentColor"/></svg>',
+  pants:'<svg viewBox="0 0 40 40"><path d="M8 2h24l2 36h-10l-4-24-4 24H6z" fill="currentColor"/></svg>',
+  amulet:'<svg viewBox="0 0 20 20"><path d="M4 2c0 6 3 9 6 9s6-3 6-9" stroke="#8a7550" fill="none"/><path d="M10 9l4 5-4 5-4-5z" fill="currentColor"/></svg>',
+  pet:'<svg viewBox="0 0 40 40"><path d="M8 30c0-10 6-18 12-18s12 8 12 18zM14 12l-4-8 8 5M26 12l4-8-8 5" fill="currentColor"/></svg>',
+  helm:'<svg viewBox="0 0 40 40"><path d="M6 26C6 12 12 4 20 4s14 8 14 22v8h-8V22H14v12H6z" fill="currentColor"/></svg>',
+};
+const RC={n:"var(--r-normal)",e:"var(--r-exc)",a:"var(--r-anc)",j:"var(--r-jewel)"};
+const C=34;
+// slots do boneco (mesmas proporções de SLOT_RECTS em inventory_window.gd)
+const SLOTS=[
+  ["pet",6,0,58,58,null],["helm",106,0,60,60,["hood","e",3]],["wings",194,0,74,60,["wings","n",0]],["amulet",70,28,30,30,null],
+  ["weapon",6,70,58,136,["staff","e",9]],["armor",100,70,72,98,null],["shield",208,70,58,136,null],
+  ["ring1",70,176,28,28,["ring","a",0]],["pants",100,176,72,60,["pants","n",2]],["ring2",176,176,28,28,null],
+  ["gloves",6,214,58,52,["glove","n",2]],["boots",208,214,58,52,null]];
+const SIL={pet:"pet",helm:"helm",wings:"wings",amulet:"amulet",weapon:"staff",armor:"robe",shield:"shield",ring1:"ring",ring2:"ring",pants:"pants",gloves:"glove",boots:"boot"};
+const doll=document.getElementById("doll");
+for(const [id,x,y,w,h,it] of SLOTS){
+  const d=document.createElement("div");d.className="eq well"+(it?" has":"");
+  Object.assign(d.style,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"});
+  if(it){d.style.setProperty("--rc",RC[it[1]]);d.style.color=RC[it[1]];
+    d.innerHTML=`<div style="width:78%;height:78%;display:grid;place-items:center">${ICON[it[0]]}</div>`+(it[2]?`<span class="lv" style="position:absolute;left:4px;top:2px;font:700 10px 'Alegreya Sans';color:var(--gold)">+${it[2]}</span>`:"");
+    if(it[2]>=7)d.style.animation="gl 2.4s ease-in-out infinite";
+  } else {d.style.color="var(--gold)";d.innerHTML=`<div class="sil">${ICON[SIL[id]]}</div>`}
+  doll.appendChild(d);
+}
+doll.querySelectorAll("svg").forEach(s=>{if(!s.classList.contains("ghost")){s.style.width="100%";s.style.height="100%"}});
+// grade 8x8: [ícone, x, y, w, h, raridade, qtd, +nível, classes extras]
+const ITEMS=[
+  ["potion",0,0,1,1,"n",5,0,"",'#d4273a'],["potion",1,0,1,1,"n",5,0,"",'#3f86d8'],["potion",2,0,1,1,"n",12,0,"",'#ff5a6a'],
+  ["gem",3,0,1,1,"j",0,0,"",'#b98cff'],["gem",4,0,1,1,"j",0,0,"",'#ffd36b'],["gem",5,0,1,1,"j",2,0,"",'#7cd6ff'],
+  ["staff",7,0,1,4,"e",0,7,"glow hover"],["scroll",3,1,1,1,"n",3,0,""],["ring",4,1,1,1,"e",0,0,""],
+  ["hood",0,2,2,2,"a",0,4,""],["shield",2,2,2,2,"n",0,0,""],["boot",4,2,2,2,"n",0,1,""],
+  ["amulet",6,4,1,1,"a",0,0,""],["glove",0,6,2,2,"n",0,0,""],
+];
+const grid=document.getElementById("grid");
+for(const [ic,x,y,w,h,r,q,lv,cls,col] of ITEMS){
+  const d=document.createElement("div");d.className="it "+cls;
+  Object.assign(d.style,{left:(1+x*C)+"px",top:(1+y*C)+"px",width:(w*C)+"px",height:(h*C)+"px",color:col||RC[r]});
+  d.style.setProperty("--rc",RC[r]);
+  d.innerHTML=ICON[ic]+(q?`<span class="q">${q}</span>`:"")+(lv?`<span class="lv">+${lv}</span>`:"")+(r!=="n"?'<span class="rd"></span>':"");
+  if(ic==="staff"){d.querySelector("svg").style.height="94%";}
+  grid.appendChild(d);
+}
+// prévia de soltura do item na mão (manto 2x3 em 3,5)
+const dp=document.createElement("div");dp.className="drop";Object.assign(dp.style,{left:(1+3*C)+"px",top:(1+5*C)+"px",width:(2*C)+"px",height:(3*C)+"px"});grid.appendChild(dp);
+// item na mão segue o mouse (posição absoluta no palco)
+const held=document.getElementById("held");
+held.innerHTML=`<div class="held it" style="left:1086px;top:522px;width:${2*C}px;height:${3*C}px;color:var(--r-exc);--rc:var(--r-exc);border-color:var(--r-exc)">${ICON.robe}<span class="lv">+5</span></div><div class="cursor" style="left:1114px;top:548px"></div>`;
+// loja
+const WARES=[["potion","#d4273a",40,1],["potion","#ff5a6a",180,1],["potion","#3f86d8",40,1],["potion","#7cb6ff",180,1],
+  ["scroll",null,600,1],["potion","#59ff8c",1500,1],["potion","#e0b040",4200,1],["scroll",null,25000,0]];
+const shelf=document.getElementById("shelf");
+for(const [ic,col,p,ok] of WARES){
+  const w=document.createElement("div");w.className="ware";
+  w.innerHTML=`<div class="it" style="color:${col||'#cbb98f'};--rc:var(--r-normal)">${ICON[ic]}</div><div class="p ${ok?"":"no"}"><span class="coin"></span>${p.toLocaleString("pt-BR")}</div>`;
+  shelf.appendChild(w);
+}
+document.querySelectorAll(".win").forEach(w=>["tl","tr","bl","br"].forEach(k=>{const i=document.createElement("i");i.className="cn "+k;w.appendChild(i)}));
+function fit(){const b=document.getElementById("box");document.getElementById("stage").style.transform=`scale(${b.clientWidth/1280})`}
+addEventListener("resize",fit);fit();
+</script>
+</body>
+</html>

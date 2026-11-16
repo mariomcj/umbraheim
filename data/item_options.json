@@ -1,0 +1,26 @@
+{
+	"_doc": "Opções de itens. refine_main[n] = bônus no atributo principal (magic -> dano mágico mín e máx; defense -> defesa) para o item +n. extra_per_level: bônus da opção extra por nível (até extra_max). excellent: opções especiais (applies_to: weapon = arma e amuleto/anel; armor = demais peças). Efeitos usam as mesmas chaves dos atributos derivados.",
+	"refine_main": [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 31, 36, 42, 49, 57, 66],
+	"max_level": 15,
+	"inventory_cols": 8,
+	"inventory_rows": 8,
+	"storage_cols": 8,
+	"storage_rows": 10,
+	"extra_per_level": 4,
+	"extra_max": 7,
+	"luck_crit_bonus": 0.05,
+	"weapon_slots": ["weapon", "amulet", "ring"],
+	"excellent": {
+		"exc_rate": { "label": "+10% de chance de dano excelente", "applies_to": "weapon", "effect": "excellent_chance", "value": 0.1 },
+		"dmg_pct": { "label": "+2% de dano", "applies_to": "weapon", "effect": "damage_pct", "value": 0.02 },
+		"atk_speed": { "label": "+7 de velocidade de ataque", "applies_to": "weapon", "effect": "attack_speed", "value": 0.07 },
+		"hp_kill": { "label": "Vida ao matar (vida/8)", "applies_to": "weapon", "effect": "hp_on_kill_frac", "value": 0.125 },
+		"mana_kill": { "label": "Mana ao matar (mana/8)", "applies_to": "weapon", "effect": "mana_on_kill_frac", "value": 0.125 },
+		"hp_pct": { "label": "+4% de vida máxima", "applies_to": "armor", "effect": "hp_max_pct", "value": 0.04 },
+		"mana_pct": { "label": "+4% de mana máxima", "applies_to": "armor", "effect": "mana_max_pct", "value": 0.04 },
+		"dmg_reduce": { "label": "-4% de dano recebido", "applies_to": "armor", "effect": "damage_reduction_pct", "value": 0.04 },
+		"reflect": { "label": "Reflete 5% do dano", "applies_to": "armor", "effect": "reflect_pct", "value": 0.05 },
+		"currency": { "label": "+40% de Óbolos coletados", "applies_to": "armor", "effect": "currency_pct", "value": 0.4 }
+	},
+	"ancestral_stat_bonus": 10
+}

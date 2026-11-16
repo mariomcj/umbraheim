@@ -1,0 +1,180 @@
+{
+	"_doc": "Monstros. level define a XP (progression.monster_xp). aggro_m: distância em que nota o jogador; leash_m: distância máxima de casa antes de desistir. drop_table: data/drops.json -> tables. visual: cena do cliente (formas simples, sem modelo). model: modelo animado de data/config/models.json (só no cliente; cobre as formas da cena). aura: casca pulsante de data/config/vfx.json -> auras.",
+	"carnical": {
+		"name": "Carniçal das Ruínas", "level": 3,
+		"hp": 120, "damage_min": 6, "damage_max": 12, "defense": 2,
+		"speed_mps": 2.6, "aggro_m": 6.0, "attack_range_m": 1.6, "attack_cooldown_s": 1.6,
+		"leash_m": 16.0, "respawn_s": 12.0, "wander_radius_m": 3.0,
+		"drop_table": "ruinas_comum", "model": "esqueleto_servo", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"espectro": {
+		"name": "Espectro Sussurrante", "level": 5,
+		"hp": 90, "damage_min": 9, "damage_max": 16, "defense": 4,
+		"speed_mps": 3.8, "aggro_m": 8.0, "attack_range_m": 2.0, "attack_cooldown_s": 1.2,
+		"leash_m": 18.0, "respawn_s": 15.0, "wander_radius_m": 4.0,
+		"drop_table": "ruinas_raro", "aura": "veu", "visual": "res://client/entities/monster_espectro.tscn"
+	},
+	"lobo_cinzas": {
+		"name": "Lobo de Cinza", "level": 10,
+		"hp": 480, "damage_min": 21, "damage_max": 33, "defense": 9,
+		"speed_mps": 4.4, "aggro_m": 9.0, "attack_range_m": 1.7, "attack_cooldown_s": 1.1,
+		"leash_m": 20.0, "respawn_s": 14.0, "wander_radius_m": 5.0,
+		"drop_table": "bosque_comum", "model": "lobo", "visual": "res://client/entities/monster_lobo.tscn"
+	},
+	"tronco_podre": {
+		"name": "Tronco Podre", "level": 13,
+		"hp": 920, "damage_min": 30, "damage_max": 48, "defense": 14,
+		"speed_mps": 2.0, "aggro_m": 6.0, "attack_range_m": 2.2, "attack_cooldown_s": 2.0,
+		"leash_m": 14.0, "respawn_s": 20.0, "wander_radius_m": 2.0,
+		"drop_table": "bosque_raro", "visual": "res://client/entities/monster_tronco.tscn"
+	},
+	"espectro_gelido": {
+		"name": "Espectro Gélido", "level": 20,
+		"hp": 1280, "damage_min": 42, "damage_max": 60, "defense": 20,
+		"speed_mps": 4.0, "aggro_m": 9.0, "attack_range_m": 2.0, "attack_cooldown_s": 1.2,
+		"leash_m": 20.0, "respawn_s": 16.0, "wander_radius_m": 5.0,
+		"drop_table": "geleira_comum", "aura": "gelo", "visual": "res://client/entities/monster_espectro_gelido.tscn"
+	},
+	"chefe_abominacao": {
+		"name": "Abominação de Vel'Morth", "level": 9, "boss": true, "scale": 1.9, "xp_mult": 6.0, "drop_rolls": 4,
+		"hp": 1800, "damage_min": 21, "damage_max": 36, "defense": 8,
+		"speed_mps": 2.4, "aggro_m": 8.0, "attack_range_m": 2.4, "attack_cooldown_s": 1.8,
+		"leash_m": 14.0, "respawn_s": 600.0, "wander_radius_m": 2.0,
+		"drop_table": "chefe_ruinas", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"chefe_mae_loba": {
+		"name": "Mãe-Loba Cinzenta", "level": 17, "boss": true, "scale": 2.0, "xp_mult": 6.0, "drop_rolls": 5,
+		"hp": 5200, "damage_min": 45, "damage_max": 69, "defense": 18,
+		"speed_mps": 4.2, "aggro_m": 10.0, "attack_range_m": 2.6, "attack_cooldown_s": 1.2,
+		"leash_m": 16.0, "respawn_s": 900.0, "wander_radius_m": 3.0,
+		"drop_table": "chefe_bosque", "model": "lobo", "visual": "res://client/entities/monster_lobo.tscn"
+	},
+	"chefe_colosso": {
+		"name": "Colosso do Inverno", "level": 28, "boss": true, "scale": 1.8, "xp_mult": 6.0, "drop_rolls": 6,
+		"hp": 13000, "damage_min": 78, "damage_max": 117, "defense": 36,
+		"speed_mps": 2.0, "aggro_m": 9.0, "attack_range_m": 3.0, "attack_cooldown_s": 2.4,
+		"leash_m": 14.0, "respawn_s": 1200.0, "wander_radius_m": 1.5,
+		"drop_table": "chefe_geleira", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"golem_gelo": {
+		"name": "Golem de Gelo Antigo", "level": 24,
+		"hp": 2300, "damage_min": 57, "damage_max": 84, "defense": 30,
+		"speed_mps": 2.2, "aggro_m": 7.0, "attack_range_m": 2.4, "attack_cooldown_s": 2.2,
+		"leash_m": 15.0, "respawn_s": 25.0, "wander_radius_m": 2.0,
+		"drop_table": "geleira_raro", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"_event_doc": "Monstros de evento (Fortaleza Sitiada), um conjunto por faixa de nível. structure: true = não anda nem ataca (o portão); o evento decide quando ele pode ser ferido.",
+	"sentinela_cinza": {
+		"name": "Sentinela de Cinzas", "level": 18,
+		"hp": 840, "damage_min": 30, "damage_max": 48, "defense": 16,
+		"speed_mps": 2.8, "aggro_m": 10.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.7,
+		"leash_m": 40.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "fortaleza", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"guardiao_profanado": {
+		"name": "Guardião Profanado", "level": 24, "boss": true, "event_boss": true, "scale": 1.7, "xp_mult": 5.0, "drop_rolls": 3,
+		"hp": 10400, "damage_min": 60, "damage_max": 93, "defense": 28,
+		"speed_mps": 2.3, "aggro_m": 10.0, "attack_range_m": 2.6, "attack_cooldown_s": 2.0,
+		"leash_m": 40.0, "respawn_s": 9999.0, "wander_radius_m": 1.0,
+		"drop_table": "fortaleza", "model": "esqueleto_mago", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"portao_fortaleza": {
+		"name": "Portão da Fortaleza", "level": 20, "structure": true,
+		"hp": 3000, "damage_min": 0, "damage_max": 0, "defense": 20,
+		"speed_mps": 0.0, "aggro_m": 0.0, "attack_range_m": 0.0, "attack_cooldown_s": 99.0,
+		"leash_m": 0.0, "respawn_s": 9999.0, "wander_radius_m": 0.0,
+		"drop_table": "", "visual": "res://client/entities/event_gate.tscn"
+	},
+	"sentinela_cinza_ii": {
+		"name": "Sentinela de Cinzas Antiga", "level": 45,
+		"hp": 4200, "damage_min": 105, "damage_max": 158, "defense": 48,
+		"speed_mps": 3.0, "aggro_m": 10.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.6,
+		"leash_m": 40.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "fortaleza", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"guardiao_profanado_ii": {
+		"name": "Guardião Profanado Ancestral", "level": 52, "boss": true, "event_boss": true, "scale": 1.9, "xp_mult": 5.0, "drop_rolls": 4,
+		"hp": 52000, "damage_min": 180, "damage_max": 255, "defense": 70,
+		"speed_mps": 2.4, "aggro_m": 10.0, "attack_range_m": 2.8, "attack_cooldown_s": 1.9,
+		"leash_m": 40.0, "respawn_s": 9999.0, "wander_radius_m": 1.0,
+		"drop_table": "fortaleza", "model": "esqueleto_mago", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"portao_fortaleza_ii": {
+		"name": "Portão Ancestral", "level": 48, "structure": true,
+		"hp": 15000, "damage_min": 0, "damage_max": 0, "defense": 55,
+		"speed_mps": 0.0, "aggro_m": 0.0, "attack_range_m": 0.0, "attack_cooldown_s": 99.0,
+		"leash_m": 0.0, "respawn_s": 9999.0, "wander_radius_m": 0.0,
+		"drop_table": "", "visual": "res://client/entities/event_gate.tscn"
+	},
+	"_arena_doc": "Monstros da Arena das Ondas e do Círculo que Encolhe. event_points: pontos para quem matar (ranking da Arena). aggro alto: na arena todos vêm para cima.",
+	"cria_arena": {
+		"name": "Cria do Abismo", "level": 20, "event_points": 10,
+		"hp": 760, "damage_min": 27, "damage_max": 42, "defense": 14,
+		"speed_mps": 2.9, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "cria_abismo", "aura": "veu", "visual": "res://client/entities/monster_espectro.tscn"
+	},
+	"bruto_arena": {
+		"name": "Bruto Acorrentado", "level": 26, "event_points": 25,
+		"hp": 1900, "damage_min": 45, "damage_max": 69, "defense": 24,
+		"speed_mps": 2.4, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "bruto_acorrentado", "visual": "res://client/entities/monster_tronco.tscn"
+	},
+	"campeao_arena": {
+		"name": "Campeão da Arena", "level": 30, "boss": true, "event_boss": true, "scale": 1.8, "xp_mult": 4.0, "drop_rolls": 3, "event_points": 300,
+		"hp": 13000, "damage_min": 72, "damage_max": 108, "defense": 30,
+		"speed_mps": 2.4, "aggro_m": 30.0, "attack_range_m": 2.6, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"cria_arena_ii": {
+		"name": "Cria do Abismo Antiga", "level": 46, "event_points": 20,
+		"hp": 3800, "damage_min": 105, "damage_max": 150, "defense": 46,
+		"speed_mps": 3.0, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "cria_abismo", "aura": "veu", "visual": "res://client/entities/monster_espectro.tscn"
+	},
+	"bruto_arena_ii": {
+		"name": "Bruto Acorrentado Antigo", "level": 52, "event_points": 50,
+		"hp": 8800, "damage_min": 150, "damage_max": 210, "defense": 60,
+		"speed_mps": 2.5, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "bruto_acorrentado", "visual": "res://client/entities/monster_tronco.tscn"
+	},
+	"campeao_arena_ii": {
+		"name": "Campeão da Arena Ancestral", "level": 58, "boss": true, "event_boss": true, "scale": 2.0, "xp_mult": 4.0, "drop_rolls": 3, "event_points": 600,
+		"hp": 60000, "damage_min": 210, "damage_max": 285, "defense": 75,
+		"speed_mps": 2.5, "aggro_m": 30.0, "attack_range_m": 2.6, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"guarda_circulo": {
+		"name": "Guarda do Círculo", "level": 18, "event_points": 1,
+		"hp": 480, "damage_min": 12, "damage_max": 21, "defense": 6,
+		"speed_mps": 2.6, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "esqueleto_ladino", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"guarda_circulo_ii": {
+		"name": "Guarda do Círculo Antigo", "level": 44, "event_points": 1,
+		"hp": 1800, "damage_min": 36, "damage_max": 57, "defense": 20,
+		"speed_mps": 2.8, "aggro_m": 30.0, "attack_range_m": 1.8, "attack_cooldown_s": 1.8,
+		"leash_m": 60.0, "respawn_s": 9999.0, "wander_radius_m": 2.0,
+		"drop_table": "arena", "model": "esqueleto_ladino", "visual": "res://client/entities/monster_carnical.tscn"
+	},
+	"guarda_castelo": {
+		"name": "Guardião do Trono", "level": 40, "event_points": 5,
+		"hp": 4800, "damage_min": 82, "damage_max": 120, "defense": 40,
+		"speed_mps": 2.6, "aggro_m": 9.0, "attack_range_m": 2.0, "attack_cooldown_s": 1.8,
+		"leash_m": 14.0, "respawn_s": 9999.0, "wander_radius_m": 1.5,
+		"drop_table": "fortaleza", "model": "esqueleto_guerreiro", "visual": "res://client/entities/monster_golem_gelo.tscn"
+	},
+	"portao_castelo": {
+		"name": "Portão do Castelo", "level": 45, "structure": true,
+		"hp": 20000, "damage_min": 0, "damage_max": 0, "defense": 40,
+		"speed_mps": 0.0, "aggro_m": 0.0, "attack_range_m": 0.0, "attack_cooldown_s": 99.0,
+		"leash_m": 0.0, "respawn_s": 9999.0, "wander_radius_m": 0.0,
+		"drop_table": "", "visual": "res://client/entities/event_gate.tscn"
+	}
+}

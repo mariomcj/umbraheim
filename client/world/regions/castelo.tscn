@@ -1,0 +1,319 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/ground_dirt.gdshader" id="1_ground"]
+[ext_resource type="Script" path="res://client/world/torch_flicker.gd" id="3_flicker"]
+[ext_resource type="Material" path="res://client/world/materials/ground_castelo.tres" id="m0_ground_castelo"]
+[ext_resource type="Material" path="res://client/world/materials/stone_wall.tres" id="m1_stone_wall"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+sky_top_color = Color(0.05, 0.03, 0.03, 1)
+sky_horizon_color = Color(0.22, 0.1, 0.06, 1)
+ground_bottom_color = Color(0.02, 0.02, 0.02, 1)
+ground_horizon_color = Color(0.22, 0.1, 0.06, 1)
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.58, 0.48, 0.42, 1)
+ambient_light_energy = 0.75
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.8
+glow_bloom = 0.06
+glow_hdr_threshold = 0.9
+fog_enabled = true
+fog_light_color = Color(0.18, 0.09, 0.05, 1)
+fog_density = 0.011
+fog_sky_affect = 0.8
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 0.8
+
+[sub_resource type="ShaderMaterial" id="GroundMat"]
+shader = ExtResource("1_ground")
+shader_parameter/dirt_dark = Color(0.12, 0.1, 0.09, 1)
+shader_parameter/dirt_light = Color(0.28, 0.24, 0.2, 1)
+shader_parameter/moss = Color(0.12, 0.1, 0.05, 1)
+shader_parameter/moss_amount = 0.35
+
+[sub_resource type="PlaneMesh" id="GroundMesh"]
+material = ExtResource("m0_ground_castelo")
+size = Vector2(80, 80)
+
+[sub_resource type="StandardMaterial3D" id="StoneMat"]
+albedo_color = Color(0.27, 0.25, 0.24, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="ThroneMat"]
+albedo_color = Color(0.35, 0.12, 0.08, 1)
+metallic = 0.5
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0.45, 0.15, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxMesh" id="ThroneMesh"]
+material = SubResource("ThroneMat")
+size = Vector3(1.6, 1.0, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="CrystalMat"]
+shading_mode = 0
+albedo_color = Color(1, 0.55, 0.2, 1)
+
+[sub_resource type="CylinderMesh" id="CrystalMesh"]
+material = SubResource("CrystalMat")
+top_radius = 0.02
+bottom_radius = 0.3
+height = 1.6
+radial_segments = 6
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="BannerMat"]
+albedo_color = Color(0.5, 0.08, 0.06, 1)
+emission_enabled = true
+emission = Color(0.6, 0.1, 0.05, 1)
+emission_energy_multiplier = 0.3
+
+[sub_resource type="BoxMesh" id="BannerMesh"]
+material = SubResource("BannerMat")
+size = Vector3(1.0, 2.0, 0.08)
+
+[sub_resource type="BoxMesh" id="M_West"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.0, 4.0, 70.0)
+
+[sub_resource type="BoxMesh" id="M_East"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.0, 4.0, 70.0)
+
+[sub_resource type="BoxMesh" id="M_North"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(50.0, 4.0, 1.0)
+
+[sub_resource type="BoxMesh" id="M_South"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(50.0, 4.0, 1.0)
+
+[sub_resource type="BoxMesh" id="M_WallW"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(21.6, 5.0, 1.6)
+
+[sub_resource type="BoxMesh" id="M_WallE"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(21.6, 5.0, 1.6)
+
+[sub_resource type="BoxMesh" id="M_TowerW"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.8, 6.5, 2.4)
+
+[sub_resource type="BoxMesh" id="M_TowerE"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.8, 6.5, 2.4)
+
+[sub_resource type="BoxMesh" id="M_KeepW"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.2, 4.5, 26.0)
+
+[sub_resource type="BoxMesh" id="M_KeepE"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.2, 4.5, 26.0)
+
+[sub_resource type="BoxMesh" id="M_RoomWallW"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(7.2, 3.5, 0.8)
+
+[sub_resource type="BoxMesh" id="M_RoomWallE"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(7.2, 3.5, 0.8)
+
+[sub_resource type="BoxMesh" id="M_CampW"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.0, 2.0, 9.0)
+
+[sub_resource type="BoxMesh" id="M_CampE"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.0, 2.0, 9.0)
+
+[sub_resource type="BoxMesh" id="M_ThroneBack"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(3.0, 2.6, 0.8)
+
+[node name="Castelo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.95, 0.5, 0)
+light_color = Color(0.95, 0.8, 0.7, 1)
+light_energy = 0.9
+shadow_enabled = true
+directional_shadow_max_distance = 45.0
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("GroundMesh")
+
+[node name="Walls" type="Node3D" parent="." groups=["obstacle"]]
+
+[node name="West" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-24.5, 2.0, 0.0)
+mesh = SubResource("M_West")
+
+[node name="East" type="MeshInstance3D" parent="Walls"]
+position = Vector3(24.5, 2.0, 0.0)
+mesh = SubResource("M_East")
+
+[node name="North" type="MeshInstance3D" parent="Walls"]
+position = Vector3(0.0, 2.0, -34.5)
+mesh = SubResource("M_North")
+
+[node name="South" type="MeshInstance3D" parent="Walls"]
+position = Vector3(0.0, 2.0, 34.5)
+mesh = SubResource("M_South")
+
+[node name="WallW" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-13.6, 2.5, -2.0)
+mesh = SubResource("M_WallW")
+
+[node name="WallE" type="MeshInstance3D" parent="Walls"]
+position = Vector3(13.6, 2.5, -2.0)
+mesh = SubResource("M_WallE")
+
+[node name="TowerW" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-3.6, 3.25, -2.0)
+mesh = SubResource("M_TowerW")
+
+[node name="TowerE" type="MeshInstance3D" parent="Walls"]
+position = Vector3(3.6, 3.25, -2.0)
+mesh = SubResource("M_TowerE")
+
+[node name="KeepW" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-10.0, 2.25, -16.0)
+mesh = SubResource("M_KeepW")
+
+[node name="KeepE" type="MeshInstance3D" parent="Walls"]
+position = Vector3(10.0, 2.25, -16.0)
+mesh = SubResource("M_KeepE")
+
+[node name="RoomWallW" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-6.8, 1.75, -28.6)
+mesh = SubResource("M_RoomWallW")
+
+[node name="RoomWallE" type="MeshInstance3D" parent="Walls"]
+position = Vector3(6.8, 1.75, -28.6)
+mesh = SubResource("M_RoomWallE")
+
+[node name="CampW" type="MeshInstance3D" parent="Walls"]
+position = Vector3(-9.5, 1.0, 29.5)
+mesh = SubResource("M_CampW")
+
+[node name="CampE" type="MeshInstance3D" parent="Walls"]
+position = Vector3(9.5, 1.0, 29.5)
+mesh = SubResource("M_CampE")
+
+[node name="ThroneBack" type="MeshInstance3D" parent="Walls"]
+position = Vector3(0.0, 1.3, -23.6)
+mesh = SubResource("M_ThroneBack")
+
+[node name="Blockers" type="Node3D" parent="."]
+
+[node name="Throne" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.5, -23.0)
+mesh = SubResource("ThroneMesh")
+
+[node name="Crystal" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.8, -22.0)
+mesh = SubResource("CrystalMesh")
+
+[node name="CrystalLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 2.0, -22.0)
+light_color = Color(1, 0.55, 0.2, 1)
+light_energy = 2.2
+omni_range = 9.0
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="Banner0" type="MeshInstance3D" parent="Decor"]
+position = Vector3(-6.0, 3.2, -1.1)
+mesh = SubResource("BannerMesh")
+
+[node name="Banner1" type="MeshInstance3D" parent="Decor"]
+position = Vector3(6.0, 3.2, -1.1)
+mesh = SubResource("BannerMesh")
+
+[node name="Banner2" type="MeshInstance3D" parent="Decor"]
+position = Vector3(-9.3, 3.2, -20.0)
+mesh = SubResource("BannerMesh")
+
+[node name="Banner3" type="MeshInstance3D" parent="Decor"]
+position = Vector3(9.3, 3.2, -20.0)
+mesh = SubResource("BannerMesh")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Torch0" type="OmniLight3D" parent="Lights"]
+position = Vector3(-23.4, 2.8, 15.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch1" type="OmniLight3D" parent="Lights"]
+position = Vector3(23.4, 2.8, 15.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch2" type="OmniLight3D" parent="Lights"]
+position = Vector3(-5.0, 2.8, -0.6)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch3" type="OmniLight3D" parent="Lights"]
+position = Vector3(5.0, 2.8, -0.6)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch4" type="OmniLight3D" parent="Lights"]
+position = Vector3(-9.0, 2.8, -10.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch5" type="OmniLight3D" parent="Lights"]
+position = Vector3(9.0, 2.8, -10.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch6" type="OmniLight3D" parent="Lights"]
+position = Vector3(-9.0, 2.8, -22.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch7" type="OmniLight3D" parent="Lights"]
+position = Vector3(9.0, 2.8, -22.0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")
+
+[node name="Torch8" type="OmniLight3D" parent="Lights"]
+position = Vector3(0.0, 2.8, 33.4)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 1.6
+omni_range = 8.0
+script = ExtResource("3_flicker")

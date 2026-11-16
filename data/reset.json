@@ -1,0 +1,9 @@
+{
+	"_doc": "Reset (renascimento), opcional: enabled liga ou desliga no servidor. Com nível >= level_req, numa zona segura (cidade) e pagando cost_base + cost_per_reset × resets já feitos, o personagem volta ao nível 1, com os atributos iniciais da classe, e recebe points_per_reset pontos para cada reset feito (acumulam: o 3º reset dá 3 × points_per_reset). Itens, magias, evolução, missões e maestria ficam. Até max_resets.",
+	"enabled": true,
+	"level_req": 400,
+	"max_resets": 30,
+	"cost_base": 100000,
+	"cost_per_reset": 100000,
+	"points_per_reset": 450
+}

@@ -1,0 +1,155 @@
+{
+	"_doc": "Tabelas de drop. type: currency (min..max) ou item (base sorteada de um pool). Itens equipáveis recebem nível, sorte, opção extra e raridade conforme as chances abaixo. Pesos relativos.",
+	"currency_name": "Óbolos",
+	"lifetime_s": 60.0,
+	"owner_s": 10.0,
+	"pickup_range_m": 1.6,
+	"scatter_m": 0.8,
+	"item_rolls": {
+		"level_weights": [60, 25, 10, 5],
+		"luck_chance": 0.25,
+		"extra_chance": 0.3,
+		"extra_max_drop": 2,
+		"excellent_chance": 0.08,
+		"excellent_options_max": 2,
+		"ancestral_chance": 0.03
+	},
+	"tables": {
+		"ruinas_comum": {
+			"drop_chance": 0.7,
+			"entries": [
+				{ "weight": 55, "type": "currency", "min": 5, "max": 20 },
+				{ "weight": 18, "type": "item", "pool": "armas_t1" },
+				{ "weight": 22, "type": "item", "pool": "trajes_t1" },
+				{ "weight": 5, "type": "item", "pool": "joias_comuns" },
+				{ "weight": 12, "type": "item", "pool": "consumiveis" }
+			]
+		},
+		"ruinas_raro": {
+			"drop_chance": 0.85,
+			"entries": [
+				{ "weight": 40, "type": "currency", "min": 12, "max": 40 },
+				{ "weight": 18, "type": "item", "pool": "armas_t1" },
+				{ "weight": 22, "type": "item", "pool": "trajes_t1" },
+				{ "weight": 6, "type": "item", "pool": "acessorios" },
+				{ "weight": 14, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "consumiveis" }
+			]
+		},
+		"bosque_comum": {
+			"drop_chance": 0.75,
+			"entries": [
+				{ "weight": 45, "type": "currency", "min": 30, "max": 80 },
+				{ "weight": 16, "type": "item", "pool": "armas_t2" },
+				{ "weight": 20, "type": "item", "pool": "trajes_t1" },
+				{ "weight": 8, "type": "item", "pool": "joias_comuns" },
+				{ "weight": 12, "type": "item", "pool": "consumiveis_t2" }
+			]
+		},
+		"bosque_raro": {
+			"drop_chance": 0.9,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 35, "type": "currency", "min": 60, "max": 140 },
+				{ "weight": 16, "type": "item", "pool": "armas_t2" },
+				{ "weight": 16, "type": "item", "pool": "trajes_t1" },
+				{ "weight": 8, "type": "item", "pool": "acessorios" },
+				{ "weight": 14, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "consumiveis_t2" }
+			]
+		},
+		"geleira_comum": {
+			"drop_chance": 0.8,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 40, "type": "currency", "min": 90, "max": 200 },
+				{ "weight": 14, "type": "item", "pool": "armas_t2" },
+				{ "weight": 14, "type": "item", "pool": "trajes_t1" },
+				{ "weight": 8, "type": "item", "pool": "acessorios" },
+				{ "weight": 14, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "consumiveis_t2" }
+			]
+		},
+		"invasao": {
+			"drop_chance": 1.0,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 30, "type": "currency", "min": 80, "max": 300 },
+				{ "weight": 45, "type": "item", "pool": "joias" },
+				{ "weight": 15, "type": "item", "pool": "acessorios" },
+				{ "weight": 10, "type": "item", "pool": "armas_t2" }
+			]
+		},
+		"chefe_ruinas": {
+			"drop_chance": 1.0,
+			"entries": [
+				{ "weight": 25, "type": "currency", "min": 150, "max": 400 },
+				{ "weight": 35, "type": "item", "pool": "joias" },
+				{ "weight": 25, "type": "item", "pool": "armas_t2" },
+				{ "weight": 15, "type": "item", "pool": "acessorios" }
+			]
+		},
+		"chefe_bosque": {
+			"drop_chance": 1.0,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 20, "type": "currency", "min": 400, "max": 900 },
+				{ "weight": 40, "type": "item", "pool": "joias" },
+				{ "weight": 25, "type": "item", "pool": "armas_t2" },
+				{ "weight": 15, "type": "item", "pool": "acessorios" }
+			]
+		},
+		"chefe_geleira": {
+			"drop_chance": 1.0,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 20, "type": "currency", "min": 900, "max": 2000 },
+				{ "weight": 45, "type": "item", "pool": "joias" },
+				{ "weight": 20, "type": "item", "pool": "armas_t2" },
+				{ "weight": 15, "type": "item", "pool": "acessorios" }
+			]
+		},
+		"arena": {
+			"drop_chance": 0.35,
+			"entries": [
+				{ "weight": 55, "type": "currency", "min": 30, "max": 90 },
+				{ "weight": 25, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 10, "type": "item", "pool": "consumiveis_t2" }
+			]
+		},
+		"fortaleza": {
+			"drop_chance": 0.5,
+			"entries": [
+				{ "weight": 50, "type": "currency", "min": 40, "max": 120 },
+				{ "weight": 25, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 15, "type": "item", "pool": "consumiveis_t2" }
+			]
+		},
+		"geleira_raro": {
+			"drop_chance": 0.95,
+			"entries": [
+				{ "weight": 4, "type": "item", "pool": "materiais_evento" },
+				{ "weight": 30, "type": "currency", "min": 180, "max": 400 },
+				{ "weight": 16, "type": "item", "pool": "armas_t2" },
+				{ "weight": 10, "type": "item", "pool": "acessorios" },
+				{ "weight": 24, "type": "item", "pool": "joias" },
+				{ "weight": 10, "type": "item", "pool": "consumiveis_t2" }
+			]
+		}
+	},
+	"_fortaleza_doc": "Monstros da Fortaleza Sitiada: Óbolos, joias e os materiais do ingresso.",
+	"_boss_doc": "Chefes e invasão: várias rolagens por morte (drop_rolls no monstro). drop_chance 1.0 = sempre cai algo.",
+	"pools": {
+		"armas_t2": ["vara_eclipse", "lamina_penitente", "cetro_abissal", "montante_eclipse", "broquel_cinzas"],
+		"consumiveis_t2": ["pocao_vida", "pocao_vida", "pocao_mana_menor", "pergaminho_retorno"],
+		"armas_t1": ["cajado_osso", "vara_eclipse", "espada_ferrugem", "lamina_penitente", "broquel_cinzas"],
+		"trajes_t1": ["capuz_acolito", "manto_acolito", "calcas_acolito", "luvas_acolito", "botas_acolito"],
+		"acessorios": ["amuleto_fumaca", "anel_brasa", "cetro_abissal", "montante_eclipse"],
+		"joias_comuns": ["joia_consagrada", "joia_alma"],
+		"consumiveis": ["pocao_vida_menor", "pocao_mana_menor", "pocao_vida_menor", "pocao_mana_menor", "pergaminho_retorno"],
+		"joias": ["joia_consagrada", "joia_alma", "joia_vortice", "joia_vida", "joia_genese"],
+		"materiais_evento": ["pergaminho_sitiante", "osso_brasa"]
+	}
+}

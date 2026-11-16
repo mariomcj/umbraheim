@@ -1,0 +1,22 @@
+# Cache da Godot (regenerado ao abrir o projeto)
+.godot/
+*.import.tmp
+
+# Builds geradas
+build/
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# Assets: originais baixados (antes de processar) e a pasta de downloads manuais
+assets/_raw/
+downloads/
+
+# Python e bancos locais
+__pycache__/
+*.pyc
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

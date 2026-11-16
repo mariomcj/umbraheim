@@ -1,0 +1,310 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/ground_dirt.gdshader" id="1_ground"]
+[ext_resource type="Shader" path="res://assets/shaders/fake_fog.gdshader" id="2_fog"]
+[ext_resource type="Shader" path="res://assets/shaders/rune_circle.gdshader" id="3_rune"]
+[ext_resource type="Script" path="res://client/world/torch_flicker.gd" id="4_flicker"]
+[ext_resource type="PackedScene" path="res://client/world/refuge.tscn" id="5_refuge"]
+[ext_resource type="Material" path="res://client/world/materials/ground_ruinas.tres" id="m0_ground_ruinas"]
+[ext_resource type="Material" path="res://client/world/materials/stone_wall.tres" id="m1_stone_wall"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+sky_top_color = Color(0.03, 0.035, 0.05, 1)
+sky_horizon_color = Color(0.1, 0.11, 0.12, 1)
+ground_bottom_color = Color(0.02, 0.02, 0.025, 1)
+ground_horizon_color = Color(0.1, 0.11, 0.12, 1)
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.36, 0.38, 0.42, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.7
+glow_bloom = 0.05
+glow_hdr_threshold = 0.9
+fog_enabled = true
+fog_light_color = Color(0.08, 0.095, 0.1, 1)
+fog_density = 0.012
+fog_sky_affect = 0.8
+fog_height = 0.6
+fog_height_density = 0.12
+adjustment_enabled = true
+adjustment_contrast = 1.05
+adjustment_saturation = 0.8
+
+[sub_resource type="ShaderMaterial" id="GroundMat"]
+render_priority = 0
+shader = ExtResource("1_ground")
+
+[sub_resource type="PlaneMesh" id="GroundMesh"]
+material = ExtResource("m0_ground_ruinas")
+size = Vector2(90, 90)
+
+[sub_resource type="StandardMaterial3D" id="StoneMat"]
+albedo_color = Color(0.16, 0.16, 0.17, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PillarMesh"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(1.2, 4, 1.2)
+
+[sub_resource type="BoxMesh" id="BlockMesh"]
+material = ExtResource("m1_stone_wall")
+size = Vector3(2.4, 0.6, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="FlameMat"]
+shading_mode = 0
+albedo_color = Color(1, 0.55, 0.2, 1)
+emission_enabled = true
+emission = Color(1, 0.5, 0.15, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="FlameMesh"]
+material = SubResource("FlameMat")
+radius = 0.14
+height = 0.36
+
+[sub_resource type="CylinderMesh" id="PostMesh"]
+material = ExtResource("m1_stone_wall")
+top_radius = 0.07
+bottom_radius = 0.09
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="CrystalVioletMat"]
+albedo_color = Color(0.35, 0.15, 0.6, 1)
+emission_enabled = true
+emission = Color(0.6, 0.25, 1, 1)
+emission_energy_multiplier = 2.5
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="CrystalVioletMesh"]
+material = SubResource("CrystalVioletMat")
+top_radius = 0.0
+bottom_radius = 0.35
+height = 1.8
+radial_segments = 5
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="CrystalGreenMat"]
+albedo_color = Color(0.15, 0.4, 0.25, 1)
+emission_enabled = true
+emission = Color(0.35, 1, 0.55, 1)
+emission_energy_multiplier = 2.0
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="CrystalGreenMesh"]
+material = SubResource("CrystalGreenMat")
+top_radius = 0.0
+bottom_radius = 0.3
+height = 1.4
+radial_segments = 5
+rings = 1
+
+[sub_resource type="ShaderMaterial" id="RuneMat"]
+render_priority = 0
+shader = ExtResource("3_rune")
+
+[sub_resource type="PlaneMesh" id="RuneMesh"]
+material = SubResource("RuneMat")
+size = Vector2(6, 6)
+
+[sub_resource type="PlaneMesh" id="FogPlaneMesh"]
+size = Vector2(90, 90)
+
+[sub_resource type="ShaderMaterial" id="FogMatLow"]
+render_priority = 1
+shader = ExtResource("2_fog")
+shader_parameter/fog_color = Color(0.3, 0.35, 0.34, 1)
+shader_parameter/density = 0.3
+shader_parameter/coverage = 0.45
+shader_parameter/layer_seed = 0.0
+
+[sub_resource type="ShaderMaterial" id="FogMatMid"]
+render_priority = 2
+shader = ExtResource("2_fog")
+shader_parameter/fog_color = Color(0.3, 0.35, 0.34, 1)
+shader_parameter/density = 0.18
+shader_parameter/coverage = 0.55
+shader_parameter/layer_seed = 1.7
+
+[sub_resource type="ShaderMaterial" id="FogMatHigh"]
+render_priority = 3
+shader = ExtResource("2_fog")
+shader_parameter/fog_color = Color(0.3, 0.35, 0.34, 1)
+shader_parameter/density = 0.1
+shader_parameter/coverage = 0.6
+shader_parameter/layer_seed = 3.9
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.95, 0.65, 0)
+light_color = Color(0.78, 0.76, 0.7, 1)
+light_energy = 1.0
+shadow_enabled = true
+directional_shadow_max_distance = 45.0
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("GroundMesh")
+
+[node name="Ruins" type="Node3D" parent="." groups=["obstacle"]]
+
+[node name="Pillar1" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(-8, 2, -6)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar2" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(7, 1.4, -9)
+scale = Vector3(1, 0.7, 1)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar3" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(-12, 2.4, 8)
+scale = Vector3(1.1, 1.2, 1.1)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar4" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(11, 2, 6)
+rotation = Vector3(0, 0.4, 0.12)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar5" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(0, 1, -15)
+scale = Vector3(1, 0.5, 1)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar6" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(-4, 2, 14)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar7" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(16, 2.6, -2)
+scale = Vector3(1.2, 1.3, 1.2)
+mesh = SubResource("PillarMesh")
+
+[node name="Pillar8" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(-17, 1.2, -3)
+rotation = Vector3(0.1, 0.9, 0)
+scale = Vector3(1, 0.6, 1)
+mesh = SubResource("PillarMesh")
+
+[node name="Fallen1" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(-6, 0.3, -3)
+rotation = Vector3(0, 0.6, 0)
+mesh = SubResource("BlockMesh")
+
+[node name="Fallen2" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(5, 0.3, 4)
+rotation = Vector3(0, -0.4, 0.05)
+mesh = SubResource("BlockMesh")
+
+[node name="Fallen3" type="MeshInstance3D" parent="Ruins"]
+position = Vector3(9, 0.3, -7)
+rotation = Vector3(0, 1.2, 0)
+mesh = SubResource("BlockMesh")
+
+[node name="Torches" type="Node3D" parent="." groups=["obstacle"]]
+
+[node name="Torch1" type="Node3D" parent="Torches"]
+position = Vector3(-6.5, 0, -5)
+
+[node name="Post" type="MeshInstance3D" parent="Torches/Torch1"]
+position = Vector3(0, 1, 0)
+mesh = SubResource("PostMesh")
+
+[node name="Flame" type="MeshInstance3D" parent="Torches/Torch1"]
+position = Vector3(0, 2.1, 0)
+mesh = SubResource("FlameMesh")
+
+[node name="Light" type="OmniLight3D" parent="Torches/Torch1"]
+position = Vector3(0, 2.2, 0)
+light_color = Color(1, 0.55, 0.22, 1)
+light_energy = 1.6
+omni_range = 7.0
+script = ExtResource("4_flicker")
+
+[node name="Torch2" type="Node3D" parent="Torches"]
+position = Vector3(9.5, 0, 5)
+
+[node name="Post" type="MeshInstance3D" parent="Torches/Torch2"]
+position = Vector3(0, 1, 0)
+mesh = SubResource("PostMesh")
+
+[node name="Flame" type="MeshInstance3D" parent="Torches/Torch2"]
+position = Vector3(0, 2.1, 0)
+mesh = SubResource("FlameMesh")
+
+[node name="Light" type="OmniLight3D" parent="Torches/Torch2"]
+position = Vector3(0, 2.2, 0)
+light_color = Color(1, 0.55, 0.22, 1)
+light_energy = 1.6
+omni_range = 7.0
+script = ExtResource("4_flicker")
+
+[node name="Crystals" type="Node3D" parent="." groups=["obstacle"]]
+
+[node name="CrystalViolet" type="Node3D" parent="Crystals"]
+position = Vector3(-11, 0, 6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Crystals/CrystalViolet"]
+position = Vector3(0, 0.9, 0)
+rotation = Vector3(0.15, 0, 0.1)
+mesh = SubResource("CrystalVioletMesh")
+
+[node name="Light" type="OmniLight3D" parent="Crystals/CrystalViolet"]
+position = Vector3(0, 1.2, 0)
+light_color = Color(0.6, 0.3, 1, 1)
+light_energy = 1.4
+omni_range = 6.0
+
+[node name="CrystalGreen" type="Node3D" parent="Crystals"]
+position = Vector3(6, 0, -12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Crystals/CrystalGreen"]
+position = Vector3(0, 0.7, 0)
+rotation = Vector3(-0.1, 0, 0.2)
+mesh = SubResource("CrystalGreenMesh")
+
+[node name="Light" type="OmniLight3D" parent="Crystals/CrystalGreen"]
+position = Vector3(0, 1, 0)
+light_color = Color(0.35, 1, 0.55, 1)
+light_energy = 1.1
+omni_range = 5.0
+
+[node name="RuneCircle" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.03, 0)
+mesh = SubResource("RuneMesh")
+
+[node name="RuneLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 0.8, 0)
+light_color = Color(0.6, 0.3, 1, 1)
+light_energy = 0.9
+omni_range = 5.0
+
+[node name="Fog" type="Node3D" parent="."]
+
+[node name="FogLow" type="MeshInstance3D" parent="Fog"]
+position = Vector3(0, 0.25, 0)
+mesh = SubResource("FogPlaneMesh")
+surface_material_override/0 = SubResource("FogMatLow")
+
+[node name="FogMid" type="MeshInstance3D" parent="Fog"]
+position = Vector3(0, 0.8, 0)
+mesh = SubResource("FogPlaneMesh")
+surface_material_override/0 = SubResource("FogMatMid")
+
+[node name="FogHigh" type="MeshInstance3D" parent="Fog"]
+position = Vector3(0, 1.6, 0)
+mesh = SubResource("FogPlaneMesh")
+surface_material_override/0 = SubResource("FogMatHigh")
+
+[node name="Refuge" parent="." instance=ExtResource("5_refuge")]

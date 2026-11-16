@@ -1,0 +1,19 @@
+{
+	"_doc": "Missões. npc: quem dá e recebe a missão (data/regions/*.json, role quest). level_req: nível para aceitar. steps, em ordem: kill (derrote count monstros na region; conta para quem matou e para o grupo na mesma região) ou item (traga count do item; from_monster: quem ajudou a derrubar esse monstro recebe o item direto na mochila enquanto está neste passo). reward.evolve: evolui a classe (data/classes/<id>.json -> evolution). Os textos de cada classe ficam em intro.",
+	"evolucao": {
+		"name": "O Juramento das Cinzas",
+		"npc": "anciao",
+		"level_req": 20,
+		"intro": {
+			"feiticeiro": "O Abismo responde a quem já o encarou. Prove sua chama na Geleira e traga o Selo que o Colosso guarda, e eu abrirei o caminho do Arquimago.",
+			"cavaleiro": "Uma lâmina profana precisa de um juramento. Lute na Geleira e arranque o Selo do Colosso: com ele você renasce como Cavaleiro do Eclipse.",
+			"vidente": "O Véu se abre para quem protege os seus. Atravesse a Geleira e traga o Selo do Colosso, e o Véu fará de você um Oráculo."
+		},
+		"steps": [
+			{ "type": "kill", "region": "geleira", "count": 30, "text": "Derrote criaturas na Geleira" },
+			{ "type": "item", "item": "selo_juramento", "count": 1, "from_monster": "chefe_colosso", "text": "Traga o Selo do Juramento Antigo (Colosso da Geleira)" }
+		],
+		"reward": { "evolve": true },
+		"done_text": "Você já fez o seu juramento. Vá, e honre o novo nome."
+	}
+}

@@ -1,0 +1,53 @@
+{
+	"id": "ruinas",
+	"name": "Ruínas de Vel'Morth",
+	"paper_px_per_m": 13.0,
+	"ink_tremor": 1.0,
+	"entrance_label": "Chegada",
+	"death_label": "Aqui caí",
+	"scene": "res://client/world/test_world.tscn",
+	"_doc": "safe_zones: retângulos [x0, z0, x1, z1] onde monstros não entram nem atacam e não se lança magia. npcs: role = shop (usa shops.json[shop]), storage (armazém), vortex_forge, quest (quests: ids em quests.json) ou siege (Arauto do Cerco: inscrição, entrada, impostos); scene_node = nó visual na cena da região.",
+	"level_req": 1,
+	"teleport_cost": 50,
+	"player_spawn": [0.0, 24.5],
+	"return_point": [0.0, 24.5],
+	"teleport_point": [0.0, 23.0],
+	"respawn_region": "ruinas",
+	"portals": [
+		{ "id": "norte", "pos": [0.0, -33.5], "radius_m": 1.4, "to_region": "bosque", "to_portal": "sul", "arrival": [0.0, -29.0], "label": "Bosque das Cinzas Mortas (nível 10)" }
+	],
+	"nav_cell_m": 0.5,
+	"nav_agent_radius_m": 0.4,
+	"safe_zones": [
+		{ "id": "refugio", "name": "Refúgio das Cinzas", "rect": [-13.0, 20.0, 13.0, 35.0] }
+	],
+	"npcs": [
+		{ "id": "ferreiro", "role": "shop", "shop": "ferreiro", "name": "Hálvor, o Ferreiro", "pos": [-8.0, 25.0], "interact_range_m": 2.6, "scene_node": "Refuge/Halvor" },
+		{ "id": "mago", "role": "shop", "shop": "mago", "name": "Ysolde, a Alquimista", "pos": [8.0, 25.0], "interact_range_m": 2.6, "scene_node": "Refuge/Ysolde" },
+		{ "id": "armazem", "role": "storage", "name": "Orrin, Guardião do Cofre", "pos": [-6.5, 31.5], "interact_range_m": 2.6, "scene_node": "Refuge/Orrin" },
+		{ "id": "anciao", "role": "quest", "quests": ["evolucao"], "name": "Ancião Varek", "pos": [0.0, 33.0], "interact_range_m": 2.6, "scene_node": "Refuge/Varek" },
+		{ "id": "arauto", "role": "siege", "name": "Arauto do Cerco", "pos": [-10.5, 29.0], "interact_range_m": 2.6, "scene_node": "Refuge/Arauto" },
+		{ "id": "forja", "role": "vortex_forge", "name": "Forja do Vórtice", "pos": [6.5, 31.5], "interact_range_m": 2.8, "scene_node": "Refuge/VortexForge" }
+	],
+	"monster_spawns": [
+		{ "monster": "chefe_abominacao", "pos": [-17.0, 17.0], "count": 1, "radius_m": 0.0 },
+		{ "monster": "carnical", "pos": [-9.0, 10.0], "count": 6, "radius_m": 3.9 },
+		{ "monster": "carnical", "pos": [10.0, 10.0], "count": 4, "radius_m": 3.2 },
+		{ "monster": "espectro", "pos": [12.0, -11.0], "count": 4, "radius_m": 3.9 },
+		{ "monster": "espectro", "pos": [-14.0, -9.0], "count": 4, "radius_m": 3.9 }
+	],
+	"landmarks": [
+		{ "id": "refugio", "name": "Refúgio das Cinzas", "symbol": "house", "pos": [0.0, 28.5], "radius_m": 7.0 },
+		{ "id": "npc_ferreiro", "name": "Ferreiro", "symbol": "x", "pos": [-8.0, 25.0], "radius_m": 3.5 },
+		{ "id": "npc_mago", "name": "Alquimista", "symbol": "x", "pos": [8.0, 25.0], "radius_m": 3.5 },
+		{ "id": "npc_armazem", "name": "Cofre", "symbol": "x", "pos": [-6.5, 31.5], "radius_m": 3.5 },
+		{ "id": "npc_forja", "name": "Forja do Vórtice", "symbol": "star", "pos": [6.5, 31.5], "radius_m": 3.5 },
+		{ "id": "portal_norte", "name": "Portal do Bosque", "symbol": "portal", "pos": [0.0, -33.5], "radius_m": 4.0 },
+		{ "id": "circulo", "name": "Círculo Rúnico", "symbol": "circle", "pos": [0.0, 0.0], "radius_m": 3.5 },
+		{ "id": "cristal_violeta", "name": "Cristal Violeta", "symbol": "star", "pos": [-11.0, 6.0], "radius_m": 4.0 },
+		{ "id": "cristal_verde", "name": "Cristal Espectral", "symbol": "star", "pos": [6.0, -12.0], "radius_m": 4.0 },
+		{ "id": "tocha_oeste", "name": "Tocha Antiga", "symbol": "x", "pos": [-6.5, -5.0], "radius_m": 3.0 },
+		{ "id": "tocha_leste", "name": "Tocha Antiga", "symbol": "x", "pos": [9.5, 5.0], "radius_m": 3.0 },
+		{ "id": "pilar_caido", "name": "Pilar Tombado", "symbol": "hatch", "pos": [16.0, -2.0], "radius_m": 3.5 }
+	]
+}

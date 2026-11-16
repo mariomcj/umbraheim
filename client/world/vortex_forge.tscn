@@ -1,0 +1,87 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://client/world/vortex_forge.gd" id="1_forge"]
+
+[sub_resource type="StandardMaterial3D" id="StoneMat"]
+albedo_color = Color(0.2, 0.19, 0.2, 1)
+roughness = 0.95
+
+[sub_resource type="CylinderMesh" id="PedestalMesh"]
+material = SubResource("StoneMat")
+top_radius = 0.45
+bottom_radius = 0.65
+height = 0.9
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="RingMat"]
+albedo_color = Color(0.25, 0.1, 0.15, 1)
+emission_enabled = true
+emission = Color(0.9, 0.15, 0.35, 1)
+emission_energy_multiplier = 1.3
+metallic = 0.6
+roughness = 0.3
+
+[sub_resource type="TorusMesh" id="RingMesh"]
+material = SubResource("RingMat")
+inner_radius = 0.55
+outer_radius = 0.66
+rings = 32
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="RingMesh2"]
+material = SubResource("RingMat")
+inner_radius = 0.38
+outer_radius = 0.45
+rings = 28
+ring_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="CoreMat"]
+shading_mode = 0
+albedo_color = Color(1.6, 0.5, 1.4, 1)
+
+[sub_resource type="SphereMesh" id="CoreMesh"]
+material = SubResource("CoreMat")
+radius = 0.18
+height = 0.36
+radial_segments = 6
+rings = 3
+
+[node name="VortexForge" type="Node3D" groups=["obstacle"]]
+script = ExtResource("1_forge")
+
+[node name="Pedestal" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.45, 0)
+mesh = SubResource("PedestalMesh")
+
+[node name="Ring" type="Node3D" parent="."]
+position = Vector3(0, 1.65, 0)
+
+[node name="Outer" type="MeshInstance3D" parent="Ring"]
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("RingMesh")
+
+[node name="Inner" type="MeshInstance3D" parent="Ring"]
+rotation = Vector3(0, 0, 1.5708)
+mesh = SubResource("RingMesh2")
+
+[node name="Core" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.65, 0)
+mesh = SubResource("CoreMesh")
+
+[node name="Light" type="OmniLight3D" parent="."]
+position = Vector3(0, 1.7, 0)
+light_color = Color(0.95, 0.3, 0.5, 1)
+light_energy = 1.2
+omni_range = 5.0
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.6, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.95, 0.78, 0.4, 1)
+outline_modulate = Color(0, 0, 0, 0.9)
+pixel_size = 0.005
+font_size = 44
+outline_size = 12
+text = "Forja do Vórtice"
