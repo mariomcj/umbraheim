@@ -39,9 +39,12 @@ func _ready() -> void:
 	var cfg := GameConfig.section("audio")
 	_sounds = cfg.get("sounds", {})
 	var buses: Dictionary = cfg.get("buses", {})
+	# Os canais vêm de res://default_bus_layout.tres. Criar canal em tempo de execução quebra a Web
+	# (no modo "sample" a ligação dos canais fica num laço e nada chega à saída): só como reserva.
 	for bus in BUSES:
 		var idx := AudioServer.get_bus_index(bus)
 		if idx < 0:
+			push_warning("SoundDirector: canal %s fora do default_bus_layout.tres" % bus)
 			AudioServer.add_bus()
 			idx = AudioServer.bus_count - 1
 			AudioServer.set_bus_name(idx, bus)
